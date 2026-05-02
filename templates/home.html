@@ -8,9 +8,9 @@
 
 <!-- ========== HERO SECTION ========== -->
 <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <!-- Video Background -->
-    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0" id="hero-video">
-        <source src="{% static 'videos/hero-bg.mp4' %}" type="video/mp4">
+    <!-- Video Background (Optimized Loading) -->
+    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0 opacity-0 transition-opacity duration-1000" id="hero-video" poster="{% static 'images/hero-poster.jpg' %}">
+        <source data-src="{% static 'videos/hero-bg.mp4' %}" type="video/mp4">
     </video>
 
     <!-- Dark Overlay for readability -->

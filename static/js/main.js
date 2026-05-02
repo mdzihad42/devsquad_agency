@@ -121,6 +121,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
-    });
+    // ---- Optimized Video Loading ----
+    const heroVideo = document.getElementById('hero-video');
+    if (heroVideo) {
+        const source = heroVideo.querySelector('source');
+        if (source && source.dataset.src) {
+            // Wait for window load to ensure everything else is ready
+            window.addEventListener('load', function() {
+                source.src = source.dataset.src;
+                heroVideo.load();
+                
+                heroVideo.addEventListener('canplaythrough', function() {
+                    heroVideo.classList.remove('opacity-0');
+                    heroVideo.classList.add('opacity-100');
+                }, { once: true });
+            });
+        }
+    }
 
 });
