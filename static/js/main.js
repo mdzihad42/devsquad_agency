@@ -121,6 +121,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
+    });
+
     // ---- Optimized Video Loading ----
     const heroVideo = document.getElementById('hero-video');
     if (heroVideo) {
