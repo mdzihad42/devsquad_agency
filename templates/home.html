@@ -9,24 +9,26 @@
 <!-- ========== HERO SECTION ========== -->
 <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <!-- Video Background (Optimized Loading) -->
-    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0 opacity-0 transition-opacity duration-1000" id="hero-video" poster="{% static 'images/hero-poster.jpg' %}">
+    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0 opacity-0 transition-opacity duration-1000 filter contrast-[1.1] brightness-[1.05]" id="hero-video" poster="{% static 'images/hero-poster.jpg' %}">
         <source data-src="{% static 'videos/hero-bg-new.mov' %}" type="video/quicktime">
         <source data-src="{% static 'videos/hero-bg-new.mov' %}" type="video/mp4">
     </video>
 
-    <!-- Dark Overlay for readability -->
-    <div class="absolute inset-0 bg-galaxy-950/70 z-[1]"></div>
+    <!-- Refined Dark Overlay (Lighter to let video pop) -->
+    <div class="absolute inset-0 bg-galaxy-950/40 z-[1]"></div>
+    
+    <!-- Vignette for depth -->
+    <div class="absolute inset-0 bg-gradient-to-b from-galaxy-950/60 via-transparent to-galaxy-950/80 z-[2]"></div>
 
     <!-- Starfield overlay on top of video for extra galaxy depth -->
-    <div class="star-field z-[2]" style="opacity: 0.5;">
+    <div class="star-field z-[3]" style="opacity: 0.3;">
         <div class="stars-layer stars-small"></div>
         <div class="stars-layer stars-medium"></div>
         <div class="stars-layer stars-large"></div>
     </div>
 
     <!-- Gradient Overlays -->
-    <div class="absolute inset-0 bg-gradient-to-b from-galaxy-950/40 via-transparent to-galaxy-950 z-[3]"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-accent/5 via-transparent to-purple-500/5 z-[3]"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-accent/10 via-transparent to-purple-500/10 z-[4]"></div>
 
     <!-- Floating Orbs -->
     <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-float-slow z-[4]"></div>
