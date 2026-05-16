@@ -1,16 +1,19 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}DevSquad — Digital Agency{% endblock %}</title>
-    <meta name="description" content="{% block meta_description %}DevSquad — We build scalable digital products. Premium software development, UI/UX design, and digital solutions.{% endblock %}">
+    <meta name="description"
+        content="{% block meta_description %}DevSquad — We build scalable digital products. Premium software development, UI/UX design, and digital solutions.{% endblock %}">
 
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -22,17 +25,21 @@
             theme: {
                 extend: {
                     colors: {
-                        galaxy: {
-                            950: '#020617',
-                            900: '#0f172a',
-                            800: '#1e293b',
-                            700: '#334155',
+                        black: {
+                            pure: '#000000',
+                            soft: '#0a0a0a',
+                            surface: '#121212',
+                        },
+                        sunset: {
+                            orange: '#f97316',
+                            amber: '#fbbf24',
+                            glow: 'rgba(249, 115, 22, 0.2)',
                         },
                         accent: {
-                            DEFAULT: '#6366f1',
-                            light: '#818cf8',
-                            dark: '#4f46e5',
-                            glow: 'rgba(99, 102, 241, 0.3)',
+                            DEFAULT: '#f97316',
+                            light: '#fbbf24',
+                            dark: '#ea580c',
+                            glow: 'rgba(249, 115, 22, 0.2)',
                         }
                     },
                     fontFamily: {
@@ -46,36 +53,54 @@
     <!-- Custom Styles -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
-<body class="bg-galaxy-950 text-slate-50 font-inter antialiased">
+
+<body class="bg-black-pure text-white font-inter antialiased">
+    <div class="mesh-bg"></div>
 
     <!-- ========== NAVBAR ========== -->
     <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-500">
+            <div class="flex items-center justify-between h-20 transition-all duration-500" id="navbar-inner">
                 <!-- Logo -->
                 <a href="{% url 'home' %}" class="flex items-center space-x-2 group" id="nav-logo">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-accent to-purple-500 flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
+                    <div
+                        class="w-10 h-10 rounded-lg bg-gradient-to-br from-sunset-orange to-sunset-amber flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
                         <span class="text-white font-bold text-lg">D</span>
                     </div>
-                    <span class="text-xl font-bold bg-gradient-to-r from-accent-light to-purple-400 bg-clip-text text-transparent">DevSquad</span>
+                    <span
+                        class="text-xl font-bold bg-gradient-to-r from-sunset-orange to-sunset-amber bg-clip-text text-transparent">DevSquad</span>
                 </a>
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="{% url 'home' %}" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors duration-300" id="nav-home">Home</a>
-                    <a href="{% url 'services' %}" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors duration-300" id="nav-services">Services</a>
-                    <a href="{% url 'portfolio' %}" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors duration-300" id="nav-portfolio">Portfolio</a>
-                    <a href="{% url 'about' %}" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors duration-300" id="nav-about">About</a>
-                    <a href="{% url 'contact' %}" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors duration-300" id="nav-contact">Contact</a>
-                    <a href="{% url 'contact' %}" class="ml-4 px-6 py-2.5 bg-gradient-to-r from-accent to-purple-500 text-white text-sm font-semibold rounded-full hover:shadow-[0_0_30px_rgba(99,102,241,0.4)] transform hover:scale-105 transition-all duration-300" id="nav-cta">
+                    <a href="{% url 'home' %}"
+                        class="nav-link text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors duration-300"
+                        id="nav-home">Home</a>
+                    <a href="{% url 'services' %}"
+                        class="nav-link text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors duration-300"
+                        id="nav-services">Services</a>
+                    <a href="{% url 'portfolio' %}"
+                        class="nav-link text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors duration-300"
+                        id="nav-portfolio">Portfolio</a>
+                    <a href="{% url 'about' %}"
+                        class="nav-link text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors duration-300"
+                        id="nav-about">About</a>
+                    <a href="{% url 'contact' %}"
+                        class="nav-link text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors duration-300"
+                        id="nav-contact">Contact</a>
+                    <a href="{% url 'contact' %}"
+                        class="ml-4 px-6 py-2.5 bg-gradient-to-r from-sunset-orange to-sunset-amber text-white text-sm font-bold rounded-full hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transform hover:scale-105 transition-all duration-300"
+                        id="nav-cta">
                         Hire Us
                     </a>
                 </div>
 
                 <!-- Mobile Hamburger -->
-                <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none" aria-label="Toggle mobile menu">
+                <button id="mobile-menu-btn" class="md:hidden text-white/70 hover:text-sunset-orange focus:outline-none"
+                    aria-label="Toggle mobile menu">
                     <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
             </div>
@@ -84,12 +109,19 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="md:hidden hidden bg-galaxy-900/95 backdrop-blur-xl border-t border-white/10">
             <div class="px-4 py-6 space-y-4">
-                <a href="{% url 'home' %}" class="block text-slate-300 hover:text-white font-medium transition-colors">Home</a>
-                <a href="{% url 'services' %}" class="block text-slate-300 hover:text-white font-medium transition-colors">Services</a>
-                <a href="{% url 'portfolio' %}" class="block text-slate-300 hover:text-white font-medium transition-colors">Portfolio</a>
-                <a href="{% url 'about' %}" class="block text-slate-300 hover:text-white font-medium transition-colors">About</a>
-                <a href="{% url 'contact' %}" class="block text-slate-300 hover:text-white font-medium transition-colors">Contact</a>
-                <a href="{% url 'contact' %}" class="inline-block mt-2 px-6 py-2.5 bg-gradient-to-r from-accent to-purple-500 text-white text-sm font-semibold rounded-full">Hire Us</a>
+                <a href="{% url 'home' %}"
+                    class="block text-slate-300 hover:text-white font-medium transition-colors">Home</a>
+                <a href="{% url 'services' %}"
+                    class="block text-slate-300 hover:text-white font-medium transition-colors">Services</a>
+                <a href="{% url 'portfolio' %}"
+                    class="block text-slate-300 hover:text-white font-medium transition-colors">Portfolio</a>
+                <a href="{% url 'about' %}"
+                    class="block text-slate-300 hover:text-white font-medium transition-colors">About</a>
+                <a href="{% url 'contact' %}"
+                    class="block text-slate-300 hover:text-white font-medium transition-colors">Contact</a>
+                <a href="{% url 'contact' %}"
+                    class="inline-block mt-2 px-6 py-2.5 bg-gradient-to-r from-accent to-purple-500 text-white text-sm font-semibold rounded-full">Hire
+                    Us</a>
             </div>
         </div>
     </nav>
@@ -98,9 +130,11 @@
     {% if messages %}
     <div class="fixed top-24 right-4 z-50 space-y-2" id="message-container">
         {% for message in messages %}
-        <div class="message-toast px-6 py-4 rounded-xl backdrop-blur-xl border border-white/10 shadow-2xl flex items-center space-x-3 animate-slide-in
+        <div
+            class="message-toast px-6 py-4 rounded-xl backdrop-blur-xl border border-white/10 shadow-2xl flex items-center space-x-3 animate-slide-in
             {% if message.tags == 'success' %}bg-emerald-500/20 border-emerald-500/30{% elif message.tags == 'error' %}bg-red-500/20 border-red-500/30{% else %}bg-accent/20 border-accent/30{% endif %}">
-            <i class="fas {% if message.tags == 'success' %}fa-check-circle text-emerald-400{% elif message.tags == 'error' %}fa-exclamation-circle text-red-400{% else %}fa-info-circle text-accent-light{% endif %}"></i>
+            <i
+                class="fas {% if message.tags == 'success' %}fa-check-circle text-emerald-400{% elif message.tags == 'error' %}fa-exclamation-circle text-red-400{% else %}fa-info-circle text-accent-light{% endif %}"></i>
             <span class="text-sm font-medium">{{ message }}</span>
         </div>
         {% endfor %}
@@ -119,23 +153,36 @@
                 <!-- Brand -->
                 <div class="lg:col-span-1">
                     <a href="{% url 'home' %}" class="flex items-center space-x-2 mb-4">
-                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-accent to-purple-500 flex items-center justify-center">
+                        <div
+                            class="w-10 h-10 rounded-lg bg-gradient-to-br from-accent to-purple-500 flex items-center justify-center">
                             <span class="text-white font-bold text-lg">D</span>
                         </div>
-                        <span class="text-xl font-bold bg-gradient-to-r from-accent-light to-purple-400 bg-clip-text text-transparent">DevSquad</span>
+                        <span
+                            class="text-xl font-bold bg-gradient-to-r from-accent-light to-purple-400 bg-clip-text text-transparent">DevSquad</span>
                     </a>
-                    <p class="text-slate-400 text-sm leading-relaxed">Transforming ideas into high-performance digital experiences that drive growth and innovation.</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">Transforming ideas into high-performance digital
+                        experiences that drive growth and innovation.</p>
                 </div>
 
                 <!-- Quick Links -->
                 <div>
                     <h4 class="text-white font-semibold mb-4">Quick Links</h4>
                     <ul class="space-y-3">
-                        <li><a href="{% url 'home' %}" class="text-slate-400 hover:text-accent-light text-sm transition-colors duration-300">Home</a></li>
-                        <li><a href="{% url 'services' %}" class="text-slate-400 hover:text-accent-light text-sm transition-colors duration-300">Services</a></li>
-                        <li><a href="{% url 'portfolio' %}" class="text-slate-400 hover:text-accent-light text-sm transition-colors duration-300">Portfolio</a></li>
-                        <li><a href="{% url 'about' %}" class="text-slate-400 hover:text-accent-light text-sm transition-colors duration-300">About Us</a></li>
-                        <li><a href="{% url 'contact' %}" class="text-slate-400 hover:text-accent-light text-sm transition-colors duration-300">Contact</a></li>
+                        <li><a href="{% url 'home' %}"
+                                class="text-slate-400 hover:text-accent-light text-sm transition-colors duration-300">Home</a>
+                        </li>
+                        <li><a href="{% url 'services' %}"
+                                class="text-slate-400 hover:text-accent-light text-sm transition-colors duration-300">Services</a>
+                        </li>
+                        <li><a href="{% url 'portfolio' %}"
+                                class="text-slate-400 hover:text-accent-light text-sm transition-colors duration-300">Portfolio</a>
+                        </li>
+                        <li><a href="{% url 'about' %}"
+                                class="text-slate-400 hover:text-accent-light text-sm transition-colors duration-300">About
+                                Us</a></li>
+                        <li><a href="{% url 'contact' %}"
+                                class="text-slate-400 hover:text-accent-light text-sm transition-colors duration-300">Contact</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -168,22 +215,26 @@
                     <!-- Social Links -->
                     <div class="flex items-center space-x-4 mt-6">
                         {% if site.social_facebook %}
-                        <a href="{{ site.social_facebook }}" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-accent-light hover:border-accent/30 transition-all duration-300">
+                        <a href="{{ site.social_facebook }}" target="_blank"
+                            class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-accent-light hover:border-accent/30 transition-all duration-300">
                             <i class="fab fa-facebook-f"></i>
                         </a>
                         {% endif %}
                         {% if site.social_twitter %}
-                        <a href="{{ site.social_twitter }}" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-accent-light hover:border-accent/30 transition-all duration-300">
+                        <a href="{{ site.social_twitter }}" target="_blank"
+                            class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-accent-light hover:border-accent/30 transition-all duration-300">
                             <i class="fab fa-twitter"></i>
                         </a>
                         {% endif %}
                         {% if site.social_linkedin %}
-                        <a href="{{ site.social_linkedin }}" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-accent-light hover:border-accent/30 transition-all duration-300">
+                        <a href="{{ site.social_linkedin }}" target="_blank"
+                            class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-accent-light hover:border-accent/30 transition-all duration-300">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                         {% endif %}
                         {% if site.social_github %}
-                        <a href="{{ site.social_github }}" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-accent-light hover:border-accent/30 transition-all duration-300">
+                        <a href="{{ site.social_github }}" target="_blank"
+                            class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-accent-light hover:border-accent/30 transition-all duration-300">
                             <i class="fab fa-github"></i>
                         </a>
                         {% endif %}
@@ -194,24 +245,30 @@
             <!-- Bottom Bar -->
             <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
                 <p class="text-slate-500 text-sm">{{ site.footer_text }}</p>
-                <p class="text-slate-500 text-sm">Crafted with <i class="fas fa-heart text-accent text-xs"></i> by DevSquad</p>
+                <p class="text-slate-500 text-sm">Crafted with <i class="fas fa-heart text-accent text-xs"></i> by
+                    DevSquad</p>
             </div>
         </div>
     </footer>
 
     <!-- ========== WHATSAPP FLOATING BUTTON ========== -->
     <a href="https://wa.me/{{ site.whatsapp_number }}?text=Hi%2C%20I%20want%20to%20build%20a%20website" target="_blank"
-       class="fixed bottom-6 right-6 z-40 w-14 h-14 bg-emerald-500 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)] transform hover:scale-110 transition-all duration-300"
-       id="whatsapp-btn" aria-label="Chat on WhatsApp">
+        class="fixed bottom-6 right-6 z-40 w-14 h-14 bg-emerald-500 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)] transform hover:scale-110 transition-all duration-300"
+        id="whatsapp-btn" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp text-white text-2xl"></i>
     </a>
 
     <!-- ========== SCROLL TO TOP ========== -->
-    <button id="scroll-top-btn" class="fixed bottom-6 right-24 z-40 w-12 h-12 bg-galaxy-800/80 backdrop-blur-xl border border-white/10 rounded-full flex items-center justify-center text-slate-400 hover:text-accent-light hover:border-accent/30 transform hover:scale-110 transition-all duration-300 opacity-0 pointer-events-none" aria-label="Scroll to top">
+    <button id="scroll-top-btn"
+        class="fixed bottom-6 right-24 z-40 w-12 h-12 bg-galaxy-800/80 backdrop-blur-xl border border-white/10 rounded-full flex items-center justify-center text-slate-400 hover:text-accent-light hover:border-accent/30 transform hover:scale-110 transition-all duration-300 opacity-0 pointer-events-none"
+        aria-label="Scroll to top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
     <!-- Main JS -->
     <script src="{% static 'js/main.js' %}"></script>
 </body>
+
+</html>
+
 </html>

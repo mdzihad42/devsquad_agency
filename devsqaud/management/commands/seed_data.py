@@ -1,176 +1,95 @@
+import os
 from django.core.management.base import BaseCommand
 from devsqaud.models import Service, Project, Testimonial, SiteConfig
-
+from django.core.files import File
 
 class Command(BaseCommand):
-    help = 'Seed the database with initial demo data'
+    help = 'Seeds the database with premium, SEO-optimized content'
 
     def handle(self, *args, **options):
-        self.stdout.write('Seeding database...\n')
+        self.stdout.write('Seeding premium content...')
 
-        # ---- Site Config ----
-        config, created = SiteConfig.objects.get_or_create(pk=1, defaults={
-            'hero_headline': 'We Build Scalable Digital Products',
-            'hero_subheading': 'Transforming visionary ideas into high-performance digital experiences that accelerate growth, delight users, and dominate markets.',
-            'about_intro': 'We are DevSquad — a collective of elite developers, designers, and strategists who believe great software is built at the intersection of art and engineering. Since our founding, we have partnered with startups and enterprises alike to ship products that matter.',
-            'about_mission': 'To empower businesses with world-class digital solutions that are scalable, secure, and beautifully crafted. We obsess over every pixel and every line of code so our clients can focus on what they do best.',
-            'about_vision': 'To become the most trusted digital partner for ambitious companies worldwide — known for shipping exceptional products on time, every time.',
-            'stat_projects': '50+',
-            'stat_experience': '3+',
-            'stat_clients': '40+',
-            'contact_email': 'hello@devsquad.agency',
-            'contact_phone': '+880 1234 567890',
-            'whatsapp_number': '8801234567890',
-            'footer_text': '© 2026 DevSquad. All rights reserved.',
-            'social_facebook': 'https://facebook.com/devsquad',
-            'social_twitter': 'https://twitter.com/devsquad',
-            'social_linkedin': 'https://linkedin.com/company/devsquad',
-            'social_github': 'https://github.com/devsquad',
-        })
-        if created:
-            self.stdout.write(self.style.SUCCESS('[OK] SiteConfig created'))
-        else:
-            self.stdout.write('  SiteConfig already exists, skipping.')
+        # 1. Update Site Configuration
+        config = SiteConfig.load()
+        config.hero_headline = "We Build Scalable Digital Excellence"
+        config.hero_subheading = "Transforming complex business challenges into high-performance web applications. Expert Django development, strategic UI/UX design, and cloud-native solutions."
+        config.about_intro = "We are an elite team of Django experts and creative designers dedicated to building software that drives exponential growth."
+        config.about_mission = "To empower ambitious businesses with scalable, secure, and conversion-focused digital products."
+        config.about_vision = "To be the global benchmark for high-performance web development and strategic digital innovation."
+        config.stat_projects = "120+"
+        config.stat_experience = "8+ Years"
+        config.stat_clients = "95% Retention"
+        config.contact_email = "hello@devsquad.agency"
+        config.footer_text = "© 2026 DevSquad Agency. Architecting the Digital Future."
+        config.save()
 
-        # ---- Services ----
+        # 2. Clear and Seed Services
+        Service.objects.all().delete()
+        
         services_data = [
             {
+                'title': 'Enterprise Web Development',
                 'icon': 'fas fa-code',
-                'title': 'Web Development',
-                'short_description': 'Custom web applications built with modern frameworks for maximum performance and scalability.',
-                'full_description': 'We build fast, responsive, and scalable web applications using Python, Django, React, and Next.js. From MVPs to enterprise platforms, every project is architected for growth.',
-                'problem': 'Many businesses struggle with slow, outdated websites that lose customers and revenue.',
-                'solution': 'We engineer modern web platforms optimized for speed, SEO, and conversion — built to scale with your business.',
-                'benefits': 'Lightning-fast load times\nSEO-optimized architecture\nScalable infrastructure\nClean, maintainable codebase',
+                'image': 'services/web_dev.png',
+                'short_description': 'Scalable, secure, and high-performance web applications built with Django and Python.',
+                'full_description': 'We specialize in building robust enterprise-level applications that handle massive traffic and complex data workflows. Our Django-first approach ensures rapid development without compromising on security or scalability.',
+                'problem': 'Legacy systems that are slow, insecure, and impossible to scale.',
+                'solution': 'Modern, cloud-native architectures that provide 99.9% uptime and seamless user experiences.',
+                'benefits': 'Unmatched Security\nLightning Fast Performance\nFuture-Proof Scalability',
                 'is_featured': True,
-                'order': 1,
+                'order': 1
             },
             {
+                'title': 'Premium App Development',
                 'icon': 'fas fa-mobile-alt',
-                'title': 'Mobile App Development',
-                'short_description': 'Native and cross-platform mobile apps that deliver seamless experiences on iOS and Android.',
-                'full_description': 'We create mobile experiences that users love. Using React Native and Flutter, we build apps that feel native on every platform while sharing a single codebase for efficiency.',
-                'problem': 'Building separate apps for iOS and Android is expensive and time-consuming.',
-                'solution': 'Cross-platform development delivers native performance on both platforms from a single codebase, cutting costs by up to 40%.',
-                'benefits': 'Single codebase, dual platforms\nNative-like performance\n40% cost reduction\nFaster time to market',
+                'image': 'services/app_dev.png',
+                'short_description': 'Native and cross-platform mobile applications that deliver exceptional user experiences.',
+                'full_description': 'From iOS to Android, we build mobile apps that are fast, intuitive, and designed to scale. Our mobile solutions focus on performance, accessibility, and seamless integration with your existing systems.',
+                'problem': 'Clunky mobile experiences that drive users away.',
+                'solution': 'High-performance native and Flutter-based apps with fluid animations and offline capabilities.',
+                'benefits': 'Fluid User Experience\nCross-Platform Efficiency\nScalable Infrastructure',
                 'is_featured': True,
-                'order': 2,
+                'order': 2
             },
             {
+                'title': 'Creative Graphics Design',
                 'icon': 'fas fa-paint-brush',
-                'title': 'UI/UX Design',
-                'short_description': 'User-centered designs that look stunning and convert visitors into loyal customers.',
-                'full_description': 'Great design is invisible — it just works. Our design team creates intuitive interfaces backed by user research, ensuring every interaction feels natural and every screen drives engagement.',
-                'problem': 'Poor user experience leads to high bounce rates, abandoned carts, and frustrated users.',
-                'solution': 'Data-driven UX design that reduces friction, increases engagement, and converts visitors into customers.',
-                'benefits': 'Research-backed design decisions\nAccessible and inclusive interfaces\nDesign systems for consistency\nPrototyping and user testing',
+                'image': 'services/graphics.png',
+                'short_description': 'Strategic brand identity and visual storytelling that commands attention.',
+                'full_description': 'We combine art and strategy to create visual identities that resonate with your audience. From logo design to marketing collateral, we ensure your brand looks premium across all touchpoints.',
+                'problem': 'Generic branding that fails to stand out in a crowded market.',
+                'solution': 'Modern, cohesive design systems that reflect your brand\'s elite status.',
+                'benefits': 'Unique Brand Identity\nHigh-Impact Visuals\nConsistent Multi-Channel Design',
                 'is_featured': True,
-                'order': 3,
-            },
-            {
-                'icon': 'fas fa-cloud',
-                'title': 'Cloud & DevOps',
-                'short_description': 'Cloud infrastructure and CI/CD pipelines that keep your applications running at peak performance.',
-                'full_description': 'We design and manage cloud infrastructure on AWS, GCP, and Azure. From containerization to automated deployments, we ensure your applications are always available, secure, and cost-efficient.',
-                'problem': 'Managing servers and deployments manually wastes engineering time and introduces human error.',
-                'solution': 'Automated cloud infrastructure with CI/CD pipelines, monitoring, and auto-scaling that runs itself.',
-                'benefits': '99.9% uptime guarantee\nAutomated CI/CD pipelines\nCost-optimized infrastructure\n24/7 monitoring and alerts',
-                'is_featured': True,
-                'order': 4,
-            },
-            {
-                'icon': 'fas fa-shopping-cart',
-                'title': 'E-Commerce Solutions',
-                'short_description': 'End-to-end e-commerce platforms built for high conversion and seamless checkout.',
-                'full_description': 'We build custom e-commerce platforms with secure payment processing, inventory management, and conversion-optimized checkout flows. Every store is designed to maximize revenue.',
-                'is_featured': False,
-                'order': 5,
-            },
-            {
-                'icon': 'fas fa-chart-bar',
-                'title': 'Data & Analytics',
-                'short_description': 'Turn your data into actionable insights with custom dashboards and analytics solutions.',
-                'full_description': 'We build data pipelines, interactive dashboards, and analytics platforms that help you understand your users, optimize operations, and make data-driven decisions.',
-                'is_featured': False,
-                'order': 6,
-            },
+                'order': 3
+            }
         ]
 
         for s in services_data:
-            obj, created = Service.objects.get_or_create(
-                title=s['title'],
-                defaults=s
-            )
-            if created:
-                self.stdout.write(self.style.SUCCESS(f'  [OK] Service: {s["title"]}'))
+            Service.objects.create(**s)
 
-        # ---- Projects ----
+        # 3. Seed Projects (Mock Data)
+        Project.objects.all().delete()
         projects_data = [
             {
-                'title': 'FinTrack Pro Dashboard',
-                'short_description': 'A real-time financial analytics dashboard for a leading fintech startup.',
-                'full_description': 'FinTrack Pro needed a complete overhaul of their analytics platform. We rebuilt it from the ground up using React and Django REST Framework, implementing real-time WebSocket data feeds, interactive charts, and a role-based access system. The result: a platform that processes 10M+ transactions daily with sub-second response times.',
-                'result_highlight': '10x faster data processing',
-                'tech_stack': 'React, Django, PostgreSQL, WebSocket, Docker, AWS',
-                'is_featured': True,
+                'title': 'FinTech Nexus Platform',
+                'short_description': 'A high-frequency trading dashboard for a leading European financial firm.',
+                'full_description': 'Built with Django and WebSockets for real-time data streaming. Integrated with multiple third-party APIs and secured with banking-grade encryption.',
+                'result_highlight': '40% increase in trading efficiency',
+                'tech_stack': 'Django, Redis, PostgreSQL, React, AWS',
+                'is_featured': True
             },
             {
-                'title': 'MedConnect Health App',
-                'short_description': 'A telemedicine platform connecting patients with doctors seamlessly.',
-                'full_description': 'We designed and built a comprehensive telemedicine platform featuring video consultations, appointment scheduling, secure medical records, and integrated payment processing. The app serves 50,000+ active users across iOS and Android with a 4.8-star rating.',
-                'result_highlight': '50K+ active users',
-                'tech_stack': 'React Native, Node.js, MongoDB, WebRTC, Stripe',
-                'is_featured': True,
-            },
-            {
-                'title': 'ShopVerse E-Commerce',
-                'short_description': 'A high-performance e-commerce platform with 300% revenue increase.',
-                'full_description': 'ShopVerse came to us with a slow, clunky online store. We redesigned the entire shopping experience with a focus on mobile-first design, one-click checkout, and personalized product recommendations powered by ML. Within 6 months, their revenue tripled.',
-                'result_highlight': '300% revenue increase',
-                'tech_stack': 'Next.js, Django, Redis, Elasticsearch, Stripe, GCP',
-                'is_featured': True,
-            },
+                'title': 'E-Com Pro Engine',
+                'short_description': 'Headless e-commerce solution for a global fashion brand.',
+                'full_description': 'A modular commerce engine designed for high-concurrency during flash sales. Featuring advanced inventory management and global CDN integration.',
+                'result_highlight': '$2M+ revenue in first 30 days',
+                'tech_stack': 'Django REST Framework, Next.js, Stripe, ElasticSearch',
+                'is_featured': True
+            }
         ]
 
         for p in projects_data:
-            obj, created = Project.objects.get_or_create(
-                title=p['title'],
-                defaults=p
-            )
-            if created:
-                self.stdout.write(self.style.SUCCESS(f'  [OK] Project: {p["title"]}'))
+            Project.objects.create(**p)
 
-        # ---- Testimonials ----
-        testimonials_data = [
-            {
-                'client_name': 'Sarah Mitchell',
-                'client_role': 'CEO, FinTrack Pro',
-                'feedback': 'DevSquad transformed our entire analytics platform. The new dashboard is lightning fast and our team productivity has doubled. They delivered on time, on budget, and exceeded every expectation.',
-                'is_featured': True,
-                'order': 1,
-            },
-            {
-                'client_name': 'James Rodriguez',
-                'client_role': 'CTO, MedConnect',
-                'feedback': 'Working with DevSquad felt like having an elite engineering team as part of our company. Their attention to detail, code quality, and design sensibility is unmatched. Highly recommended.',
-                'is_featured': True,
-                'order': 2,
-            },
-            {
-                'client_name': 'Emily Chen',
-                'client_role': 'Founder, ShopVerse',
-                'feedback': 'Our revenue tripled within 6 months of launching the new platform. DevSquad didn\'t just build us a website — they built us a revenue machine. Best investment we\'ve ever made.',
-                'is_featured': True,
-                'order': 3,
-            },
-        ]
-
-        for t in testimonials_data:
-            obj, created = Testimonial.objects.get_or_create(
-                client_name=t['client_name'],
-                defaults=t
-            )
-            if created:
-                self.stdout.write(self.style.SUCCESS(f'  [OK] Testimonial: {t["client_name"]}'))
-
-        self.stdout.write(self.style.SUCCESS('\n[DONE] Database seeded successfully!'))
+        self.stdout.write(self.style.SUCCESS('Successfully seeded premium content!'))

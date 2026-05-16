@@ -8,14 +8,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const navbar = document.getElementById('navbar');
     const scrollTopBtn = document.getElementById('scroll-top-btn');
 
+    const navbarInner = document.getElementById('navbar-inner');
     function handleScroll() {
         const scrollY = window.scrollY;
 
-        // Navbar: transparent → solid
-        if (scrollY > 80) {
+        // Navbar: transparent → glass
+        if (scrollY > 50) {
             navbar.classList.add('scrolled');
+            if (navbarInner) navbarInner.classList.replace('h-20', 'h-16');
         } else {
             navbar.classList.remove('scrolled');
+            if (navbarInner) navbarInner.classList.replace('h-16', 'h-20');
         }
 
         // Scroll-to-top button visibility

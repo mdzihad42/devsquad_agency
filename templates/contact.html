@@ -8,12 +8,12 @@
 <!-- ========== PAGE HEADER ========== -->
 <section class="relative pt-32 pb-20 overflow-hidden">
     <div class="absolute inset-0">
-        <div class="absolute top-1/4 right-1/3 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/4 right-1/3 w-96 h-96 bg-sunset-orange/5 rounded-full blur-3xl"></div>
     </div>
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-widest uppercase text-accent-light bg-accent/10 border border-accent/20 rounded-full mb-4 animate-fade-in-up">Get In Touch</span>
-        <h1 class="text-4xl sm:text-5xl font-bold mb-4 animate-fade-in-up animation-delay-200">Contact Us</h1>
-        <p class="text-slate-400 max-w-2xl mx-auto text-lg animate-fade-in-up animation-delay-400">Have a project in mind? Let's talk about how we can help bring your vision to life.</p>
+        <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-sunset-amber bg-sunset-orange/10 border border-sunset-orange/20 rounded-full mb-4 animate-fade-in-up">Get In Touch</span>
+        <h1 class="text-4xl sm:text-5xl font-black mb-4 animate-fade-in-up animation-delay-200">Contact Us</h1>
+        <p class="text-white/70 max-w-2xl mx-auto text-lg animate-fade-in-up animation-delay-400">Have a project in mind? Let's talk about how we can help bring your vision to life.</p>
     </div>
 </section>
 
@@ -24,19 +24,19 @@
 
             <!-- Contact Form -->
             <div class="lg:col-span-3 scroll-reveal">
-                <div class="glass-card p-8 sm:p-10 rounded-2xl">
+                <div class="glass-card p-8 sm:p-10 rounded-3xl border-white/5">
                     <h2 class="text-2xl font-bold mb-2">Send us a message</h2>
-                    <p class="text-slate-400 text-sm mb-8">Fill out the form and we'll get back to you within 24 hours.</p>
+                    <p class="text-white/50 text-sm mb-8">Fill out the form and we'll get back to you within 24 hours.</p>
 
                     <form method="POST" action="{% url 'contact' %}" id="contact-form" class="space-y-6">
                         {% csrf_token %}
 
                         <!-- Name -->
                         <div>
-                            <label for="contact-name" class="block text-sm font-medium text-slate-300 mb-2">Your Name</label>
+                            <label for="contact-name" class="block text-sm font-bold text-white/70 mb-2 uppercase tracking-wider">Your Name</label>
                             <input type="text" name="name" id="contact-name" value="{{ form.name.value|default:'' }}"
                                 placeholder="John Doe" required
-                                class="w-full px-5 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:border-accent/50 focus:ring-2 focus:ring-accent/20 focus:outline-none transition-all duration-300 text-sm">
+                                class="w-full px-5 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:border-sunset-orange/50 focus:ring-2 focus:ring-sunset-orange/20 focus:outline-none transition-all duration-300 text-sm">
                             {% if form.name.errors %}
                             <p class="mt-1 text-xs text-red-400">{{ form.name.errors.0 }}</p>
                             {% endif %}
@@ -44,10 +44,10 @@
 
                         <!-- Email -->
                         <div>
-                            <label for="contact-email" class="block text-sm font-medium text-slate-300 mb-2">Email Address</label>
+                            <label for="contact-email" class="block text-sm font-bold text-white/70 mb-2 uppercase tracking-wider">Email Address</label>
                             <input type="email" name="email" id="contact-email" value="{{ form.email.value|default:'' }}"
                                 placeholder="john@example.com" required
-                                class="w-full px-5 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:border-accent/50 focus:ring-2 focus:ring-accent/20 focus:outline-none transition-all duration-300 text-sm">
+                                class="w-full px-5 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:border-sunset-orange/50 focus:ring-2 focus:ring-sunset-orange/20 focus:outline-none transition-all duration-300 text-sm">
                             {% if form.email.errors %}
                             <p class="mt-1 text-xs text-red-400">{{ form.email.errors.0 }}</p>
                             {% endif %}
@@ -55,17 +55,17 @@
 
                         <!-- Message -->
                         <div>
-                            <label for="contact-message" class="block text-sm font-medium text-slate-300 mb-2">Your Message</label>
+                            <label for="contact-message" class="block text-sm font-bold text-white/70 mb-2 uppercase tracking-wider">Your Message</label>
                             <textarea name="message" id="contact-message" rows="5"
                                 placeholder="Tell us about your project..." required
-                                class="w-full px-5 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:border-accent/50 focus:ring-2 focus:ring-accent/20 focus:outline-none transition-all duration-300 text-sm resize-none">{{ form.message.value|default:'' }}</textarea>
+                                class="w-full px-5 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:border-sunset-orange/50 focus:ring-2 focus:ring-sunset-orange/20 focus:outline-none transition-all duration-300 text-sm resize-none">{{ form.message.value|default:'' }}</textarea>
                             {% if form.message.errors %}
                             <p class="mt-1 text-xs text-red-400">{{ form.message.errors.0 }}</p>
                             {% endif %}
                         </div>
 
                         <!-- Submit -->
-                        <button type="submit" class="group w-full flex items-center justify-center space-x-2 px-8 py-4 bg-gradient-to-r from-accent to-purple-500 text-white font-semibold rounded-xl hover:shadow-[0_0_40px_rgba(99,102,241,0.5)] transform hover:scale-[1.02] transition-all duration-300" id="contact-submit">
+                        <button type="submit" class="group w-full flex items-center justify-center space-x-2 px-8 py-4 bg-gradient-to-r from-sunset-orange to-sunset-amber text-white font-bold rounded-xl hover:shadow-[0_0_40px_rgba(249,115,22,0.4)] transform hover:scale-[1.02] transition-all duration-300" id="contact-submit">
                             <span>Send Message</span>
                             <i class="fas fa-paper-plane text-sm group-hover:translate-x-1 transition-transform duration-300"></i>
                         </button>
@@ -76,28 +76,28 @@
             <!-- Contact Info Sidebar -->
             <div class="lg:col-span-2 space-y-6 scroll-reveal" style="animation-delay: 200ms">
                 <!-- Email -->
-                <div class="glass-card p-6 rounded-2xl group hover:border-accent/30 transition-all duration-500">
+                <div class="glass-card p-6 rounded-2xl group hover:border-sunset-orange/30 transition-all duration-500 border-white/5">
                     <div class="flex items-start space-x-4">
-                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent/20 to-purple-500/20 flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-envelope text-accent-light"></i>
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-sunset-orange/20 to-sunset-amber/20 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-envelope text-sunset-amber"></i>
                         </div>
                         <div>
-                            <h3 class="text-sm font-semibold mb-1">Email Us</h3>
-                            <p class="text-slate-400 text-sm">{{ site.contact_email }}</p>
+                            <h3 class="text-sm font-bold mb-1 uppercase tracking-wider">Email Us</h3>
+                            <p class="text-white/70 text-sm">{{ site.contact_email }}</p>
                         </div>
                     </div>
                 </div>
 
                 {% if site.contact_phone %}
                 <!-- Phone -->
-                <div class="glass-card p-6 rounded-2xl group hover:border-accent/30 transition-all duration-500">
+                <div class="glass-card p-6 rounded-2xl group hover:border-sunset-orange/30 transition-all duration-500 border-white/5">
                     <div class="flex items-start space-x-4">
-                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent/20 to-purple-500/20 flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-phone text-accent-light"></i>
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-sunset-orange/20 to-sunset-amber/20 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-phone text-sunset-amber"></i>
                         </div>
                         <div>
-                            <h3 class="text-sm font-semibold mb-1">Call Us</h3>
-                            <p class="text-slate-400 text-sm">{{ site.contact_phone }}</p>
+                            <h3 class="text-sm font-bold mb-1 uppercase tracking-wider">Call Us</h3>
+                            <p class="text-white/70 text-sm">{{ site.contact_phone }}</p>
                         </div>
                     </div>
                 </div>
@@ -105,28 +105,28 @@
 
                 <!-- WhatsApp -->
                 <a href="https://wa.me/{{ site.whatsapp_number }}?text=Hi%2C%20I%20want%20to%20build%20a%20website" target="_blank"
-                   class="glass-card p-6 rounded-2xl group hover:border-emerald-500/30 hover:shadow-[0_0_20px_rgba(16,185,129,0.15)] transition-all duration-500 block" id="contact-whatsapp">
+                   class="glass-card p-6 rounded-2xl group hover:border-sunset-orange/30 hover:shadow-[0_0_20px_rgba(249,115,22,0.15)] transition-all duration-500 block border-white/5" id="contact-whatsapp">
                     <div class="flex items-start space-x-4">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
-                            <i class="fab fa-whatsapp text-emerald-400 text-xl"></i>
+                        <div class="w-12 h-12 rounded-xl bg-sunset-orange/20 flex items-center justify-center flex-shrink-0">
+                            <i class="fab fa-whatsapp text-sunset-amber text-xl"></i>
                         </div>
                         <div>
-                            <h3 class="text-sm font-semibold mb-1">WhatsApp</h3>
-                            <p class="text-slate-400 text-sm">Chat with us instantly</p>
-                            <p class="text-emerald-400 text-xs mt-1 font-medium">Click to open chat →</p>
+                            <h3 class="text-sm font-bold mb-1 uppercase tracking-wider">WhatsApp</h3>
+                            <p class="text-white/70 text-sm">Chat with us instantly</p>
+                            <p class="text-sunset-orange text-xs mt-1 font-bold">Click to open chat →</p>
                         </div>
                     </div>
                 </a>
 
                 <!-- Response Time -->
-                <div class="glass-card p-6 rounded-2xl">
+                <div class="glass-card p-6 rounded-2xl border-white/5">
                     <div class="flex items-start space-x-4">
-                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent/20 to-purple-500/20 flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-clock text-accent-light"></i>
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-sunset-orange/20 to-sunset-amber/20 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-clock text-sunset-amber"></i>
                         </div>
                         <div>
-                            <h3 class="text-sm font-semibold mb-1">Response Time</h3>
-                            <p class="text-slate-400 text-sm">We typically respond within 2-4 hours during business days.</p>
+                            <h3 class="text-sm font-bold mb-1 uppercase tracking-wider">Response Time</h3>
+                            <p class="text-white/70 text-sm">We typically respond within 2-4 hours during business days.</p>
                         </div>
                     </div>
                 </div>
