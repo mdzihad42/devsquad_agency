@@ -1,4 +1,5 @@
 from django.urls import path
+from django.contrib.auth import views as auth_views
 from . import views, views_dashboard
 
 urlpatterns = [
@@ -27,4 +28,7 @@ urlpatterns = [
     path('management/content/<str:model_key>/add/', views_dashboard.content_create_edit, name='content_add'),
     path('management/content/<str:model_key>/edit/<int:pk>/', views_dashboard.content_create_edit, name='content_edit'),
     path('management/content/<str:model_key>/delete/<int:pk>/', views_dashboard.content_delete, name='content_delete'),
+    
+    # Auth
+    path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
 ]
