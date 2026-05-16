@@ -45,7 +45,10 @@
                         </div>
                     </td>
                     <td class="px-8 py-6">
-                        <p class="text-sm text-white/80 line-clamp-1 max-w-xs">{{ msg.message }}</p>
+                        {% if msg.subject %}
+                        <p class="text-sm font-bold text-sunset-orange truncate max-w-[200px]">{{ msg.subject }}</p>
+                        {% endif %}
+                        <p class="text-xs text-white/50 line-clamp-1 max-w-[200px]">{{ msg.message }}</p>
                     </td>
                     <td class="px-8 py-6">
                         {% if not msg.is_read %}
