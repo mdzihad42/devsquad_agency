@@ -107,12 +107,15 @@
         </div>
         <!-- Bottom Actions -->
         <div class="mt-auto pt-10 border-t border-white/5">
-            <a href="{% url 'logout' %}" class="flex items-center space-x-4 px-8 py-4 text-white/40 hover:text-red-500 transition-all group">
-                <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-red-500/10 group-hover:border-red-500/20 transition-all">
-                    <i class="fas fa-sign-out-alt text-sm"></i>
-                </div>
-                <span class="text-sm font-medium">Logout</span>
-            </a>
+            <form action="{% url 'logout' %}" method="POST" class="px-8 py-4">
+                {% csrf_token %}
+                <button type="submit" class="flex items-center space-x-4 text-white/40 hover:text-red-500 transition-all group w-full text-left">
+                    <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-red-500/10 group-hover:border-red-500/20 transition-all">
+                        <i class="fas fa-sign-out-alt text-sm"></i>
+                    </div>
+                    <span class="text-sm font-medium">Logout</span>
+                </button>
+            </form>
         </div>
     </aside>
 
