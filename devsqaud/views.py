@@ -10,6 +10,8 @@ def home_view(request):
     projects = Project.objects.filter(is_featured=True)[:6]
     testimonials = Testimonial.objects.all()
     faqs = FAQ.objects.all().order_by('order')
+    latest_posts = Post.objects.filter(is_published=True)[:3]
+    client_logos = ClientLogo.objects.all()
     config = SiteConfig.load()
     
     context = {
@@ -17,6 +19,8 @@ def home_view(request):
         'projects': projects,
         'testimonials': testimonials,
         'faqs': faqs,
+        'latest_posts': latest_posts,
+        'client_logos': client_logos,
         'config': config,
     }
     return render(request, 'home.html', context)
