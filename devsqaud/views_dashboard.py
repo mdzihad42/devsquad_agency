@@ -1,10 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib import messages
-from .models import Service, Project, Testimonial, SiteConfig, ContactMessage, Post, TeamMember, Category, ClientLogo
+from .models import Service, Project, Testimonial, SiteConfig, ContactMessage, Post, TeamMember, Category, ClientLogo, Package
 from .forms import (
     ContactForm, ProjectForm, PostForm, ServiceForm, 
-    TestimonialForm, TeamMemberForm, ClientLogoForm
+    TestimonialForm, TeamMemberForm, ClientLogoForm, PackageForm
 )
 from django.urls import reverse
 
@@ -16,6 +16,7 @@ MODEL_MAP = {
     'testimonial': (Testimonial, TestimonialForm, 'dashboard_testimonials', 'Testimonial'),
     'team': (TeamMember, TeamMemberForm, 'dashboard_team', 'Team Member'),
     'logo': (ClientLogo, ClientLogoForm, 'dashboard_logos', 'Client Logo'),
+    'package': (Package, PackageForm, 'dashboard_packages', 'Pricing Package'),
 }
 
 @staff_member_required
@@ -155,6 +156,16 @@ def dashboard_logos(request):
         'active_page': 'logos',
     }
     return render(request, 'dashboard/logos_list.html', context)
+
+@staff_member_required
+def dashboard_packages(request):
+    """List pricing packages in dashboard."""
+    packages = Package.objects.all()
+    context = {
+        'packages': packages,
+        'active_page': 'packages',
+    }
+    return render(request, 'dashboard/packages_list.html', context)
 
 @staff_member_required
 def dashboard_settings(request):

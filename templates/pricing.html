@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}Pricing & Packages — DevSquad Agency{% endblock %}
+{% block meta_description %}Transparent pricing for premium digital solutions. From MVPs to Enterprise platforms, we have a package that fits your needs.{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="pt-32 pb-20 relative overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-sunset-orange/5 blur-[120px] rounded-full -z-10"></div>
+    
+    <div class="container mx-auto px-6 text-center">
+        <div class="inline-flex items-center space-x-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full mb-6">
+            <span class="w-2 h-2 bg-sunset-orange rounded-full animate-pulse"></span>
+            <span class="text-xs font-bold uppercase tracking-widest text-white/60">Transparent Pricing</span>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tight">
+            Plans built for <span class="bg-gradient-to-r from-sunset-orange to-sunset-amber bg-clip-text text-transparent">every stage</span>
+        </h1>
+        <p class="text-white/60 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+            Whether you're a startup looking for an MVP or an enterprise scaling complex platforms, we provide clear, value-driven pricing.
+        </p>
+    </div>
+</section>
+
+<!-- Pricing Grid -->
+<section class="pb-32 relative">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {% for package in packages %}
+            <div class="group relative">
+                <!-- Background Glow for Featured -->
+                {% if package.is_featured %}
+                <div class="absolute -inset-1 bg-gradient-to-r from-sunset-orange to-sunset-amber rounded-[2.5rem] blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                {% endif %}
+                
+                <div class="relative glass-card rounded-[2.5rem] p-10 border border-white/5 h-full flex flex-col transition-all duration-500 hover:-translate-y-2 hover:bg-white/[0.05]">
+                    {% if package.is_featured %}
+                    <div class="absolute top-8 right-8">
+                        <span class="bg-sunset-orange text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full">Most Popular</span>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 text-sunset-orange text-2xl">
+                        <i class="{{ package.icon }}"></i>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-2">{{ package.display_name }}</h3>
+                    <p class="text-white/40 text-sm mb-8 leading-relaxed">{{ package.short_description }}</p>
+                    
+                    <div class="mb-10">
+                        <span class="text-5xl font-black tracking-tight text-white">{{ package.price }}</span>
+                        {% if 'Custom' not in package.price %}
+                        <span class="text-white/30 text-sm ml-2">/ starting at</span>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="space-y-4 mb-12 flex-1">
+                        {% for feature in package.features.all %}
+                        <div class="flex items-center space-x-3">
+                            <div class="w-5 h-5 rounded-full {% if feature.is_included %}bg-sunset-orange/20 text-sunset-orange{% else %}bg-white/5 text-white/20{% endif %} flex items-center justify-center">
+                                <i class="fas {% if feature.is_included %}fa-check{% else %}fa-times{% endif %} text-[10px]"></i>
+                            </div>
+                            <span class="text-sm {% if feature.is_included %}text-white/80{% else %}text-white/30 line-through{% endif %}">{{ feature.text }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <a href="{% url 'contact' %}" class="block text-center py-4 rounded-2xl font-bold transition-all {% if package.is_featured %}bg-sunset-orange text-white hover:bg-orange-600 shadow-lg shadow-sunset-orange/20{% else %}bg-white/5 text-white border border-white/10 hover:bg-white/10{% endif %}">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- FAQ/Trust Banner -->
+        <div class="mt-20 glass-card rounded-[2.5rem] p-12 border border-white/5 text-center">
+            <h3 class="text-2xl font-bold mb-4">Need a tailored solution?</h3>
+            <p class="text-white/50 mb-8 max-w-2xl mx-auto">
+                If none of our standard packages fit your specific requirements, we can create a custom scope of work tailored exactly to your business goals.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="{% url 'contact' %}" class="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:bg-sunset-orange hover:text-white transition-all">Schedule a Call</a>
+                <a href="{% url 'portfolio' %}" class="bg-white/5 border border-white/10 text-white px-8 py-4 rounded-2xl font-bold hover:bg-white/10 transition-all">View Our Work</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

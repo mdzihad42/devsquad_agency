@@ -1,5 +1,5 @@
 from django import forms
-from .models import ContactMessage, Project, Post, Service, Testimonial, TeamMember, ClientLogo
+from .models import ContactMessage, Project, Post, Service, Testimonial, TeamMember, ClientLogo, Package
 
 class ContactForm(forms.ModelForm):
     class Meta:
@@ -84,5 +84,18 @@ class ClientLogoForm(forms.ModelForm):
         fields = ['name', 'logo', 'is_active', 'order']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all'}),
+            'order': forms.NumberInput(attrs={'class': 'w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all'}),
+        }
+
+class PackageForm(forms.ModelForm):
+    class Meta:
+        model = Package
+        fields = ['name', 'display_name', 'icon', 'price', 'short_description', 'is_featured', 'order']
+        widgets = {
+            'name': forms.Select(attrs={'class': 'w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all'}),
+            'display_name': forms.TextInput(attrs={'class': 'w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all'}),
+            'icon': forms.TextInput(attrs={'placeholder': 'fas fa-cube', 'class': 'w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all'}),
+            'price': forms.TextInput(attrs={'placeholder': '$2,500', 'class': 'w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all'}),
+            'short_description': forms.Textarea(attrs={'class': 'w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all', 'rows': 3}),
             'order': forms.NumberInput(attrs={'class': 'w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all'}),
         }

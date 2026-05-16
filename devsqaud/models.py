@@ -215,3 +215,34 @@ class TeamMember(models.Model):
 
     def __str__(self):
         return f"{self.name} — {self.role}"
+
+
+class Package(models.Model):
+    """Pricing packages/tiers."""
+    NAME_CHOICES = [
+        ('starter', 'Starter'),
+        ('growth', 'Growth'),
+        ('enterprise', 'Enterprise'),
+    ]
+    name = models.CharField(max_length=100, choices=NAME_CHOICES)
+    display_name = models.CharField(max_length=200)
+    icon = models.CharField(max_length=100, default="fas fa-cube")
+    price = models.CharField(max_length=100, help_text="e.g. '$2,500' or 'Custom'")
+    short_description = models.CharField(max_length=300)
+    is_featured = models.BooleanField(default=False)
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return self.display_name
+
+class PackageFeature(models.Model):
+    """Features included in a package."""
+    package = models.ForeignKey(Package, on_delete=models.CASCADE, related_name='features')
+    text = models.CharField(max_length=300)
+    is_included = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"{self.package.name} - {self.text}"

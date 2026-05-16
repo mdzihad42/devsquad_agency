@@ -114,12 +114,11 @@
             <div class="px-4 py-6 space-y-4">
                 <a href="{% url 'home' %}"
                     class="block text-slate-300 hover:text-white font-medium transition-colors">Home</a>
-                <a href="{% url 'services' %}"
-                    class="block text-slate-300 hover:text-white font-medium transition-colors">Services</a>
+                <a href="{% url 'services_view' %}" class="text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors">Services</a>
+                <a href="{% url 'pricing' %}" class="text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors">Pricing</a>
+                <a href="{% url 'blog_list' %}" class="text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors">Blog</a>
                 <a href="{% url 'portfolio' %}"
                     class="block text-white/70 hover:text-sunset-orange font-bold transition-colors">Portfolio</a>
-                <a href="{% url 'blog_list' %}"
-                    class="block text-white/70 hover:text-sunset-orange font-bold transition-colors">Blog</a>
                 <a href="{% url 'about' %}"
                     class="block text-white/70 hover:text-sunset-orange font-bold transition-colors">About</a>
                 <a href="{% url 'contact' %}"

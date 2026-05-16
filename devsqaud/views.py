@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from .models import Service, Project, Testimonial, SiteConfig, ClientLogo, TeamMember, Post, Category
+from .models import Service, Project, Testimonial, SiteConfig, ClientLogo, TeamMember, Post, Category, Package
 from .forms import ContactForm
 
 
@@ -14,6 +14,15 @@ def home_view(request):
         'latest_posts': Post.objects.filter(is_published=True)[:3],
     }
     return render(request, 'home.html', context)
+
+
+def pricing(request):
+    """Public pricing page."""
+    packages = Package.objects.all()
+    context = {
+        'packages': packages,
+    }
+    return render(request, 'pricing.html', context)
 
 
 def services_view(request):
