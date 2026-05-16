@@ -1,0 +1,35 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Testimonials — DevSquad Dashboard{% endblock %}
+{% block header_title %}Client Feedback{% endblock %}
+{% block header_subtitle %}Manage social proof and client success stories.{% endblock %}
+{% block dashboard_content %}
+<div class="glass-card rounded-[40px] border-white/5 overflow-hidden">
+    <div class="p-8 border-b border-white/5 flex items-center justify-between">
+        <h3 class="text-xl font-bold">Testimonials</h3>
+        <a href="{% url 'content_add' 'testimonial' %}" class="px-6 py-3 bg-sunset-orange text-white text-xs font-bold uppercase tracking-widest rounded-xl">Add Testimonial</a>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="w-full text-left">
+            <thead>
+                <tr class="text-[10px] font-black uppercase tracking-[0.2em] text-white/30 border-b border-white/5">
+                    <th class="px-8 py-6">Client</th>
+                    <th class="px-8 py-6">Quote Excerpt</th>
+                    <th class="px-8 py-6 text-right">Action</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5">
+                {% for t in testimonials %}
+                <tr class="group hover:bg-white/[0.02]">
+                    <td class="px-8 py-6">
+                        <p class="text-sm font-bold">{{ t.client_name }}</p>
+                        <p class="text-xs text-white/40">{{ t.client_role }}</p>
+                    </td>
+                    <td class="px-8 py-6 text-sm text-white/60 italic">"{{ t.quote|truncatechars:50 }}"</td>
+                    <td class="px-8 py-6 text-right"><a href="{% url 'content_edit' 'testimonial' t.pk %}" class="text-white/50 hover:text-sunset-orange"><i class="fas fa-edit"></i></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from .models import Service, Project, Testimonial, SiteConfig
+from .models import Service, Project, Testimonial, SiteConfig, ClientLogo, TeamMember, Post, Category
 from .forms import ContactForm
 
 
@@ -10,6 +10,8 @@ def home_view(request):
         'services': Service.objects.filter(is_featured=True)[:4],
         'projects': Project.objects.filter(is_featured=True)[:3],
         'testimonials': Testimonial.objects.filter(is_featured=True)[:3],
+        'client_logos': ClientLogo.objects.filter(is_active=True),
+        'latest_posts': Post.objects.filter(is_published=True)[:3],
     }
     return render(request, 'home.html', context)
 
@@ -41,7 +43,37 @@ def project_detail_view(request, slug):
 
 def about_view(request):
     """About page."""
-    return render(request, 'about.html')
+    context = {
+        'team_members': TeamMember.objects.all(),
+    }
+    return render(request, 'about.html', context)
+
+
+def blog_list_view(request):
+    """Blog list page with category filtering."""
+    category_slug = request.GET.get('category')
+    posts = Post.objects.filter(is_published=True)
+    active_category = None
+
+    if category_slug:
+        active_category = get_object_or_404(Category, slug=category_slug)
+        posts = posts.filter(category=active_category)
+
+    context = {
+        'posts': posts,
+        'categories': Category.objects.all(),
+        'active_category': active_category,
+    }
+    return render(request, 'blog/post_list.html', context)
+
+
+def blog_detail_view(request, slug):
+    """Blog detail page."""
+    post = get_object_or_404(Post, slug=slug, is_published=True)
+    context = {
+        'post': post,
+    }
+    return render(request, 'blog/post_detail.html', context)
 
 
 def contact_view(request):

@@ -1,0 +1,82 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Messages — DevSquad Dashboard{% endblock %}
+{% block header_title %}Message Center{% endblock %}
+{% block header_subtitle %}Manage your incoming leads and inquiries.{% endblock %}
+
+{% block dashboard_content %}
+
+<div class="glass-card rounded-[40px] border-white/5 overflow-hidden">
+    <div class="p-8 border-b border-white/5 flex items-center justify-between bg-white/[0.01]">
+        <div class="flex items-center space-x-4">
+            <div class="w-12 h-12 rounded-2xl bg-sunset-orange/10 flex items-center justify-center">
+                <i class="fas fa-inbox text-sunset-orange text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold">All Inquiries</h3>
+        </div>
+        <div class="flex items-center space-x-2">
+            <button class="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold text-white/70 hover:bg-white/10 transition-all">Filter</button>
+            <button class="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold text-white/70 hover:bg-white/10 transition-all">Export</button>
+        </div>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="w-full text-left">
+            <thead>
+                <tr class="text-[10px] font-black uppercase tracking-[0.2em] text-white/30 border-b border-white/5">
+                    <th class="px-8 py-6">Sender</th>
+                    <th class="px-8 py-6">Subject / Excerpt</th>
+                    <th class="px-8 py-6">Status</th>
+                    <th class="px-8 py-6">Received</th>
+                    <th class="px-8 py-6 text-right">Action</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5">
+                {% for msg in contact_messages %}
+                <tr class="group hover:bg-white/[0.02] transition-all {% if not msg.is_read %}bg-sunset-orange/[0.01]{% endif %}">
+                    <td class="px-8 py-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 rounded-full {% if not msg.is_read %}bg-sunset-orange/20 text-sunset-orange{% else %}bg-white/5 text-white/50{% endif %} flex items-center justify-center text-xs font-bold transition-all">
+                                {{ msg.name|first|upper }}
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold">{{ msg.name }}</p>
+                                <p class="text-xs text-white/40">{{ msg.email }}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-8 py-6">
+                        <p class="text-sm text-white/80 line-clamp-1 max-w-xs">{{ msg.message }}</p>
+                    </td>
+                    <td class="px-8 py-6">
+                        {% if not msg.is_read %}
+                        <span class="px-3 py-1 bg-sunset-orange/10 border border-sunset-orange/20 text-sunset-orange text-[10px] font-black uppercase tracking-widest rounded-full">New</span>
+                        {% else %}
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 text-white/30 text-[10px] font-black uppercase tracking-widest rounded-full">Read</span>
+                        {% endif %}
+                    </td>
+                    <td class="px-8 py-6 text-sm text-white/50">
+                        {{ msg.created_at|date:"M d, Y" }}
+                        <span class="block text-[10px] text-white/30">{{ msg.created_at|time:"H:i" }}</span>
+                    </td>
+                    <td class="px-8 py-6 text-right">
+                        <a href="{% url 'message_detail' msg.pk %}" class="inline-flex w-10 h-10 rounded-xl bg-white/5 border border-white/10 items-center justify-center text-white/50 hover:bg-sunset-orange hover:text-white hover:border-sunset-orange transition-all">
+                            <i class="fas fa-eye text-xs"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="px-8 py-32 text-center">
+                        <div class="max-w-xs mx-auto">
+                            <i class="fas fa-inbox text-5xl text-white/10 mb-6"></i>
+                            <p class="text-white/30 text-sm font-bold">Your inbox is empty. All quiet on the frontier.</p>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

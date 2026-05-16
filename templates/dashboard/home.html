@@ -1,0 +1,158 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Overview — DevSquad Dashboard{% endblock %}
+{% block header_title %}Command Center{% endblock %}
+{% block header_subtitle %}Real-time insights into your agency's performance.{% endblock %}
+
+{% block dashboard_content %}
+
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+    <div class="glass-card p-8 rounded-[32px] border-white/5 relative overflow-hidden group">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-sunset-orange/5 rounded-full -mr-8 -mt-8 blur-2xl group-hover:bg-sunset-orange/10 transition-all"></div>
+        <div class="w-12 h-12 rounded-2xl bg-sunset-orange/10 flex items-center justify-center mb-6">
+            <i class="fas fa-briefcase text-sunset-orange text-xl"></i>
+        </div>
+        <p class="text-white/50 text-sm font-bold uppercase tracking-widest mb-1">Total Projects</p>
+        <h3 class="text-4xl font-black">{{ total_projects }}</h3>
+    </div>
+    
+    <div class="glass-card p-8 rounded-[32px] border-white/5 relative overflow-hidden group">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-sunset-amber/5 rounded-full -mr-8 -mt-8 blur-2xl group-hover:bg-sunset-amber/10 transition-all"></div>
+        <div class="w-12 h-12 rounded-2xl bg-sunset-amber/10 flex items-center justify-center mb-6">
+            <i class="fas fa-newspaper text-sunset-amber text-xl"></i>
+        </div>
+        <p class="text-white/50 text-sm font-bold uppercase tracking-widest mb-1">Blog Posts</p>
+        <h3 class="text-4xl font-black">{{ total_posts }}</h3>
+    </div>
+
+    <div class="glass-card p-8 rounded-[32px] border-white/5 relative overflow-hidden group">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-green-500/5 rounded-full -mr-8 -mt-8 blur-2xl group-hover:bg-green-500/10 transition-all"></div>
+        <div class="w-12 h-12 rounded-2xl bg-green-500/10 flex items-center justify-center mb-6">
+            <i class="fas fa-envelope text-green-500 text-xl"></i>
+        </div>
+        <p class="text-white/50 text-sm font-bold uppercase tracking-widest mb-1">New Messages</p>
+        <h3 class="text-4xl font-black">{{ unread_messages }}</h3>
+    </div>
+
+    <div class="glass-card p-8 rounded-[32px] border-white/5 relative overflow-hidden group">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-sunset-orange/5 rounded-full -mr-8 -mt-8 blur-2xl group-hover:bg-sunset-orange/10 transition-all"></div>
+        <div class="w-12 h-12 rounded-2xl bg-sunset-orange/10 flex items-center justify-center mb-6">
+            <i class="fas fa-tools text-sunset-orange text-xl"></i>
+        </div>
+        <p class="text-white/50 text-sm font-bold uppercase tracking-widest mb-1">Services</p>
+        <h3 class="text-4xl font-black">{{ total_services }}</h3>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Latest Messages -->
+    <div class="lg:col-span-2 glass-card rounded-[40px] border-white/5 overflow-hidden">
+        <div class="p-8 border-b border-white/5 flex items-center justify-between">
+            <h3 class="text-xl font-bold">Recent Leads</h3>
+            <a href="{% url 'dashboard_messages' %}" class="text-xs font-bold text-sunset-orange uppercase tracking-widest hover:text-sunset-amber transition-colors">View All</a>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="text-[10px] font-black uppercase tracking-[0.2em] text-white/30 border-b border-white/5">
+                        <th class="px-8 py-6">Sender</th>
+                        <th class="px-8 py-6">Status</th>
+                        <th class="px-8 py-6">Date</th>
+                        <th class="px-8 py-6">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-white/5">
+                    {% for msg in latest_messages %}
+                    <tr class="group hover:bg-white/[0.02] transition-all">
+                        <td class="px-8 py-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-xs font-bold text-white/50">
+                                    {{ msg.name|first|upper }}
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold">{{ msg.name }}</p>
+                                    <p class="text-xs text-white/40">{{ msg.email }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-8 py-6">
+                            {% if not msg.is_read %}
+                            <span class="px-3 py-1 bg-sunset-orange/10 border border-sunset-orange/20 text-sunset-orange text-[10px] font-black uppercase tracking-widest rounded-full">New</span>
+                            {% else %}
+                            <span class="px-3 py-1 bg-white/5 border border-white/10 text-white/30 text-[10px] font-black uppercase tracking-widest rounded-full">Read</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-8 py-6 text-sm text-white/50">
+                            {{ msg.created_at|date:"M d, Y" }}
+                        </td>
+                        <td class="px-8 py-6">
+                            <a href="{% url 'message_detail' msg.pk %}" class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:bg-sunset-orange hover:text-white hover:border-sunset-orange transition-all">
+                                <i class="fas fa-eye text-xs"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="px-8 py-20 text-center text-white/30 text-sm">No messages received yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="space-y-6">
+        <div class="glass-card p-8 rounded-[40px] border-white/5">
+            <h3 class="text-xl font-bold mb-8">Quick Actions</h3>
+            <div class="grid grid-cols-1 gap-4">
+                <a href="/admin/devsqaud/project/add/" class="flex items-center space-x-4 p-4 bg-white/5 border border-white/5 rounded-2xl hover:border-sunset-orange/30 hover:bg-sunset-orange/5 transition-all group">
+                    <div class="w-10 h-10 rounded-xl bg-sunset-orange/10 flex items-center justify-center group-hover:bg-sunset-orange/20">
+                        <i class="fas fa-plus text-sunset-orange"></i>
+                    </div>
+                    <span class="text-sm font-bold">New Project</span>
+                </a>
+                <a href="/admin/devsqaud/post/add/" class="flex items-center space-x-4 p-4 bg-white/5 border border-white/5 rounded-2xl hover:border-sunset-orange/30 hover:bg-sunset-orange/5 transition-all group">
+                    <div class="w-10 h-10 rounded-xl bg-sunset-amber/10 flex items-center justify-center group-hover:bg-sunset-amber/20">
+                        <i class="fas fa-pen-nib text-sunset-amber"></i>
+                    </div>
+                    <span class="text-sm font-bold">New Blog Post</span>
+                </a>
+                <a href="{% url 'dashboard_settings' %}" class="flex items-center space-x-4 p-4 bg-white/5 border border-white/5 rounded-2xl hover:border-sunset-orange/30 hover:bg-sunset-orange/5 transition-all group">
+                    <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-white/20">
+                        <i class="fas fa-sliders-h text-white/70"></i>
+                    </div>
+                    <span class="text-sm font-bold">Site Settings</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Site Health -->
+        <div class="glass-card p-8 rounded-[40px] border-white/5">
+            <h3 class="text-xl font-bold mb-6">System Health</h3>
+            <div class="space-y-6">
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold text-white/50 uppercase tracking-widest">Storage</span>
+                        <span class="text-xs font-bold text-sunset-orange">12%</span>
+                    </div>
+                    <div class="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+                        <div class="w-[12%] h-full bg-sunset-orange rounded-full"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold text-white/50 uppercase tracking-widest">Active Jobs</span>
+                        <span class="text-xs font-bold text-sunset-amber">Healthy</span>
+                    </div>
+                    <div class="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+                        <div class="w-full h-full bg-sunset-amber rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

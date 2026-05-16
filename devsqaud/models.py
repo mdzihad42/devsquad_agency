@@ -140,3 +140,78 @@ class SiteConfig(models.Model):
         """Load or create the singleton config."""
         obj, _ = cls.objects.get_or_create(pk=1)
         return obj
+
+
+class Category(models.Model):
+    """Blog categories."""
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=100, unique=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = "Categories"
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+
+class Post(models.Model):
+    """Blog posts."""
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200, unique=True, blank=True)
+    author = models.CharField(max_length=100, default="DevSquad Team")
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='posts')
+    icon = models.CharField(max_length=100, default="fas fa-newspaper", help_text="Font Awesome icon for the post")
+    thumbnail = models.ImageField(upload_to='blog/', blank=True, null=True)
+    external_thumbnail = models.URLField(blank=True, help_text="Link to external image (e.g. Unsplash)")
+    excerpt = models.TextField(help_text="Short summary of the post")
+    content = models.TextField()
+    is_published = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+
+class ClientLogo(models.Model):
+    """Client logos for the trust bar."""
+    name = models.CharField(max_length=100)
+    logo = models.ImageField(upload_to='clients/', help_text="Monochrome white version recommended")
+    is_active = models.BooleanField(default=True)
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return self.name
+
+
+class TeamMember(models.Model):
+    """Agency team members."""
+    name = models.CharField(max_length=100)
+    role = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='team/', blank=True, null=True)
+    bio = models.TextField(blank=True)
+    linkedin = models.URLField(blank=True)
+    twitter = models.URLField(blank=True)
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f"{self.name} — {self.role}"

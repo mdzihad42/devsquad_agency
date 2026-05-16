@@ -82,6 +82,9 @@
                     <a href="{% url 'portfolio' %}"
                         class="nav-link text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors duration-300"
                         id="nav-portfolio">Portfolio</a>
+                    <a href="{% url 'blog_list' %}"
+                        class="nav-link text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors duration-300"
+                        id="nav-blog">Blog</a>
                     <a href="{% url 'about' %}"
                         class="nav-link text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors duration-300"
                         id="nav-about">About</a>
@@ -114,14 +117,15 @@
                 <a href="{% url 'services' %}"
                     class="block text-slate-300 hover:text-white font-medium transition-colors">Services</a>
                 <a href="{% url 'portfolio' %}"
-                    class="block text-slate-300 hover:text-white font-medium transition-colors">Portfolio</a>
+                    class="block text-white/70 hover:text-sunset-orange font-bold transition-colors">Portfolio</a>
+                <a href="{% url 'blog_list' %}"
+                    class="block text-white/70 hover:text-sunset-orange font-bold transition-colors">Blog</a>
                 <a href="{% url 'about' %}"
-                    class="block text-slate-300 hover:text-white font-medium transition-colors">About</a>
+                    class="block text-white/70 hover:text-sunset-orange font-bold transition-colors">About</a>
                 <a href="{% url 'contact' %}"
-                    class="block text-slate-300 hover:text-white font-medium transition-colors">Contact</a>
+                    class="block text-white/70 hover:text-sunset-orange font-bold transition-colors">Contact</a>
                 <a href="{% url 'contact' %}"
-                    class="inline-block mt-2 px-6 py-2.5 bg-gradient-to-r from-accent to-purple-500 text-white text-sm font-semibold rounded-full">Hire
-                    Us</a>
+                    class="inline-block mt-2 px-8 py-3 bg-gradient-to-r from-sunset-orange to-sunset-amber text-white text-sm font-bold rounded-full">Hire Us</a>
             </div>
         </div>
     </nav>

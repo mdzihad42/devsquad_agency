@@ -1,0 +1,32 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Team — DevSquad Dashboard{% endblock %}
+{% block header_title %}Squad Management{% endblock %}
+{% block header_subtitle %}Manage your agency's expert team profiles.{% endblock %}
+{% block dashboard_content %}
+<div class="glass-card rounded-[40px] border-white/5 overflow-hidden">
+    <div class="p-8 border-b border-white/5 flex items-center justify-between">
+        <h3 class="text-xl font-bold">Team Members</h3>
+        <a href="{% url 'content_add' 'team' %}" class="px-6 py-3 bg-sunset-orange text-white text-xs font-bold uppercase tracking-widest rounded-xl">Add Member</a>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="w-full text-left">
+            <thead>
+                <tr class="text-[10px] font-black uppercase tracking-[0.2em] text-white/30 border-b border-white/5">
+                    <th class="px-8 py-6">Member</th>
+                    <th class="px-8 py-6">Role</th>
+                    <th class="px-8 py-6 text-right">Action</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5">
+                {% for m in team %}
+                <tr class="group hover:bg-white/[0.02]">
+                    <td class="px-8 py-6 font-bold text-sm">{{ m.name }}</td>
+                    <td class="px-8 py-6 text-white/50 text-sm">{{ m.role }}</td>
+                    <td class="px-8 py-6 text-right"><a href="{% url 'content_edit' 'team' m.pk %}" class="text-white/50 hover:text-sunset-orange"><i class="fas fa-edit"></i></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

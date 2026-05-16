@@ -1,5 +1,32 @@
 from django.contrib import admin
-from .models import Service, Project, Testimonial, ContactMessage, SiteConfig
+from .models import Service, Project, Testimonial, ContactMessage, SiteConfig, Category, Post, TeamMember, ClientLogo
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug')
+    prepopulated_fields = {'slug': ('name',)}
+
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'category', 'author', 'is_published', 'created_at')
+    list_filter = ('is_published', 'category', 'created_at')
+    list_editable = ('is_published',)
+    prepopulated_fields = {'slug': ('title',)}
+    search_fields = ('title', 'content', 'excerpt')
+
+
+@admin.register(TeamMember)
+class TeamMemberAdmin(admin.ModelAdmin):
+    list_display = ('name', 'role', 'order')
+    list_editable = ('order',)
+
+
+@admin.register(ClientLogo)
+class ClientLogoAdmin(admin.ModelAdmin):
+    list_display = ('name', 'is_active')
+    list_editable = ('is_active',)
 
 
 @admin.register(Service)
