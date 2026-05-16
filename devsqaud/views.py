@@ -24,6 +24,14 @@ def pricing(request):
     }
     return render(request, 'pricing.html', context)
 
+def team_view(request):
+    """Public team members page."""
+    team = TeamMember.objects.all()
+    context = {
+        'team': team,
+    }
+    return render(request, 'team.html', context)
+
 
 def services_view(request):
     """All services page."""

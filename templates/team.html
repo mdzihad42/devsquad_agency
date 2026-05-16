@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Our Expert Team — DevSquad Agency{% endblock %}
+{% block meta_description %}Meet the talented engineers, designers, and strategists behind DevSquad. We are a collective of digital craftsmen dedicated to your success.{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="pt-32 pb-20 relative overflow-hidden">
+    <div class="absolute top-0 right-1/4 w-[800px] h-[800px] bg-sunset-orange/5 blur-[120px] rounded-full -z-10"></div>
+    
+    <div class="container mx-auto px-6 text-center">
+        <div class="inline-flex items-center space-x-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full mb-6">
+            <span class="w-2 h-2 bg-sunset-orange rounded-full animate-pulse"></span>
+            <span class="text-xs font-bold uppercase tracking-widest text-white/60">The Dream Team</span>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tight">
+            Meet the <span class="bg-gradient-to-r from-sunset-orange to-sunset-amber bg-clip-text text-transparent">Craftsmen</span>
+        </h1>
+        <p class="text-white/60 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+            We are a distributed team of specialists who believe in building products that matter. Passionate, agile, and always learning.
+        </p>
+    </div>
+</section>
+
+<!-- Team Grid -->
+<section class="pb-32">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {% for member in team %}
+            <div class="group relative">
+                <div class="relative glass-card rounded-[2.5rem] p-6 border border-white/5 transition-all duration-500 hover:-translate-y-2 hover:bg-white/[0.05]">
+                    <!-- Image Container -->
+                    <div class="relative aspect-square rounded-[2rem] overflow-hidden mb-6">
+                        {% if member.image %}
+                        <img src="{{ member.image.url }}" alt="{{ member.name }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        {% else %}
+                        <div class="w-full h-full bg-white/5 flex items-center justify-center text-white/10 text-6xl">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        {% endif %}
+                        
+                        <!-- Social Hover Overlay -->
+                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
+                            {% if member.linkedin %}
+                            <a href="{{ member.linkedin }}" class="w-10 h-10 rounded-full bg-white/10 hover:bg-sunset-orange text-white flex items-center justify-center transition-all">
+                                <i class="fab fa-linkedin-in text-sm"></i>
+                            </a>
+                            {% endif %}
+                            {% if member.twitter %}
+                            <a href="{{ member.twitter }}" class="w-10 h-10 rounded-full bg-white/10 hover:bg-sunset-orange text-white flex items-center justify-center transition-all">
+                                <i class="fab fa-twitter text-sm"></i>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold mb-1">{{ member.name }}</h3>
+                    <p class="text-sunset-orange text-xs font-black uppercase tracking-widest mb-4">{{ member.role }}</p>
+                    <p class="text-white/40 text-sm leading-relaxed">{{ member.bio|truncatechars:100 }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Join Us Banner -->
+        <div class="mt-20 glass-card rounded-[2.5rem] p-12 border border-white/5 text-center relative overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-64 h-64 bg-sunset-orange/10 blur-[80px] rounded-full"></div>
+            <h3 class="text-3xl font-bold mb-4">Want to join the squad?</h3>
+            <p class="text-white/50 mb-8 max-w-xl mx-auto">
+                We're always looking for talented designers, developers, and thinkers. Think you have what it takes?
+            </p>
+            <a href="mailto:careers@devsquad.com" class="inline-flex bg-sunset-orange text-white px-10 py-4 rounded-2xl font-bold hover:bg-orange-600 transition-all shadow-lg shadow-sunset-orange/20">
+                View Open Positions
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
