@@ -80,8 +80,36 @@
                 If none of our standard packages fit your specific requirements, we can create a custom scope of work tailored exactly to your business goals.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="{% url 'contact' %}" class="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:bg-sunset-orange hover:text-white transition-all">Schedule a Call</a>
+                <a href="{% url 'contact' %}" class="bg-white text-[#0a0a0a] px-8 py-4 rounded-2xl font-bold hover:bg-sunset-orange hover:text-white transition-all">Schedule a Call</a>
                 <a href="{% url 'portfolio' %}" class="bg-white/5 border border-white/10 text-white px-8 py-4 rounded-2xl font-bold hover:bg-white/10 transition-all">View Our Work</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'includes/cta.html' %}
+
+<!-- FAQ Section -->
+<section class="pb-32 relative">
+    <div class="container mx-auto px-6">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Pricing & Service FAQs</h2>
+                <p class="text-white/50">Common questions about how we work and deliver value.</p>
+            </div>
+            
+            <div class="space-y-4">
+                {% for faq in faqs %}
+                <div class="glass-card rounded-2xl border border-white/5 overflow-hidden transition-all duration-300 hover:border-sunset-orange/30">
+                    <button class="w-full px-8 py-6 text-left flex items-center justify-between group" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.faq-icon').classList.toggle('rotate-180')">
+                        <span class="font-bold text-white/80 group-hover:text-sunset-orange transition-colors">{{ faq.question }}</span>
+                        <i class="fas fa-chevron-down text-xs text-white/30 transition-transform duration-300 faq-icon"></i>
+                    </button>
+                    <div class="hidden px-8 pb-6 text-white/50 text-sm leading-relaxed border-t border-white/5 pt-4">
+                        {{ faq.answer }}
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

@@ -1,17 +1,23 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from .models import Service, Project, Testimonial, SiteConfig, ClientLogo, TeamMember, Post, Category, Package
+from .models import Service, Project, Testimonial, SiteConfig, ClientLogo, TeamMember, Post, Category, Package, FAQ
 from .forms import ContactForm
 
 
 def home_view(request):
     """Home page with featured content."""
+    services = Service.objects.all().order_by('order')
+    projects = Project.objects.filter(is_featured=True)[:6]
+    testimonials = Testimonial.objects.all()
+    faqs = FAQ.objects.all().order_by('order')
+    config = SiteConfig.load()
+    
     context = {
-        'services': Service.objects.filter(is_featured=True)[:4],
-        'projects': Project.objects.filter(is_featured=True)[:3],
-        'testimonials': Testimonial.objects.filter(is_featured=True)[:3],
-        'client_logos': ClientLogo.objects.filter(is_active=True),
-        'latest_posts': Post.objects.filter(is_published=True)[:3],
+        'services': services,
+        'projects': projects,
+        'testimonials': testimonials,
+        'faqs': faqs,
+        'config': config,
     }
     return render(request, 'home.html', context)
 
@@ -19,8 +25,10 @@ def home_view(request):
 def pricing(request):
     """Public pricing page."""
     packages = Package.objects.all()
+    faqs = FAQ.objects.all().order_by('order')
     context = {
         'packages': packages,
+        'faqs': faqs,
     }
     return render(request, 'pricing.html', context)
 
@@ -35,8 +43,9 @@ def team_view(request):
 
 def services_view(request):
     """All services page."""
+    services = Service.objects.all().order_by('order')
     context = {
-        'services': Service.objects.all(),
+        'services': services,
     }
     return render(request, 'services.html', context)
 
@@ -108,3 +117,24 @@ def contact_view(request):
         'form': form,
     }
     return render(request, 'contact.html', context)
+
+
+def subscribe(request):
+    """Handle newsletter subscription via POST."""
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        if email:
+            NewsletterSubscriber.objects.get_or_create(email=email)
+            messages.success(request, "Thanks for subscribing! We'll keep you updated.")
+        else:
+            messages.error(request, "Please provide a valid email address.")
+    return redirect(request.META.get('HTTP_REFERER', 'home'))
+
+
+def privacy_view(request):
+    """Static privacy policy page."""
+    return render(request, 'legal/privacy.html')
+
+def terms_view(request):
+    """Static terms of service page."""
+    return render(request, 'legal/terms.html')

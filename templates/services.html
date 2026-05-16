@@ -91,19 +91,6 @@
     </div>
 </section>
 
-<!-- ========== CTA ========== -->
-<section class="relative py-24 bg-black-soft/30">
-    <div class="absolute inset-0">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-sunset-orange/10 rounded-full blur-3xl"></div>
-    </div>
-    <div class="relative z-10 text-center max-w-3xl mx-auto px-4 sm:px-6 scroll-reveal">
-        <h2 class="text-4xl sm:text-5xl font-black mb-6">Need a Custom Solution?</h2>
-        <p class="text-white/70 text-lg mb-8">Every business is unique. Let's discuss how we can build the perfect solution for your specific needs.</p>
-        <a href="{% url 'contact' %}" class="group inline-flex items-center space-x-2 px-10 py-4 bg-gradient-to-r from-sunset-orange to-sunset-amber text-white font-bold rounded-full hover:shadow-[0_0_40px_rgba(249,115,22,0.5)] transform hover:scale-105 transition-all duration-300" id="services-cta">
-            <span>Get In Touch</span>
-            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
-        </a>
-    </div>
-</section>
+{% include 'includes/cta.html' %}
 
 {% endblock %}

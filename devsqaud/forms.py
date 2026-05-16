@@ -1,14 +1,33 @@
 from django import forms
-from .models import ContactMessage, Project, Post, Service, Testimonial, TeamMember, ClientLogo, Package
+from .models import ContactMessage, Project, Post, Service, Testimonial, TeamMember, ClientLogo, Package, FAQ, NewsletterSubscriber
 
 class ContactForm(forms.ModelForm):
     class Meta:
         model = ContactMessage
-        fields = ['name', 'email', 'message']
+        fields = ['name', 'email', 'subject', 'message']
         widgets = {
-            'name': forms.TextInput(attrs={'placeholder': 'Your Name', 'class': 'w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all'}),
-            'email': forms.EmailInput(attrs={'placeholder': 'your@email.com', 'class': 'w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all'}),
-            'message': forms.Textarea(attrs={'placeholder': 'Tell us about your project...', 'class': 'w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all', 'rows': 5}),
+            'name': forms.TextInput(attrs={'placeholder': 'Full Name', 'class': 'w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'Email Address', 'class': 'w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all'}),
+            'subject': forms.TextInput(attrs={'placeholder': 'Subject', 'class': 'w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all'}),
+            'message': forms.Textarea(attrs={'placeholder': 'Tell us about your project...', 'class': 'w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all', 'rows': 4}),
+        }
+
+class NewsletterForm(forms.ModelForm):
+    class Meta:
+        model = NewsletterSubscriber
+        fields = ['email']
+        widgets = {
+            'email': forms.EmailInput(attrs={'placeholder': 'Enter your email', 'class': 'w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-sm text-white focus:outline-none focus:border-sunset-orange/50 transition-all'}),
+        }
+
+class FAQForm(forms.ModelForm):
+    class Meta:
+        model = FAQ
+        fields = ['question', 'answer', 'order']
+        widgets = {
+            'question': forms.TextInput(attrs={'class': 'w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all'}),
+            'answer': forms.Textarea(attrs={'class': 'w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all', 'rows': 4}),
+            'order': forms.NumberInput(attrs={'class': 'w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all'}),
         }
 
 class ProjectForm(forms.ModelForm):

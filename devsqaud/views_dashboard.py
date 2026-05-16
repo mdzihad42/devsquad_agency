@@ -1,10 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib import messages
-from .models import Service, Project, Testimonial, SiteConfig, ContactMessage, Post, TeamMember, Category, ClientLogo, Package
+from .models import Service, Project, Testimonial, SiteConfig, ContactMessage, Post, TeamMember, Category, ClientLogo, Package, FAQ, NewsletterSubscriber
 from .forms import (
     ContactForm, ProjectForm, PostForm, ServiceForm, 
-    TestimonialForm, TeamMemberForm, ClientLogoForm, PackageForm
+    TestimonialForm, TeamMemberForm, ClientLogoForm, PackageForm, FAQForm
 )
 from django.urls import reverse
 
@@ -17,6 +17,8 @@ MODEL_MAP = {
     'team': (TeamMember, TeamMemberForm, 'dashboard_team', 'Team Member'),
     'logo': (ClientLogo, ClientLogoForm, 'dashboard_logos', 'Client Logo'),
     'package': (Package, PackageForm, 'dashboard_packages', 'Pricing Package'),
+    'faq': (FAQ, FAQForm, 'dashboard_faq', 'FAQ'),
+    'subscriber': (NewsletterSubscriber, None, 'dashboard_subscribers', 'Newsletter Subscriber'),
 }
 
 @staff_member_required
@@ -166,6 +168,26 @@ def dashboard_packages(request):
         'active_page': 'packages',
     }
     return render(request, 'dashboard/packages_list.html', context)
+
+@staff_member_required
+def dashboard_faq(request):
+    """List FAQs in dashboard."""
+    faqs = FAQ.objects.all()
+    context = {
+        'faqs': faqs,
+        'active_page': 'faq',
+    }
+    return render(request, 'dashboard/faq_list.html', context)
+
+@staff_member_required
+def dashboard_subscribers(request):
+    """List newsletter subscribers in dashboard."""
+    subscribers = NewsletterSubscriber.objects.all().order_by('-created_at')
+    context = {
+        'subscribers': subscribers,
+        'active_page': 'subscribers',
+    }
+    return render(request, 'dashboard/subscribers_list.html', context)
 
 @staff_member_required
 def dashboard_settings(request):

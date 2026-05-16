@@ -86,6 +86,14 @@
                 <i class="fas fa-tags w-6 group-hover:text-sunset-orange"></i>
                 <span>Pricing Plans</span>
             </a>
+            <a href="{% url 'dashboard_faq' %}" class="sidebar-link group flex items-center px-4 py-3 text-sm font-bold rounded-xl transition-all duration-300 {% if active_page == 'faq' %}active{% else %}text-white/50 hover:bg-white/5 hover:text-white{% endif %}">
+                <i class="fas fa-question-circle w-6 group-hover:text-sunset-orange"></i>
+                <span>FAQ Manager</span>
+            </a>
+            <a href="{% url 'dashboard_subscribers' %}" class="sidebar-link group flex items-center px-4 py-3 text-sm font-bold rounded-xl transition-all duration-300 {% if active_page == 'subscribers' %}active{% else %}text-white/50 hover:bg-white/5 hover:text-white{% endif %}">
+                <i class="fas fa-users w-6 group-hover:text-sunset-orange"></i>
+                <span>Subscribers</span>
+            </a>
 
             <p class="px-4 text-[10px] font-black uppercase tracking-[0.2em] text-white/30 mt-8 mb-4">System</p>
             <a href="{% url 'dashboard_settings' %}" class="sidebar-link group flex items-center px-4 py-3 text-sm font-bold rounded-xl transition-all duration-300 {% if active_page == 'settings' %}active{% else %}text-white/50 hover:bg-white/5 hover:text-white{% endif %}">

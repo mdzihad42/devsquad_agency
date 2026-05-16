@@ -11,6 +11,9 @@ urlpatterns = [
     path('team/', views.team_view, name='team'),
     path('contact/', views.contact_view, name='contact'),
     path('pricing/', views.pricing, name='pricing'),
+    path('subscribe/', views.subscribe, name='subscribe'),
+    path('privacy/', views.privacy_view, name='privacy'),
+    path('terms/', views.terms_view, name='terms'),
     # Blog
     path('blog/', views.blog_list_view, name='blog_list'),
     path('blog/<slug:slug>/', views.blog_detail_view, name='blog_detail'),
@@ -28,6 +31,8 @@ urlpatterns = [
     path('management/team/', views_dashboard.dashboard_team, name='dashboard_team'),
     path('management/logos/', views_dashboard.dashboard_logos, name='dashboard_logos'),
     path('management/packages/', views_dashboard.dashboard_packages, name='dashboard_packages'),
+    path('management/faq/', views_dashboard.dashboard_faq, name='dashboard_faq'),
+    path('management/subscribers/', views_dashboard.dashboard_subscribers, name='dashboard_subscribers'),
     path('management/settings/', views_dashboard.dashboard_settings, name='dashboard_settings'),
     # CRUD Operations (Unified)
     path('management/content/<str:model_key>/add/', views_dashboard.content_create_edit, name='content_add'),

@@ -246,3 +246,23 @@ class PackageFeature(models.Model):
 
     def __str__(self):
         return f"{self.package.name} - {self.text}"
+
+class NewsletterSubscriber(models.Model):
+    """Email subscribers for newsletters."""
+    email = models.EmailField(unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.email
+
+class FAQ(models.Model):
+    """Frequently Asked Questions."""
+    question = models.CharField(max_length=500)
+    answer = models.TextField()
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return self.question

@@ -70,60 +70,34 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {% for member in team_members %}
             <div class="glass-card p-8 rounded-3xl text-center group hover:border-sunset-orange/30 transition-all duration-500 scroll-reveal border-white/5">
-                <div class="w-20 h-20 rounded-full bg-gradient-to-br from-sunset-orange/20 to-sunset-amber/20 flex items-center justify-center mx-auto mb-4">
-                    <span class="text-2xl font-black text-sunset-amber">{{ member.0|first }}</span>
+                <div class="w-24 h-24 rounded-full bg-gradient-to-br from-sunset-orange/20 to-sunset-amber/20 flex items-center justify-center mx-auto mb-6 relative overflow-hidden group-hover:scale-105 transition-all duration-500">
+                    {% if member.image %}
+                    <img src="{{ member.image.url }}" alt="{{ member.name }}" class="w-full h-full object-cover">
+                    {% else %}
+                    <span class="text-3xl font-black text-sunset-amber">{{ member.name|first }}</span>
+                    {% endif %}
                 </div>
-                <h3 class="text-lg font-bold mb-1 group-hover:text-sunset-orange transition-colors">{{ member.0 }}</h3>
-                <p class="text-white/50 text-sm">{{ member.1 }}</p>
+                <h3 class="text-xl font-bold mb-1 group-hover:text-sunset-orange transition-colors duration-300">{{ member.name }}</h3>
+                <p class="text-white/40 text-xs font-black uppercase tracking-widest mb-4">{{ member.role }}</p>
+                
+                <div class="flex items-center justify-center space-x-3 opacity-40 group-hover:opacity-100 transition-opacity">
+                    {% if member.linkedin %}
+                    <a href="{{ member.linkedin }}" class="text-white hover:text-sunset-orange transition-colors"><i class="fab fa-linkedin-in text-xs"></i></a>
+                    {% endif %}
+                    {% if member.twitter %}
+                    <a href="{{ member.twitter }}" class="text-white hover:text-sunset-orange transition-colors"><i class="fab fa-twitter text-xs"></i></a>
+                    {% endif %}
+                </div>
             </div>
             {% empty %}
-            <!-- Default team members -->
-            <div class="glass-card p-8 rounded-3xl text-center group hover:border-sunset-orange/30 transition-all duration-500 scroll-reveal border-white/5">
-                <div class="w-20 h-20 rounded-full bg-gradient-to-br from-sunset-orange/20 to-sunset-amber/20 flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-user text-2xl text-sunset-amber"></i>
-                </div>
-                <h3 class="text-lg font-bold mb-1">Alex Rahman</h3>
-                <p class="text-white/50 text-sm">Founder & CEO</p>
-            </div>
-            <div class="glass-card p-8 rounded-3xl text-center group hover:border-sunset-orange/30 transition-all duration-500 scroll-reveal border-white/5" style="animation-delay: 100ms">
-                <div class="w-20 h-20 rounded-full bg-gradient-to-br from-sunset-orange/20 to-sunset-amber/20 flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-user text-2xl text-sunset-amber"></i>
-                </div>
-                <h3 class="text-lg font-bold mb-1">Sarah Chen</h3>
-                <p class="text-white/50 text-sm">Lead Designer</p>
-            </div>
-            <div class="glass-card p-8 rounded-3xl text-center group hover:border-sunset-orange/30 transition-all duration-500 scroll-reveal border-white/5" style="animation-delay: 200ms">
-                <div class="w-20 h-20 rounded-full bg-gradient-to-br from-sunset-orange/20 to-sunset-amber/20 flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-user text-2xl text-sunset-amber"></i>
-                </div>
-                <h3 class="text-lg font-bold mb-1">James Park</h3>
-                <p class="text-white/50 text-sm">Senior Developer</p>
-            </div>
-            <div class="glass-card p-8 rounded-3xl text-center group hover:border-sunset-orange/30 transition-all duration-500 scroll-reveal border-white/5" style="animation-delay: 300ms">
-                <div class="w-20 h-20 rounded-full bg-gradient-to-br from-sunset-orange/20 to-sunset-amber/20 flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-user text-2xl text-sunset-amber"></i>
-                </div>
-                <h3 class="text-lg font-bold mb-1">Nina Patel</h3>
-                <p class="text-white/50 text-sm">Project Manager</p>
+            <div class="col-span-full text-center py-20 bg-white/5 rounded-3xl border border-white/5 border-dashed">
+                <p class="text-white/30 font-bold tracking-widest uppercase text-xs italic">Squad assembling... Check back soon.</p>
             </div>
             {% endfor %}
         </div>
     </div>
 </section>
 
-<!-- ========== CTA ========== -->
-<section class="relative py-24 bg-black-soft/30">
-    <div class="absolute inset-0">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-sunset-orange/10 rounded-full blur-3xl"></div>
-    </div>
-    <div class="relative z-10 text-center max-w-3xl mx-auto px-4 sm:px-6 scroll-reveal">
-        <h2 class="text-4xl sm:text-5xl font-black mb-6">Ready to Work With Us?</h2>
-        <p class="text-white/70 text-lg mb-8">Join the growing list of businesses that trust DevSquad to deliver excellence.</p>
-        <a href="{% url 'contact' %}" class="group inline-flex items-center space-x-2 px-10 py-4 bg-gradient-to-r from-sunset-orange to-sunset-amber text-white font-bold rounded-full hover:shadow-[0_0_40px_rgba(249,115,22,0.5)] transform hover:scale-105 transition-all duration-300" id="about-cta">
-            <span>Get In Touch</span>
-            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
-        </a>
-    </div>
-</section>
+{% include 'includes/cta.html' %}
 
 {% endblock %}
