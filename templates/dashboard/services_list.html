@@ -24,7 +24,13 @@
                     <td class="px-8 py-6 font-bold text-sm">{{ s.title }}</td>
                     <td class="px-8 py-6 text-sunset-orange"><i class="{{ s.icon }}"></i></td>
                     <td class="px-8 py-6">{% if s.is_featured %}<span class="text-green-500 text-[10px] uppercase font-black">Featured</span>{% else %}<span class="text-white/30 text-[10px] uppercase font-black">Standard</span>{% endif %}</td>
-                    <td class="px-8 py-6 text-right"><a href="{% url 'content_edit' 'service' s.pk %}" class="text-white/50 hover:text-sunset-orange"><i class="fas fa-edit"></i></a></td>
+                    <td class="px-8 py-6 text-right flex items-center justify-end space-x-2">
+                        <a href="{% url 'content_edit' 'service' s.pk %}" class="text-white/50 hover:text-sunset-orange"><i class="fas fa-edit"></i></a>
+                        <form action="{% url 'content_delete' 'service' s.pk %}" method="POST" onsubmit="return confirm('Are you sure?');" class="inline">
+                            {% csrf_token %}
+                            <button type="submit" class="text-white/30 hover:text-red-500"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

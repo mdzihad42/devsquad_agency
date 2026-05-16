@@ -57,10 +57,16 @@
                         <span class="px-3 py-1 bg-white/5 border border-white/10 text-white/30 text-[10px] font-black uppercase tracking-widest rounded-full">Draft</span>
                         {% endif %}
                     </td>
-                    <td class="px-8 py-6 text-right">
+                    <td class="px-8 py-6 text-right flex items-center justify-end space-x-2">
                         <a href="{% url 'content_edit' 'post' post.pk %}" class="inline-flex w-10 h-10 rounded-xl bg-white/5 border border-white/10 items-center justify-center text-white/50 hover:bg-sunset-amber hover:text-black hover:border-sunset-amber transition-all">
                             <i class="fas fa-edit text-xs"></i>
                         </a>
+                        <form action="{% url 'content_delete' 'post' post.pk %}" method="POST" onsubmit="return confirm('Are you sure?');" class="inline">
+                            {% csrf_token %}
+                            <button type="submit" class="inline-flex w-10 h-10 rounded-xl bg-white/5 border border-white/10 items-center justify-center text-white/30 hover:bg-red-500/20 hover:text-red-500 transition-all">
+                                <i class="fas fa-trash-alt text-xs"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 {% endfor %}

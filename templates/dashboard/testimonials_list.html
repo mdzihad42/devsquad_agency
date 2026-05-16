@@ -25,7 +25,13 @@
                         <p class="text-xs text-white/40">{{ t.client_role }}</p>
                     </td>
                     <td class="px-8 py-6 text-sm text-white/60 italic">"{{ t.quote|truncatechars:50 }}"</td>
-                    <td class="px-8 py-6 text-right"><a href="{% url 'content_edit' 'testimonial' t.pk %}" class="text-white/50 hover:text-sunset-orange"><i class="fas fa-edit"></i></a></td>
+                    <td class="px-8 py-6 text-right flex items-center justify-end space-x-2">
+                        <a href="{% url 'content_edit' 'testimonial' t.pk %}" class="text-white/50 hover:text-sunset-orange"><i class="fas fa-edit"></i></a>
+                        <form action="{% url 'content_delete' 'testimonial' t.pk %}" method="POST" onsubmit="return confirm('Are you sure?');" class="inline">
+                            {% csrf_token %}
+                            <button type="submit" class="text-white/30 hover:text-red-500"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

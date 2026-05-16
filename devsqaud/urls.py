@@ -26,4 +26,5 @@ urlpatterns = [
     # CRUD Operations (Unified)
     path('management/content/<str:model_key>/add/', views_dashboard.content_create_edit, name='content_add'),
     path('management/content/<str:model_key>/edit/<int:pk>/', views_dashboard.content_create_edit, name='content_edit'),
+    path('management/content/<str:model_key>/delete/<int:pk>/', views_dashboard.content_delete, name='content_delete'),
 ]

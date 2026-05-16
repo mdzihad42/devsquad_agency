@@ -45,6 +45,23 @@ def content_create_edit(request, model_key, pk=None):
     return render(request, 'dashboard/content_form.html', context)
 
 @staff_member_required
+def content_delete(request, model_key, pk):
+    """Unified view for deleting agency content."""
+    if model_key not in MODEL_MAP:
+        return redirect('dashboard_home')
+        
+    model_class, _, list_url_name, display_name = MODEL_MAP[model_key]
+    instance = get_object_or_404(model_class, pk=pk)
+    
+    if request.method == 'POST':
+        instance.delete()
+        messages.success(request, f'{display_name} deleted successfully.')
+        return redirect(list_url_name)
+    
+    # If GET, show a confirmation or just redirect back (usually we want a post request for delete)
+    return redirect(list_url_name)
+
+@staff_member_required
 def dashboard_home(request):
     """Main dashboard overview."""
     context = {
