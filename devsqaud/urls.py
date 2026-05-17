@@ -45,4 +45,7 @@ urlpatterns = [
     # SEO Engine
     path('sitemap.xml', views.sitemap_view, name='sitemap'),
     path('robots.txt', views.robots_view, name='robots'),
+
+    # Currency Engine
+    path('set-currency/', views.set_currency, name='set_currency'),
 ]

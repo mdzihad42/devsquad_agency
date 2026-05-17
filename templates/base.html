@@ -73,6 +73,15 @@
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        /* Hide standard Google Translate frames and tooltips */
+        .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame { display: none !important; }
+        body { top: 0px !important; }
+        #google_translate_element2 { display: none !important; }
+        .goog-tooltip { display: none !important; }
+        .goog-tooltip:hover { display: none !important; }
+        .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
+    </style>
 </head>
 
 <body class="bg-brand-bg text-brand-text font-inter antialiased">
@@ -118,6 +127,66 @@
                     <a href="{% url 'contact' %}"
                         class="nav-link text-sm font-bold text-brand-text/70 hover:text-brand-primary transition-colors duration-300"
                         id="nav-contact">Contact</a>
+
+                    <!-- Language Selector (GTranslate Dropdown) -->
+                    <div class="relative group ml-2">
+                        <button class="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:border-brand-primary/40 hover:bg-white/10 transition-all duration-300 text-xs font-bold text-brand-text/80 cursor-pointer">
+                            <span id="gtranslate-selected-flag" class="text-sm">🇺🇸</span>
+                            <span id="gtranslate-selected-lang">EN</span>
+                            <i class="fas fa-chevron-down text-[9px] text-brand-text/40"></i>
+                        </button>
+                        <!-- Dropdown list -->
+                        <div class="absolute right-0 mt-2 w-40 bg-[#111827] border border-white/5 rounded-2xl shadow-[0_10px_35px_rgba(0,0,0,0.8)] backdrop-blur-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 overflow-hidden py-1">
+                            <a href="#" onclick="doGTranslate('en|en'); return false;" class="flex items-center space-x-2.5 px-4 py-2 hover:bg-white/5 text-xs text-brand-text/70 hover:text-brand-text transition-colors">
+                                <span class="text-base">🇺🇸</span> <span>English</span>
+                            </a>
+                            <a href="#" onclick="doGTranslate('en|bn'); return false;" class="flex items-center space-x-2.5 px-4 py-2 hover:bg-white/5 text-xs text-brand-text/70 hover:text-brand-text transition-colors">
+                                <span class="text-base">🇧🇩</span> <span>বাংলা</span>
+                            </a>
+                            <a href="#" onclick="doGTranslate('en|es'); return false;" class="flex items-center space-x-2.5 px-4 py-2 hover:bg-white/5 text-xs text-brand-text/70 hover:text-brand-text transition-colors">
+                                <span class="text-base">🇪🇸</span> <span>Español</span>
+                            </a>
+                            <a href="#" onclick="doGTranslate('en|ar'); return false;" class="flex items-center space-x-2.5 px-4 py-2 hover:bg-white/5 text-xs text-brand-text/70 hover:text-brand-text transition-colors">
+                                <span class="text-base">🇸🇦</span> <span>العربية</span>
+                            </a>
+                            <a href="#" onclick="doGTranslate('en|de'); return false;" class="flex items-center space-x-2.5 px-4 py-2 hover:bg-white/5 text-xs text-brand-text/70 hover:text-brand-text transition-colors">
+                                <span class="text-base">🇩🇪</span> <span>Deutsch</span>
+                            </a>
+                            <a href="#" onclick="doGTranslate('en|fr'); return false;" class="flex items-center space-x-2.5 px-4 py-2 hover:bg-white/5 text-xs text-brand-text/70 hover:text-brand-text transition-colors">
+                                <span class="text-base">🇫🇷</span> <span>Français</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Currency Selector -->
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:border-brand-primary/40 hover:bg-white/10 transition-all duration-300 text-xs font-bold text-brand-text/80 cursor-pointer">
+                            <span>{{ active_currency|default:"USD" }} ({{ currency_symbol|default:"$" }})</span>
+                            <i class="fas fa-chevron-down text-[9px] text-brand-text/40"></i>
+                        </button>
+                        <!-- Dropdown list -->
+                        <div class="absolute right-0 mt-2 w-32 bg-[#111827] border border-white/5 rounded-2xl shadow-[0_10px_35px_rgba(0,0,0,0.8)] backdrop-blur-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 overflow-hidden py-1">
+                            <a href="{% url 'set_currency' %}?code=usd" class="flex items-center justify-between px-4 py-2 hover:bg-white/5 text-xs text-brand-text/70 hover:text-brand-text transition-colors">
+                                <span>USD</span> <span>$</span>
+                            </a>
+                            <a href="{% url 'set_currency' %}?code=bdt" class="flex items-center justify-between px-4 py-2 hover:bg-white/5 text-xs text-brand-text/70 hover:text-brand-text transition-colors">
+                                <span>BDT</span> <span>৳</span>
+                            </a>
+                            <a href="{% url 'set_currency' %}?code=eur" class="flex items-center justify-between px-4 py-2 hover:bg-white/5 text-xs text-brand-text/70 hover:text-brand-text transition-colors">
+                                <span>EUR</span> <span>€</span>
+                            </a>
+                            <a href="{% url 'set_currency' %}?code=gbp" class="flex items-center justify-between px-4 py-2 hover:bg-white/5 text-xs text-brand-text/70 hover:text-brand-text transition-colors">
+                                <span>GBP</span> <span>£</span>
+                            </a>
+                            <a href="{% url 'set_currency' %}?code=sar" class="flex items-center justify-between px-4 py-2 hover:bg-white/5 text-xs text-brand-text/70 hover:text-brand-text transition-colors">
+                                <span>SAR</span> <span>﷼</span>
+                            </a>
+                            <a href="{% url 'set_currency' %}?code=aed" class="flex items-center justify-between px-4 py-2 hover:bg-white/5 text-xs text-brand-text/70 hover:text-brand-text transition-colors">
+                                <span>AED</span> <span>د.إ</span>
+                            </a>
+                        </div>
+                    </div>
+
                     <a href="{% url 'contact' %}"
                         class="ml-4 px-6 py-2.5 bg-gradient-to-r from-brand-primary to-brand-accent text-brand-text text-sm font-bold rounded-full hover:shadow-[0_0_30px_rgba(59, 130, 246,0.4)] transform hover:scale-105 transition-all duration-300"
                         id="nav-cta">
@@ -156,7 +225,68 @@
                 <a href="{% url 'contact' %}"
                     class="block text-base font-bold text-brand-text/70 hover:text-brand-primary transition-colors tracking-wide py-2">Contact</a>
                 
-                <div class="pt-4 border-t border-white/5">
+                <div class="pt-4 border-t border-white/5 space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- Mobile Language Toggle -->
+                        <div class="relative group">
+                            <button onclick="document.getElementById('mobile-lang-dropdown').classList.toggle('hidden')" class="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-xs font-bold text-brand-text/80 cursor-pointer">
+                                <span class="flex items-center space-x-2">
+                                    <span id="mobile-selected-flag">🇺🇸</span>
+                                    <span id="mobile-selected-lang">EN</span>
+                                </span>
+                                <i class="fas fa-chevron-down text-[9px] text-brand-text/40"></i>
+                            </button>
+                            <div id="mobile-lang-dropdown" class="hidden absolute left-0 bottom-full mb-2 w-full bg-[#111827] border border-white/5 rounded-xl shadow-xl z-50 overflow-hidden py-1 max-h-40 overflow-y-auto">
+                                <a href="#" onclick="doGTranslate('en|en'); document.getElementById('mobile-lang-dropdown').classList.add('hidden'); return false;" class="flex items-center space-x-2.5 px-4 py-2.5 hover:bg-white/5 text-xs text-brand-text/70">
+                                    <span>🇺🇸</span> <span>English</span>
+                                </a>
+                                <a href="#" onclick="doGTranslate('en|bn'); document.getElementById('mobile-lang-dropdown').classList.add('hidden'); return false;" class="flex items-center space-x-2.5 px-4 py-2.5 hover:bg-white/5 text-xs text-brand-text/70">
+                                    <span>🇧🇩</span> <span>বাংলা</span>
+                                </a>
+                                <a href="#" onclick="doGTranslate('en|es'); document.getElementById('mobile-lang-dropdown').classList.add('hidden'); return false;" class="flex items-center space-x-2.5 px-4 py-2.5 hover:bg-white/5 text-xs text-brand-text/70">
+                                    <span>🇪🇸</span> <span>Español</span>
+                                </a>
+                                <a href="#" onclick="doGTranslate('en|ar'); document.getElementById('mobile-lang-dropdown').classList.add('hidden'); return false;" class="flex items-center space-x-2.5 px-4 py-2.5 hover:bg-white/5 text-xs text-brand-text/70">
+                                    <span>🇸🇦</span> <span>العربية</span>
+                                </a>
+                                <a href="#" onclick="doGTranslate('en|de'); document.getElementById('mobile-lang-dropdown').classList.add('hidden'); return false;" class="flex items-center space-x-2.5 px-4 py-2.5 hover:bg-white/5 text-xs text-brand-text/70">
+                                    <span>🇩🇪</span> <span>Deutsch</span>
+                                </a>
+                                <a href="#" onclick="doGTranslate('en|fr'); document.getElementById('mobile-lang-dropdown').classList.add('hidden'); return false;" class="flex items-center space-x-2.5 px-4 py-2.5 hover:bg-white/5 text-xs text-brand-text/70">
+                                    <span>🇫🇷</span> <span>Français</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Currency Select -->
+                        <div class="relative">
+                            <button onclick="document.getElementById('mobile-curr-dropdown').classList.toggle('hidden')" class="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-xs font-bold text-brand-text/80 cursor-pointer">
+                                <span>{{ active_currency|default:"USD" }} ({{ currency_symbol|default:"$" }})</span>
+                                <i class="fas fa-chevron-down text-[9px] text-brand-text/40"></i>
+                            </button>
+                            <div id="mobile-curr-dropdown" class="hidden absolute right-0 bottom-full mb-2 w-full bg-[#111827] border border-white/5 rounded-xl shadow-xl z-50 overflow-hidden py-1">
+                                <a href="{% url 'set_currency' %}?code=usd" class="flex items-center justify-between px-4 py-2.5 hover:bg-white/5 text-xs text-brand-text/70">
+                                    <span>USD</span> <span>$</span>
+                                </a>
+                                <a href="{% url 'set_currency' %}?code=bdt" class="flex items-center justify-between px-4 py-2.5 hover:bg-white/5 text-xs text-brand-text/70">
+                                    <span>BDT</span> <span>৳</span>
+                                </a>
+                                <a href="{% url 'set_currency' %}?code=eur" class="flex items-center justify-between px-4 py-2.5 hover:bg-white/5 text-xs text-brand-text/70">
+                                    <span>EUR</span> <span>€</span>
+                                </a>
+                                <a href="{% url 'set_currency' %}?code=gbp" class="flex items-center justify-between px-4 py-2.5 hover:bg-white/5 text-xs text-brand-text/70">
+                                    <span>GBP</span> <span>£</span>
+                                </a>
+                                <a href="{% url 'set_currency' %}?code=sar" class="flex items-center justify-between px-4 py-2.5 hover:bg-white/5 text-xs text-brand-text/70">
+                                    <span>SAR</span> <span>﷼</span>
+                                </a>
+                                <a href="{% url 'set_currency' %}?code=aed" class="flex items-center justify-between px-4 py-2.5 hover:bg-white/5 text-xs text-brand-text/70">
+                                    <span>AED</span> <span>د.إ</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                     <a href="{% url 'contact' %}"
                         class="block text-center px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-accent text-brand-text font-extrabold rounded-2xl shadow-lg hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] transition-all">
                         Hire Us
@@ -326,8 +456,92 @@
 
     <!-- Main JS -->
     <script src="{% static 'js/main.js' %}"></script>
-</body>
 
-</html>
+    <!-- ========== GTRANSLATE INTEGRATION ENGINE ========== -->
+    <div id="google_translate_element2"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit2() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false
+            }, 'google_translate_element2');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
+    <script type="text/javascript">
+        /* GTranslate Helper Functions */
+        function GTranslateFireEvent(element, event) {
+            try {
+                if (document.createEvent) {
+                    var ev = document.createEvent("HTMLEvents");
+                    ev.initEvent(event, true, true);
+                    element.dispatchEvent(ev);
+                } else {
+                    var ev = document.createEventObject();
+                    element.fireEvent('on' + event, ev);
+                }
+            } catch (e) {}
+        }
+        function doGTranslate(lang_pair) {
+            if (lang_pair.value) lang_pair = lang_pair.value;
+            if (lang_pair == '') return;
+            var lang = lang_pair.split('|')[1];
+            
+            // Save selection in session storage
+            sessionStorage.setItem('selected_lang_code', lang.toUpperCase());
+            updateSelectedLangUI(lang.toUpperCase());
+            
+            var teCombo;
+            var sel = document.getElementsByTagName('select');
+            for (var i = 0; i < sel.length; i++) {
+                if (sel[i].className.indexOf('goog-te-combo') != -1) {
+                    teCombo = sel[i];
+                    break;
+                }
+            }
+            if (document.getElementById('google_translate_element2') == null || document.getElementById('google_translate_element2').innerHTML.length == 0 || teCombo == null || teCombo.innerHTML.length == 0) {
+                setTimeout(function() { doGTranslate(lang_pair) }, 500);
+            } else {
+                teCombo.value = lang;
+                GTranslateFireEvent(teCombo, 'change');
+                GTranslateFireEvent(teCombo, 'change');
+            }
+        }
+        function updateSelectedLangUI(langCode) {
+            var flags = {
+                'EN': '🇺🇸',
+                'BN': '🇧🇩',
+                'ES': '🇪🇸',
+                'AR': '🇸🇦',
+                'DE': '🇩🇪',
+                'FR': '🇫🇷'
+            };
+            var flag = flags[langCode] || '🌐';
+            
+            // Desktop UI updates
+            var flagEl = document.getElementById('gtranslate-selected-flag');
+            var textEl = document.getElementById('gtranslate-selected-lang');
+            if (flagEl) flagEl.innerText = flag;
+            if (textEl) textEl.innerText = langCode;
+
+            // Mobile UI updates
+            var mFlagEl = document.getElementById('mobile-selected-flag');
+            var mTextEl = document.getElementById('mobile-selected-lang');
+            if (mFlagEl) mFlagEl.innerText = flag;
+            if (mTextEl) mTextEl.innerText = langCode;
+        }
+        // Initialize flags on load
+        window.addEventListener('DOMContentLoaded', function() {
+            var saved = sessionStorage.getItem('selected_lang_code');
+            if (saved) {
+                updateSelectedLangUI(saved);
+                // Trigger translation dynamically to sync
+                setTimeout(function() {
+                    doGTranslate('en|' + saved.toLowerCase());
+                }, 1000);
+            }
+        });
+    </script>
+</body>
 
 </html>

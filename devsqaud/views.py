@@ -271,3 +271,12 @@ def robots_view(request):
     host = f"{request.scheme}://{request.get_host()}"
     content = f"User-agent: *\nAllow: /\nDisallow: /management/\nDisallow: /logout/\n\nSitemap: {host}/sitemap.xml\n"
     return HttpResponse(content, content_type="text/plain")
+
+
+def set_currency(request):
+    """Switch active user currency via session."""
+    currency_code = request.GET.get('code', 'USD').upper()
+    valid_currencies = ['USD', 'BDT', 'EUR', 'GBP', 'SAR', 'AED']
+    if currency_code in valid_currencies:
+        request.session['currency'] = currency_code
+    return redirect(request.META.get('HTTP_REFERER', 'home'))
