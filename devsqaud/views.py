@@ -131,11 +131,38 @@ def blog_detail_view(request, slug):
     return render(request, 'blog/post_detail.html', context)
 
 
+import random
+
 def contact_view(request):
-    """Contact page with form."""
+    """Contact page with form and secure anti-bot Math Captcha."""
     if request.method == 'POST':
         form = ContactForm(request.POST)
+        
+        # Verify Captcha
+        user_answer = request.POST.get('captcha_input', '').strip()
+        actual_answer = request.session.get('captcha_answer')
+        
+        if not user_answer or actual_answer is None or str(user_answer) != str(actual_answer):
+            messages.error(request, 'Security verification failed! Please solve the math puzzle again.')
+            # Generate new captcha and preserve form inputs
+            num1 = random.randint(1, 9)
+            num2 = random.randint(2, 9)
+            request.session['captcha_answer'] = num1 + num2
+            context = {
+                'form': form,
+                'num1': num1,
+                'num2': num2,
+                # Keep fields entered
+                'selected_company': request.POST.get('company', '').strip(),
+                'selected_service': request.POST.get('service', '').strip(),
+                'selected_budget': request.POST.get('budget', '').strip(),
+            }
+            return render(request, 'contact.html', context)
+
         if form.is_valid():
+            # Clear session captcha on success to prevent reuse
+            request.session['captcha_answer'] = None
+            
             # Extract extra fields from POST request
             company = request.POST.get('company', '').strip()
             service = request.POST.get('service', '').strip()
@@ -160,9 +187,16 @@ def contact_view(request):
             return redirect('contact')
     else:
         form = ContactForm()
+        
+    # Generate Math Captcha numbers
+    num1 = random.randint(1, 9)
+    num2 = random.randint(2, 9)
+    request.session['captcha_answer'] = num1 + num2
 
     context = {
         'form': form,
+        'num1': num1,
+        'num2': num2,
     }
     return render(request, 'contact.html', context)
 
@@ -186,3 +220,54 @@ def privacy_view(request):
 def terms_view(request):
     """Static terms of service page."""
     return render(request, 'legal/terms.html')
+
+
+from django.http import HttpResponse
+from django.urls import reverse
+
+def sitemap_view(request):
+    """Dynamic XML sitemap generator."""
+    host = f"{request.scheme}://{request.get_host()}"
+    
+    # Static pages list
+    static_urls = [
+        reverse('home'),
+        reverse('services'),
+        reverse('portfolio'),
+        reverse('about'),
+        reverse('team'),
+        reverse('contact'),
+        reverse('pricing'),
+        reverse('blog_list'),
+        reverse('privacy'),
+        reverse('terms'),
+    ]
+    
+    xml_items = []
+    
+    # 1. Add static pages
+    for url in static_urls:
+        xml_items.append(f"  <url>\n    <loc>{host}{url}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>")
+        
+    # 2. Add Projects
+    for project in Project.objects.all():
+        loc = f"{host}{reverse('project_detail', args=[project.slug])}"
+        xml_items.append(f"  <url>\n    <loc>{loc}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>")
+        
+    # 3. Add Blog Posts
+    for post in Post.objects.filter(is_published=True):
+        loc = f"{host}{reverse('blog_detail', args=[post.slug])}"
+        # Format updated time
+        updated = post.updated_at.strftime('%Y-%m-%dT%H:%M:%S+00:00')
+        xml_items.append(f"  <url>\n    <loc>{loc}</loc>\n    <lastmod>{updated}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>")
+
+    xml_content = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(xml_items) + '\n</urlset>'
+
+    return HttpResponse(xml_content, content_type="application/xml")
+
+
+def robots_view(request):
+    """Serve robots.txt dynamically."""
+    host = f"{request.scheme}://{request.get_host()}"
+    content = f"User-agent: *\nAllow: /\nDisallow: /management/\nDisallow: /logout/\n\nSitemap: {host}/sitemap.xml\n"
+    return HttpResponse(content, content_type="text/plain")

@@ -41,4 +41,8 @@ urlpatterns = [
     
     # Auth
     path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
+
+    # SEO Engine
+    path('sitemap.xml', views.sitemap_view, name='sitemap'),
+    path('robots.txt', views.robots_view, name='robots'),
 ]

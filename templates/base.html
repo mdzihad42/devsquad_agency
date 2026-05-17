@@ -9,6 +9,20 @@
     <meta name="description"
         content="{% block meta_description %}MZ Web Studio — We build scalable digital products. Premium software development, UI/UX design, and digital solutions.{% endblock %}">
 
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:title" content="MZ Web Studio — Next-Gen Web & App Development">
+    <meta property="og:description" content="Premium software development, UI/UX design, and scalable custom web applications built for business growth.">
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}/media/hero_bg.png">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ request.build_absolute_uri }}">
+    <meta name="twitter:title" content="MZ Web Studio — Next-Gen Web & App Development">
+    <meta name="twitter:description" content="Premium software development, UI/UX design, and scalable custom web applications built for business growth.">
+    <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}/media/hero_bg.png">
+
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

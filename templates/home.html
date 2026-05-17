@@ -6,6 +6,56 @@
 
 {% block content %}
 
+<!-- JSON-LD Structured SEO Schema Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "MZ Web Studio",
+  "image": "{{ request.scheme }}://{{ request.get_host }}/media/hero_bg.png",
+  "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization",
+  "url": "{{ request.scheme }}://{{ request.get_host }}/",
+  "telephone": "+880 1234 567890",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Dhaka",
+    "addressLocality": "Dhaka",
+    "postalCode": "1200",
+    "addressCountry": "BD"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 23.8103,
+    "longitude": 90.4125
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "opens": "00:00",
+    "closes": "23:59"
+  },
+  "sameAs": [
+    "https://facebook.com/mzwebstudio",
+    "https://github.com/mdzihad42"
+  ],
+  "founder": {
+    "@type": "Person",
+    "name": "Zihad Rahman",
+    "jobTitle": "Founder & Lead Architect",
+    "url": "https://github.com/mdzihad42"
+  },
+  "description": "MZ Web Studio is a premium web development & software engineering agency specializing in high-performance web applications, mobile apps, and custom digital systems."
+}
+</script>
+
 <!-- ========== HERO SECTION ========== -->
 <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-20 bg-brand-bg">
     <!-- Glowing Accent Orbs / Dark Background Effects -->
