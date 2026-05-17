@@ -165,7 +165,7 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden hidden absolute top-full left-0 right-0 w-full bg-[#020617] border-b border-t border-white/5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] backdrop-blur-2xl transition-all duration-300 z-50" style="background-color: #020617 !important;">
+        <div id="mobile-menu" class="md:hidden hidden absolute top-full left-0 right-0 w-full bg-[#020617] border-b border-t border-white/5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] backdrop-blur-2xl transition-all duration-300 z-50 overflow-y-auto max-h-[calc(100vh-5rem)]" style="background-color: #020617 !important;">
             <div class="px-6 py-8 flex flex-col space-y-5">
                 <a href="{% url 'home' %}"
                     class="block text-base font-bold text-brand-text/70 hover:text-brand-primary transition-colors tracking-wide py-2">Home</a>
