@@ -109,7 +109,7 @@ class SiteConfig(models.Model):
     stat_experience = models.CharField(max_length=50, default="3+")
     stat_clients = models.CharField(max_length=50, default="40+")
     # Contact
-    contact_email = models.EmailField(default="hello@devsquad.com")
+    contact_email = models.EmailField(default="hello@mzwebstudio.com")
     contact_phone = models.CharField(max_length=20, blank=True, default="+880 1234 567890")
     whatsapp_number = models.CharField(
         max_length=20,
@@ -117,7 +117,7 @@ class SiteConfig(models.Model):
         help_text="WhatsApp number without + sign"
     )
     # Footer
-    footer_text = models.CharField(max_length=300, default="© 2026 DevSquad. All rights reserved.")
+    footer_text = models.CharField(max_length=300, default="© 2026 MZ Web Studio. All rights reserved.")
     # Social
     social_facebook = models.URLField(blank=True)
     social_twitter = models.URLField(blank=True)
@@ -164,7 +164,7 @@ class Post(models.Model):
     """Blog posts."""
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True, blank=True)
-    author = models.CharField(max_length=100, default="DevSquad Team")
+    author = models.CharField(max_length=100, default="MZ Web Studio Team")
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='posts')
     icon = models.CharField(max_length=100, default="fas fa-newspaper", help_text="Font Awesome icon for the post")
     thumbnail = models.ImageField(upload_to='blog/', blank=True, null=True)

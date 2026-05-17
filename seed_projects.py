@@ -69,7 +69,7 @@ print("Seeding testimonials...")
 Testimonial.objects.get_or_create(
     client_name="Zihad Rahman",
     defaults={
-        'client_role': "CEO, DevSquad Ltd",
+        'client_role': "CEO, MZ Web Studio Ltd",
         'feedback': "Antigravity redesigned our entire platform with incredible precision. The 3D UI, speed, and standard of engineering are absolutely world-class.",
         'is_featured': True,
         'order': 1
@@ -80,7 +80,7 @@ Testimonial.objects.get_or_create(
     client_name="Sarah Jenkins",
     defaults={
         'client_role': "VP of Engineering, Apex Global",
-        'feedback': "DevSquad delivered our headless commerce site ahead of schedule. Our checkout velocity increased by 3.2x, leading to an immediate boost in conversions.",
+        'feedback': "MZ Web Studio delivered our headless commerce site ahead of schedule. Our checkout velocity increased by 3.2x, leading to an immediate boost in conversions.",
         'is_featured': True,
         'order': 2
     }
