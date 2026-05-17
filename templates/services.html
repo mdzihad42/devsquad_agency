@@ -6,79 +6,252 @@
 {% block content %}
 
 <!-- ========== PAGE HEADER ========== -->
-<section class="relative pt-32 pb-20 overflow-hidden">
+<section class="relative pt-40 pb-20 overflow-hidden bg-brand-bg">
     <div class="absolute inset-0">
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-primary/5 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 right-1/4 w-72 h-72 bg-brand-accent/5 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-primary/10 rounded-full blur-[150px] animate-pulse-slow"></div>
+        <div class="absolute bottom-0 right-1/4 w-72 h-72 bg-brand-accent/10 rounded-full blur-[150px] animate-pulse-slow"></div>
     </div>
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-brand-accent bg-brand-primary/10 border border-brand-primary/20 rounded-full mb-4 animate-fade-in-up">What We Offer</span>
-        <h1 class="text-4xl sm:text-5xl font-black mb-4 animate-fade-in-up animation-delay-200">Our Services</h1>
-        <p class="text-brand-text/70 max-w-2xl mx-auto text-lg animate-fade-in-up animation-delay-400">End-to-end digital solutions crafted to elevate your business and deliver measurable results.</p>
+        <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-brand-accent bg-brand-primary/10 border border-brand-primary/20 rounded-full mb-6 animate-fade-in-up">What We Offer</span>
+        <h1 class="text-5xl sm:text-6xl font-black mb-6 animate-fade-in-up animation-delay-200 tracking-tight text-brand-text">
+            Strategic <span class="bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">Digital Services</span>
+        </h1>
+        <p class="text-brand-text/70 max-w-2xl mx-auto text-lg sm:text-xl leading-relaxed animate-fade-in-up animation-delay-400">
+            Precision-engineered software development, conversion-driven UI/UX, and hyper-scalable infrastructure designed for market dominance.
+        </p>
     </div>
 </section>
 
+<!-- Custom Styling for Interactive Floating/3D effects -->
+<style>
+    @keyframes float-hover-service {
+        0%, 100% { transform: translateY(0px) rotate(-2deg); }
+        50% { transform: translateY(-8px) rotate(-0.5deg); }
+    }
+    @keyframes float-hover-service-alt {
+        0%, 100% { transform: translateY(0px) rotate(2deg); }
+        50% { transform: translateY(-8px) rotate(0.5deg); }
+    }
+    .service-mock-1 {
+        animation: float-hover-service 7s ease-in-out infinite;
+    }
+    .service-mock-2 {
+        animation: float-hover-service-alt 7s ease-in-out infinite 1s;
+    }
+    .service-mock-3 {
+        animation: float-hover-service 7s ease-in-out infinite 2s;
+    }
+</style>
+
 <!-- ========== FULL SERVICES LIST ========== -->
-<section class="relative pb-24">
+<section class="relative pb-32 bg-brand-bg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="space-y-20">
             {% for service in services %}
-            <div class="glass-card group rounded-3xl overflow-hidden hover:border-brand-primary/30 hover:shadow-[0_0_30px_rgba(59, 130, 246,0.15)] transition-all duration-500 scroll-reveal border-brand-text/5" style="animation-delay: {{ forloop.counter0 }}00ms" id="service-{{ forloop.counter }}">
-                <!-- Service Image -->
-                {% if service.image %}
-                <div class="relative h-48 overflow-hidden bg-brand-card">
-                    <img src="{{ service.image.url }}" alt="{{ service.title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-brand-bg/80 via-transparent to-transparent"></div>
-                    <div class="absolute bottom-3 left-4">
-                        <div class="w-12 h-12 rounded-xl bg-brand-primary/20 backdrop-blur-xl border border-brand-primary/30 flex items-center justify-center">
-                            <i class="{{ service.icon }} text-xl text-brand-primary"></i>
+            <div class="glass-card bg-[#111827]/60 backdrop-blur-2xl border border-white/5 rounded-[2.5rem] p-8 lg:p-12 transition-all duration-500 hover:border-brand-primary/30 hover:shadow-[0_0_50px_rgba(59,130,246,0.08)] scroll-reveal" 
+                 id="service-{{ forloop.counter }}">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Side: Rich Text Details (7 Cols) -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <!-- Icon and Title -->
+                        <div class="flex items-center space-x-4">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-primary/20 to-brand-accent/20 flex items-center justify-center border border-brand-primary/10">
+                                <i class="{{ service.icon }} text-2xl text-brand-primary"></i>
+                            </div>
+                            <h2 class="text-3xl font-black tracking-tight text-brand-text">{{ service.title }}</h2>
                         </div>
-                    </div>
-                </div>
-                <div class="p-8">
-                {% else %}
-                <div class="p-8">
-                    <!-- Icon -->
-                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-primary/20 to-brand-accent/20 flex items-center justify-center mb-6 group-hover:from-brand-primary/30 group-hover:to-brand-accent/30 transition-all duration-300">
-                        <i class="{{ service.icon }} text-2xl text-brand-primary"></i>
-                    </div>
-                {% endif %}
 
-                    <!-- Title -->
-                    <h3 class="text-xl font-bold mb-3 group-hover:text-brand-primary transition-colors duration-300">{{ service.title }}</h3>
+                        <p class="text-brand-text/70 text-lg leading-relaxed">{{ service.full_description }}</p>
 
-                    <!-- Full Description -->
-                    <p class="text-brand-text/70 text-sm leading-relaxed mb-6">{{ service.full_description }}</p>
-
-                    <!-- Problem → Solution (if available) -->
-                    {% if service.problem and service.solution %}
-                    <div class="space-y-4 pt-4 border-t border-brand-text/5">
-                        <div>
-                            <h4 class="text-xs font-bold tracking-widest uppercase text-brand-primary mb-2">The Problem</h4>
-                            <p class="text-brand-text/50 text-xs leading-relaxed">{{ service.problem }}</p>
+                        <!-- Problem & Solution Block -->
+                        {% if service.problem and service.solution %}
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-white/5">
+                            <div class="space-y-2">
+                                <h4 class="text-xs font-black tracking-wider uppercase text-brand-primary flex items-center">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-brand-primary mr-2"></span>
+                                    The Challenge
+                                </h4>
+                                <p class="text-brand-text/50 text-sm leading-relaxed">{{ service.problem }}</p>
+                            </div>
+                            <div class="space-y-2">
+                                <h4 class="text-xs font-black tracking-wider uppercase text-brand-accent flex items-center">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-brand-accent mr-2"></span>
+                                    Our Solution
+                                </h4>
+                                <p class="text-brand-text/50 text-sm leading-relaxed">{{ service.solution }}</p>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="text-xs font-bold tracking-widest uppercase text-brand-accent mb-2">Our Solution</h4>
-                            <p class="text-brand-text/50 text-xs leading-relaxed">{{ service.solution }}</p>
-                        </div>
-                    </div>
-                    {% endif %}
+                        {% endif %}
 
-                    {% if service.benefits %}
-                    <div class="mt-4 pt-4 border-t border-brand-text/5">
-                        <h4 class="text-xs font-bold tracking-widest uppercase text-brand-accent mb-3">Key Benefits</h4>
-                        <ul class="space-y-2">
-                            {% for benefit in service.benefits.splitlines %}
-                            {% if benefit.strip %}
-                            <li class="flex items-start space-x-2 text-xs text-brand-text/70">
-                                <i class="fas fa-check text-brand-primary mt-0.5 text-[10px]"></i>
-                                <span>{{ benefit }}</span>
-                            </li>
-                            {% endif %}
-                            {% endfor %}
-                        </ul>
+                        <!-- Key Benefits -->
+                        {% if service.benefits %}
+                        <div class="pt-6 border-t border-white/5">
+                            <h4 class="text-xs font-black tracking-wider uppercase text-brand-accent mb-4">Value Proposition & Benefits</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                                {% for benefit in service.benefits.splitlines %}
+                                {% if benefit.strip %}
+                                <div class="flex items-center space-x-3 text-sm text-brand-text/80">
+                                    <div class="w-5 h-5 rounded-full bg-brand-primary/10 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-check text-brand-primary text-[9px]"></i>
+                                    </div>
+                                    <span>{{ benefit }}</span>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
-                    {% endif %}
+
+                    <!-- Right Side: Real UI Mockup / Showcase (5 Cols) -->
+                    <div class="lg:col-span-5 relative perspective-[1500px] flex items-center justify-center min-h-[320px]">
+                        
+                        <!-- DYNAMIC VISUAL MOCKUPS MAPPED TO SERVICE TYPE -->
+                        {% if "web" in service.title.lower or "development" in service.title.lower or "software" in service.title.lower %}
+                            <!-- 1. Code Editor Mockup -->
+                            <div class="service-mock-1 w-full max-w-[380px] bg-[#0b0f19] border border-white/10 rounded-2xl shadow-2xl p-5 transform rotate-y-[-12deg] rotate-x-[10deg] skew-y-[2deg] hover:rotate-y-[0deg] hover:rotate-x-[0deg] hover:skew-y-[0deg] transition-all duration-500 ease-out z-10">
+                                <div class="flex items-center justify-between pb-3 border-b border-white/5 mb-3">
+                                    <div class="flex space-x-1.5">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
+                                        <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+                                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+                                    </div>
+                                    <span class="text-[9px] font-mono text-brand-text/30">App.js</span>
+                                </div>
+                                <div class="font-mono text-[10px] space-y-1.5 text-brand-text/40">
+                                    <p><span class="text-purple-400">import</span> React <span class="text-purple-400">from</span> <span class="text-emerald-400">'react'</span>;</p>
+                                    <p><span class="text-blue-400">const</span> <span class="text-amber-400">DevSquadApp</span> = () => {</p>
+                                    <p class="pl-4"><span class="text-purple-400">return</span> (</p>
+                                    <p class="pl-8 text-brand-primary">&lt;<span class="text-brand-primary">div</span> className=<span class="text-emerald-400">"scalable-ui"</span>&gt;</p>
+                                    <p class="pl-12 text-brand-accent">&lt;<span class="text-brand-accent">h1</span>&gt;Engineered to Dominate&lt;/<span class="text-brand-accent">h1</span>&gt;</p>
+                                    <p class="pl-8 text-brand-primary">&lt;/<span class="text-brand-primary">div</span>&gt;</p>
+                                    <p class="pl-4">);</p>
+                                    <p>};</p>
+                                </div>
+                                <div class="absolute -bottom-6 -right-6 bg-brand-card border border-white/10 px-4 py-2.5 rounded-xl shadow-lg flex items-center space-x-2">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                    <span class="text-[10px] font-black uppercase text-brand-text">Build Successful</span>
+                                </div>
+                            </div>
+
+                        {% elif "design" in service.title.lower or "ui" in service.title.lower or "ux" in service.title.lower %}
+                            <!-- 2. Figma Canvas Mockup -->
+                            <div class="service-mock-2 w-full max-w-[380px] bg-[#1e1e1e] border border-white/10 rounded-2xl shadow-2xl p-5 transform rotate-y-[12deg] rotate-x-[10deg] skew-y-[-2deg] hover:rotate-y-[0deg] hover:rotate-x-[0deg] hover:skew-y-[0deg] transition-all duration-500 ease-out z-10">
+                                <div class="flex items-center justify-between pb-3 border-b border-white/5 mb-3">
+                                    <span class="text-[9px] font-bold text-brand-text/40">Figma Canvas — v2.4</span>
+                                    <span class="text-[9px] text-brand-text/30">100%</span>
+                                </div>
+                                <div class="relative bg-[#121212] rounded-xl h-28 border border-white/5 flex items-center justify-center overflow-hidden">
+                                    <!-- Mock Vector Shape -->
+                                    <div class="w-28 h-16 rounded-lg bg-gradient-to-br from-brand-primary to-brand-accent border border-brand-primary flex items-center justify-center text-[10px] font-bold text-white relative">
+                                        UI Layout
+                                        <span class="absolute -top-1 -left-1 w-2 h-2 bg-white border border-brand-primary"></span>
+                                        <span class="absolute -top-1 -right-1 w-2 h-2 bg-white border border-brand-primary"></span>
+                                        <span class="absolute -bottom-1 -left-1 w-2 h-2 bg-white border border-brand-primary"></span>
+                                        <span class="absolute -bottom-1 -right-1 w-2 h-2 bg-white border border-brand-primary"></span>
+                                    </div>
+                                    <!-- Mock Vector Cursor -->
+                                    <div class="absolute top-[55%] left-[55%] flex items-center space-x-1">
+                                        <i class="fas fa-mouse-pointer text-brand-accent drop-shadow-md"></i>
+                                        <span class="bg-brand-accent text-white text-[8px] px-1.5 py-0.5 rounded shadow font-black">UX Architect</span>
+                                    </div>
+                                </div>
+                                <div class="absolute -bottom-6 -left-6 bg-brand-card border border-white/10 px-4 py-2.5 rounded-xl shadow-lg flex items-center space-x-2">
+                                    <i class="fas fa-bezier-curve text-brand-primary text-xs"></i>
+                                    <span class="text-[10px] font-black uppercase text-brand-text">Pixel Perfect UX</span>
+                                </div>
+                            </div>
+
+                        {% elif "cloud" in service.title.lower or "devops" in service.title.lower or "server" in service.title.lower or "hosting" in service.title.lower %}
+                            <!-- 3. Cloud Server Mockup -->
+                            <div class="service-mock-3 w-full max-w-[380px] bg-[#020617] border border-white/10 rounded-2xl shadow-2xl p-5 transform rotate-y-[-12deg] rotate-x-[10deg] skew-y-[2deg] hover:rotate-y-[0deg] hover:rotate-x-[0deg] hover:skew-y-[0deg] transition-all duration-500 ease-out z-10">
+                                <div class="flex items-center justify-between pb-3 border-b border-white/5 mb-3">
+                                    <span class="text-[9px] font-bold text-brand-primary uppercase tracking-wider">Kubernetes Clusters</span>
+                                    <span class="text-[9px] text-brand-text/30">us-east-1</span>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="bg-[#111827] border border-white/5 rounded-lg p-2.5 flex items-center justify-between">
+                                        <div class="flex items-center space-x-2">
+                                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                            <span class="text-[10px] font-mono text-brand-text/80">node-alpha-1</span>
+                                        </div>
+                                        <span class="text-[9px] font-mono text-emerald-400">99.9% Live</span>
+                                    </div>
+                                    <div class="bg-[#111827] border border-white/5 rounded-lg p-2.5 flex items-center justify-between">
+                                        <div class="flex items-center space-x-2">
+                                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                            <span class="text-[10px] font-mono text-brand-text/80">node-beta-2</span>
+                                        </div>
+                                        <span class="text-[9px] font-mono text-emerald-400">100.0% Uptime</span>
+                                    </div>
+                                </div>
+                                <div class="absolute -bottom-6 -right-6 bg-brand-card border border-white/10 px-4 py-2.5 rounded-xl shadow-lg flex items-center space-x-2">
+                                    <i class="fas fa-server text-brand-accent text-xs"></i>
+                                    <span class="text-[10px] font-black uppercase text-brand-text">Auto-Scaled</span>
+                                </div>
+                            </div>
+
+                        {% elif "mobile" in service.title.lower or "app" in service.title.lower %}
+                            <!-- 4. Mobile App UI Screenshot Mockup -->
+                            <div class="service-mock-1 w-[180px] h-[310px] bg-[#020617] border-[5px] border-[#1f2937] rounded-[2.2rem] shadow-2xl relative overflow-hidden transform rotate-y-[12deg] rotate-x-[8deg] hover:rotate-y-[0deg] hover:rotate-x-[0deg] transition-all duration-500 ease-out z-10">
+                                <!-- Phone Camera Notch -->
+                                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-4 bg-[#1f2937] rounded-b-xl z-20 flex items-center justify-center">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-blue-900"></span>
+                                </div>
+                                <!-- Screen Content -->
+                                <div class="p-3.5 pt-6 h-full flex flex-col justify-between">
+                                    <div class="space-y-3">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-[8px] font-black text-brand-text/40">SQUAD APP</span>
+                                            <i class="fas fa-bell text-[8px] text-brand-primary"></i>
+                                        </div>
+                                        <div class="bg-gradient-to-br from-brand-primary/20 to-brand-accent/20 border border-brand-primary/20 rounded-xl p-2.5 text-center">
+                                            <span class="text-[7px] text-brand-text/50 block">Conversion Rate</span>
+                                            <span class="text-sm font-black text-brand-text">+324%</span>
+                                        </div>
+                                        <div class="space-y-1.5">
+                                            <div class="h-5 w-full bg-white/5 rounded-lg flex items-center px-2 justify-between">
+                                                <span class="text-[7px] text-brand-text/80">Active Users</span>
+                                                <span class="text-[7px] font-bold text-emerald-400">12.5k</span>
+                                            </div>
+                                            <div class="h-5 w-full bg-white/5 rounded-lg flex items-center px-2 justify-between">
+                                                <span class="text-[7px] text-brand-text/80">Live Server</span>
+                                                <span class="text-[7px] font-bold text-brand-accent">Online</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="h-7 w-full bg-brand-primary rounded-xl flex items-center justify-center text-[8px] font-bold text-white shadow-lg shadow-brand-primary/20">
+                                        Launch Product
+                                    </div>
+                                </div>
+                            </div>
+
+                        {% else %}
+                            <!-- 5. General Interactive Analytics Dashboard Mockup -->
+                            <div class="service-mock-2 w-full max-w-[380px] bg-[#111827]/90 border border-white/10 rounded-2xl shadow-2xl p-5 transform rotate-y-[-10deg] rotate-x-[8deg] skew-y-[2deg] hover:rotate-y-[0deg] hover:rotate-x-[0deg] hover:skew-y-[0deg] transition-all duration-500 ease-out z-10">
+                                <div class="flex items-center justify-between pb-3 border-b border-white/5 mb-3">
+                                    <span class="text-[9px] font-bold text-brand-accent uppercase tracking-wider">Growth Campaign</span>
+                                    <span class="text-[9px] text-brand-text/30">Live Analytics</span>
+                                </div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <div>
+                                        <span class="text-[8px] text-brand-text/50 uppercase tracking-wider block">Acquisition ROI</span>
+                                        <span class="text-xl font-black text-brand-text">4.8x Return</span>
+                                    </div>
+                                    <i class="fas fa-chart-line text-2xl text-brand-primary animate-pulse"></i>
+                                </div>
+                                <div class="flex space-x-2.5 items-end justify-between h-14 pt-2">
+                                    <div class="w-full bg-brand-primary/30 h-[25%] rounded-t"></div>
+                                    <div class="w-full bg-brand-primary/50 h-[45%] rounded-t"></div>
+                                    <div class="w-full bg-brand-primary/70 h-[65%] rounded-t"></div>
+                                    <div class="w-full bg-brand-primary h-[85%] rounded-t"></div>
+                                    <div class="w-full bg-brand-accent h-[100%] rounded-t"></div>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                    </div>
                 </div>
             </div>
             {% empty %}

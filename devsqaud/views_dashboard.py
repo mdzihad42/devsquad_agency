@@ -205,6 +205,11 @@ def dashboard_settings(request):
         config.social_twitter = request.POST.get('social_twitter')
         config.social_linkedin = request.POST.get('social_linkedin')
         config.social_github = request.POST.get('social_github')
+
+        # About Details
+        config.about_intro = request.POST.get('about_intro')
+        config.about_mission = request.POST.get('about_mission')
+        config.about_vision = request.POST.get('about_vision')
         
         # Stats
         config.stat_projects = request.POST.get('stat_projects', 150)

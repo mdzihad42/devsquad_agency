@@ -186,6 +186,12 @@ class Post(models.Model):
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
+    @property
+    def reading_time(self):
+        """Estimate reading time in minutes based on content word count."""
+        words = len(self.content.split())
+        return max(1, round(words / 200))
+
 
 class ClientLogo(models.Model):
     """Client logos for the trust bar."""

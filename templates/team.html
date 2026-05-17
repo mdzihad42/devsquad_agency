@@ -1,78 +1,266 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Our Expert Team — DevSquad Agency{% endblock %}
-{% block meta_description %}Meet the talented engineers, designers, and strategists behind DevSquad. We are a collective of digital craftsmen dedicated to your success.{% endblock %}
+{% block title %}Our Squad & Expertise — DevSquad{% endblock %}
+{% block meta_description %}Meet the minds behind DevSquad — our engineering lead, specialized collaborators, core values, and technical expertise.{% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<section class="pt-32 pb-20 relative overflow-hidden">
-    <div class="absolute top-0 right-1/4 w-[800px] h-[800px] bg-brand-primary/5 blur-[120px] rounded-full -z-10"></div>
+
+<!-- ========== PAGE HEADER ========== -->
+<section class="relative pt-44 pb-20 overflow-hidden bg-brand-bg">
+    <div class="absolute inset-0">
+        <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-brand-primary/5 rounded-full blur-[150px] animate-pulse-slow"></div>
+    </div>
     
-    <div class="container mx-auto px-6 text-center">
-        <div class="inline-flex items-center space-x-2 px-4 py-2 bg-brand-text/5 border border-brand-text/10 rounded-full mb-6">
-            <span class="w-2 h-2 bg-brand-primary rounded-full animate-pulse"></span>
-            <span class="text-xs font-bold uppercase tracking-widest text-brand-text/60">The Dream Team</span>
-        </div>
-        <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tight">
-            Meet the <span class="bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">Craftsmen</span>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-brand-accent bg-brand-primary/10 border border-brand-primary/20 rounded-full">Our Team</span>
+        <h1 class="text-5xl sm:text-7xl font-black text-brand-text tracking-tight">
+            Meet the <span class="bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">Digital Craftsmen</span>
         </h1>
-        <p class="text-brand-text/60 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            We are a distributed team of specialists who believe in building products that matter. Passionate, agile, and always learning.
+        <p class="text-brand-text/70 max-w-2xl mx-auto text-lg sm:text-xl leading-relaxed">
+            We are an elite collective of builders, engineers, and digital designers who transform complex concepts into scalable systems.
         </p>
     </div>
 </section>
 
-<!-- Team Grid -->
-<section class="pb-32">
-    <div class="container mx-auto px-6">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- ========== TEAM MATRIX SECTION (Founder First & Collaborators) ========== -->
+<section class="relative pb-32 bg-brand-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- SECTION HEADING -->
+        <div class="mb-16 scroll-reveal">
+            <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-brand-accent bg-brand-primary/10 border border-brand-primary/20 rounded-full mb-3">Hierarchy</span>
+            <h2 class="text-3xl sm:text-4xl font-black text-brand-text">Leadership & Collaborators</h2>
+        </div>
+
+        <div class="space-y-16">
+            <!-- 1. FOUNDER LARGE CARD (Top Featured) -->
             {% for member in team %}
-            <div class="group relative">
-                <div class="relative glass-card rounded-[2.5rem] p-6 border border-brand-text/5 transition-all duration-500 hover:-translate-y-2 hover:bg-brand-text/[0.05]">
-                    <!-- Image Container -->
-                    <div class="relative aspect-square rounded-[2rem] overflow-hidden mb-6">
-                        {% if member.image %}
-                        <img src="{{ member.image.url }}" alt="{{ member.name }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        {% else %}
-                        <div class="w-full h-full bg-brand-text/5 flex items-center justify-center text-brand-text/10 text-6xl">
-                            <i class="fas fa-user"></i>
+            {% if forloop.first %}
+            <div class="glass-card bg-[#111827]/60 border border-white/5 rounded-[2.5rem] p-8 lg:p-12 scroll-reveal hover:border-brand-primary/30 hover:shadow-[0_0_50px_rgba(59,130,246,0.06)] transition-all duration-500">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    
+                    <!-- Avatar (5 Cols) -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-2 border-white/10 shadow-2xl group">
+                            {% if member.image %}
+                            <img src="{{ member.image.url }}" alt="{{ member.name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            {% else %}
+                            <div class="w-full h-full bg-gradient-to-br from-brand-primary/20 to-brand-accent/20 flex items-center justify-center text-brand-accent font-black text-7xl select-none">
+                                {{ member.name|slice:":1" }}
+                            </div>
+                            {% endif %}
+                            <div class="absolute inset-0 bg-brand-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
-                        {% endif %}
+                    </div>
+
+                    <!-- Details (7 Cols) -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div>
+                            <span class="inline-block px-3 py-1 bg-brand-primary/15 border border-brand-primary/30 text-brand-accent text-[10px] font-black tracking-widest uppercase rounded-full mb-3">Agency Founder</span>
+                            <h3 class="text-3xl sm:text-4xl font-black text-brand-text">{{ member.name }}</h3>
+                            <p class="text-brand-primary font-bold text-sm tracking-wider mt-1 uppercase">{{ member.role }}</p>
+                        </div>
                         
-                        <!-- Social Hover Overlay -->
-                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
+                        <p class="text-brand-text/75 text-base sm:text-lg leading-relaxed">
+                            {{ member.bio }}
+                        </p>
+
+                        <!-- Social Link Elements -->
+                        <div class="flex items-center space-x-4 pt-4">
                             {% if member.linkedin %}
-                            <a href="{{ member.linkedin }}" class="w-10 h-10 rounded-full bg-brand-text/10 hover:bg-brand-primary text-brand-text flex items-center justify-center transition-all">
+                            <a href="{{ member.linkedin }}" target="_blank" class="w-11 h-11 rounded-full bg-white/5 border border-white/10 text-brand-text/70 flex items-center justify-center hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all duration-300">
                                 <i class="fab fa-linkedin-in text-sm"></i>
                             </a>
                             {% endif %}
                             {% if member.twitter %}
-                            <a href="{{ member.twitter }}" class="w-10 h-10 rounded-full bg-brand-text/10 hover:bg-brand-primary text-brand-text flex items-center justify-center transition-all">
+                            <a href="{{ member.twitter }}" target="_blank" class="w-11 h-11 rounded-full bg-white/5 border border-white/10 text-brand-text/70 flex items-center justify-center hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all duration-300">
                                 <i class="fab fa-twitter text-sm"></i>
                             </a>
                             {% endif %}
                         </div>
                     </div>
-                    
-                    <h3 class="text-xl font-bold mb-1">{{ member.name }}</h3>
-                    <p class="text-brand-primary text-xs font-black uppercase tracking-widest mb-4">{{ member.role }}</p>
-                    <p class="text-brand-text/40 text-sm leading-relaxed">{{ member.bio|truncatechars:100 }}</p>
+
                 </div>
             </div>
+            {% endif %}
             {% endfor %}
+
+            <!-- 2. COLLABORATORS GRID (Other Members) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8">
+                {% for member in team %}
+                {% if not forloop.first %}
+                <div class="glass-card bg-[#111827]/40 border border-white/5 rounded-3xl p-8 hover:border-brand-primary/20 hover:shadow-[0_0_30px_rgba(59,130,246,0.04)] transition-all duration-500 scroll-reveal flex flex-col justify-between"
+                     style="animation-delay: {{ forloop.counter0 }}00ms">
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between">
+                            <div class="relative w-20 h-20 rounded-full overflow-hidden border border-white/10 shadow group">
+                                {% if member.image %}
+                                <img src="{{ member.image.url }}" alt="{{ member.name }}" class="w-full h-full object-cover">
+                                {% else %}
+                                <div class="w-full h-full bg-brand-primary/10 flex items-center justify-center text-brand-primary font-bold text-2xl">
+                                    {{ member.name|slice:":1" }}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <span class="inline-block px-3 py-1 bg-white/5 border border-white/10 text-brand-text/50 text-[9px] font-black tracking-widest uppercase rounded-full">Expert Partner</span>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-xl font-bold text-brand-text">{{ member.name }}</h4>
+                            <p class="text-brand-accent text-xs font-bold tracking-wider mt-1 uppercase">{{ member.role }}</p>
+                        </div>
+
+                        <p class="text-brand-text/65 text-sm leading-relaxed">
+                            {{ member.bio }}
+                        </p>
+                    </div>
+
+                    <div class="flex items-center space-x-3 pt-6 mt-6 border-t border-white/5">
+                        {% if member.linkedin %}
+                        <a href="{{ member.linkedin }}" target="_blank" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 text-brand-text/60 flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all duration-300">
+                            <i class="fab fa-linkedin-in text-xs"></i>
+                        </a>
+                        {% endif %}
+                        {% if member.twitter %}
+                        <a href="{{ member.twitter }}" target="_blank" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 text-brand-text/60 flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all duration-300">
+                            <i class="fab fa-twitter text-xs"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
         </div>
+
+    </div>
+</section>
+
+<!-- ========== OUR EXPERTISE SECTION (Safer Alternative) ========== -->
+<section class="relative py-28 bg-[#020617] border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <!-- Join Us Banner -->
-        <div class="mt-20 glass-card rounded-[2.5rem] p-12 border border-brand-text/5 text-center relative overflow-hidden">
+        <div class="text-center mb-20 scroll-reveal">
+            <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-brand-accent bg-brand-primary/10 border border-brand-primary/20 rounded-full mb-4">Core Strengths</span>
+            <h2 class="text-4xl sm:text-5xl font-black text-brand-text mb-6">Our Agency Expertise</h2>
+            <p class="text-brand-text/70 max-w-2xl mx-auto text-lg">We deliver state-of-the-art solutions backed by deep engineering knowledge.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Expertise 1 -->
+            <div class="glass-card bg-[#111827]/60 border border-white/5 rounded-3xl p-8 hover:border-brand-primary/30 transition-all duration-500 group scroll-reveal">
+                <div class="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center mb-6 text-brand-accent group-hover:scale-105 transition-transform duration-300">
+                    <i class="fas fa-code text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-brand-text mb-3">Web Development</h3>
+                <p class="text-brand-text/60 text-sm leading-relaxed">Developing ultra-fast React interfaces and resilient Django backends built for extreme load limits.</p>
+            </div>
+            <!-- Expertise 2 -->
+            <div class="glass-card bg-[#111827]/60 border border-white/5 rounded-3xl p-8 hover:border-brand-primary/30 transition-all duration-500 group scroll-reveal" style="animation-delay: 150ms">
+                <div class="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center mb-6 text-brand-primary group-hover:scale-105 transition-transform duration-300">
+                    <i class="fas fa-paint-brush text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-brand-text mb-3">UI/UX Design</h3>
+                <p class="text-brand-text/60 text-sm leading-relaxed">High-fidelity conversion designs curated in Figma to streamline user journeys and maximize ROI metrics.</p>
+            </div>
+            <!-- Expertise 3 -->
+            <div class="glass-card bg-[#111827]/60 border border-white/5 rounded-3xl p-8 hover:border-brand-primary/30 transition-all duration-500 group scroll-reveal" style="animation-delay: 300ms">
+                <div class="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center mb-6 text-brand-accent group-hover:scale-105 transition-transform duration-300">
+                    <i class="fas fa-search-dollar text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-brand-text mb-3">SEO Optimization</h3>
+                <p class="text-brand-text/60 text-sm leading-relaxed">Optimizing code hierarchy and page velocity metrics to secure organic first-page ranking positions.</p>
+            </div>
+            <!-- Expertise 4 -->
+            <div class="glass-card bg-[#111827]/60 border border-white/5 rounded-3xl p-8 hover:border-brand-primary/30 transition-all duration-500 group scroll-reveal" style="animation-delay: 450ms">
+                <div class="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center mb-6 text-brand-primary group-hover:scale-105 transition-transform duration-300">
+                    <i class="fas fa-headset text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-brand-text mb-3">Support & Maintenance</h3>
+                <p class="text-brand-text/60 text-sm leading-relaxed">Continuous server security auditing, uptime tracking, and routine feature improvements post-launch.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ========== EXTRA PREMIUM SECTION: VALUES & CULTURE ========== -->
+<section class="relative py-28 bg-brand-bg border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            <!-- Left Side: Culture Narrative (5 Cols) -->
+            <div class="lg:col-span-5 space-y-6 scroll-reveal">
+                <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-brand-accent bg-brand-primary/10 border border-brand-primary/20 rounded-full">Our DNA</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-brand-text leading-tight">Work Culture & Integrity</h2>
+                <p class="text-brand-text/70 text-base sm:text-lg leading-relaxed">
+                    We focus on clean design, scalable development, and long-term client partnerships. We don't believe in corporate handshakes—we believe in shipping robust engineering code that lasts.
+                </p>
+                <div class="p-6 bg-[#111827]/40 border border-white/5 rounded-3xl">
+                    <p class="text-xs text-brand-text/50 font-bold uppercase tracking-wider mb-2">Our Operational Pledge</p>
+                    <p class="text-sm font-semibold text-brand-accent">"Zero fluff. Clean logic. Absolute alignment with client velocity parameters."</p>
+                </div>
+            </div>
+
+            <!-- Right Side: Core Values Cards (7 Cols) -->
+            <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6 scroll-reveal">
+                <!-- Value 1 -->
+                <div class="glass-card bg-[#111827]/45 border border-white/5 p-6 rounded-2xl space-y-4 hover:border-brand-primary/20 transition-all duration-300">
+                    <div class="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center text-brand-accent">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h4 class="font-bold text-brand-text">Innovation</h4>
+                    <p class="text-brand-text/55 text-xs leading-relaxed">Constantly integrating advanced framework packages and optimization utilities to lead trends.</p>
+                </div>
+                <!-- Value 2 -->
+                <div class="glass-card bg-[#111827]/45 border border-white/5 p-6 rounded-2xl space-y-4 hover:border-brand-primary/20 transition-all duration-300">
+                    <div class="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center text-brand-primary">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h4 class="font-bold text-brand-text">Transparency</h4>
+                    <p class="text-brand-text/55 text-xs leading-relaxed">Direct sharing of source repositories and daily updates via transparent collaboration trackers.</p>
+                </div>
+                <!-- Value 3 -->
+                <div class="glass-card bg-[#111827]/45 border border-white/5 p-6 rounded-2xl space-y-4 hover:border-brand-primary/20 transition-all duration-300">
+                    <div class="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center text-brand-accent">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h4 class="font-bold text-brand-text">Quality First</h4>
+                    <p class="text-brand-text/55 text-xs leading-relaxed">Zero compromises on pixel-alignment, static performance scales, or DB indexes.</p>
+                </div>
+                <!-- Value 4 -->
+                <div class="glass-card bg-[#111827]/45 border border-white/5 p-6 rounded-2xl space-y-4 hover:border-brand-primary/20 transition-all duration-300">
+                    <div class="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center text-brand-primary">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h4 class="font-bold text-brand-text">Fast Support</h4>
+                    <p class="text-brand-text/55 text-xs leading-relaxed">Direct communication channels providing fast resolution turnarounds for critical updates.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ========== JOIN US / CTA BANNER ========== -->
+<section class="relative py-24 bg-[#020617] border-t border-white/5">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-reveal">
+        <div class="glass-card bg-[#111827]/60 border border-white/5 rounded-[2.5rem] p-12 lg:p-16 relative overflow-hidden">
             <div class="absolute -top-24 -right-24 w-64 h-64 bg-brand-primary/10 blur-[80px] rounded-full"></div>
-            <h3 class="text-3xl font-bold mb-4">Want to join the squad?</h3>
-            <p class="text-brand-text/50 mb-8 max-w-xl mx-auto">
-                We're always looking for talented designers, developers, and thinkers. Think you have what it takes?
+            
+            <h3 class="text-3xl font-black text-brand-text mb-4">Want to join the squad?</h3>
+            <p class="text-brand-text/60 mb-8 max-w-xl mx-auto text-base">
+                We are always seeking senior freelance engineers, designers, and strategists to partner on high-performance projects. Think you belong here?
             </p>
-            <a href="mailto:careers@devsquad.com" class="inline-flex bg-brand-primary text-brand-text px-10 py-4 rounded-2xl font-bold hover:bg-orange-600 transition-all shadow-lg shadow-brand-primary/20">
+            <a href="mailto:careers@devsquad.com" class="inline-flex px-10 py-4 bg-gradient-to-r from-brand-primary to-brand-accent text-brand-text font-bold rounded-2xl hover:shadow-[0_0_35px_rgba(59,130,246,0.35)] transform hover:-translate-y-0.5 transition-all duration-300">
                 View Open Positions
             </a>
         </div>
     </div>
 </section>
+
 {% endblock %}

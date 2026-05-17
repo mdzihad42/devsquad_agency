@@ -6,24 +6,94 @@
 {% block content %}
 
 <!-- ========== PAGE HEADER ========== -->
-<section class="relative pt-32 pb-20 overflow-hidden">
+<section class="relative pt-40 pb-20 overflow-hidden bg-brand-bg">
     <div class="absolute inset-0">
-        <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-brand-primary/5 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-1/4 w-72 h-72 bg-brand-accent/5 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-brand-primary/10 rounded-full blur-[150px] animate-pulse-slow"></div>
+        <div class="absolute bottom-0 left-1/4 w-72 h-72 bg-brand-accent/10 rounded-full blur-[150px] animate-pulse-slow"></div>
     </div>
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-brand-accent bg-brand-primary/10 border border-brand-primary/20 rounded-full mb-4 animate-fade-in-up">Portfolio</span>
-        <h1 class="text-4xl sm:text-5xl font-black mb-4 animate-fade-in-up animation-delay-200">Our Work</h1>
-        <p class="text-brand-text/70 max-w-2xl mx-auto text-lg animate-fade-in-up animation-delay-400">Every project tells a story of innovation, dedication, and measurable impact.</p>
+        <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-brand-accent bg-brand-primary/10 border border-brand-primary/20 rounded-full mb-6 animate-fade-in-up">Portfolio</span>
+        <h1 class="text-5xl sm:text-6xl font-black mb-6 animate-fade-in-up animation-delay-200 tracking-tight text-brand-text">
+            Our <span class="bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">Case Studies</span>
+        </h1>
+        <p class="text-brand-text/70 max-w-2xl mx-auto text-lg sm:text-xl leading-relaxed animate-fade-in-up animation-delay-400">
+            Real proofs of engineering excellence, design fidelity, and rapid business acceleration.
+        </p>
     </div>
 </section>
 
-<!-- ========== PROJECT GRID ========== -->
-<section class="relative pb-24">
+<!-- ========== FEATURED PROJECTS ========== -->
+<section class="relative pb-24 bg-brand-bg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-12 scroll-reveal">
+            <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-brand-accent bg-brand-primary/10 border border-brand-primary/20 rounded-full mb-3">Highlights</span>
+            <h2 class="text-3xl sm:text-4xl font-black text-brand-text">Featured Case Studies</h2>
+        </div>
+        
+        <div class="space-y-16">
+            {% for project in featured_projects %}
+            <div class="glass-card bg-[#111827]/60 border border-white/5 rounded-[2.5rem] p-8 lg:p-12 transition-all duration-500 hover:border-brand-primary/30 hover:shadow-[0_0_50px_rgba(59,130,246,0.08)] scroll-reveal">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <!-- Image (6 Cols) -->
+                    <div class="lg:col-span-6 relative aspect-[16/10] rounded-3xl overflow-hidden bg-brand-card">
+                        {% if project.image %}
+                        <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" loading="lazy">
+                        {% else %}
+                        <div class="w-full h-full bg-gradient-to-br from-brand-primary/20 to-brand-accent/20 flex items-center justify-center">
+                            <i class="fas fa-laptop-code text-6xl text-brand-primary/30"></i>
+                        </div>
+                        {% endif %}
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-bg/80 via-transparent to-transparent opacity-60"></div>
+                        
+                        <!-- Large Highlight Badge -->
+                        <div class="absolute bottom-6 left-6 px-4 py-2 bg-brand-primary/20 backdrop-blur-xl border border-brand-primary/30 rounded-full">
+                            <span class="text-sm font-black tracking-wider text-brand-accent uppercase">
+                                <i class="fas fa-chart-line mr-2"></i>{{ project.result_highlight }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Content (6 Cols) -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <h3 class="text-3xl font-black tracking-tight text-brand-text">{{ project.title }}</h3>
+                        <p class="text-brand-text/70 text-lg leading-relaxed">{{ project.short_description }}</p>
+                        
+                        <!-- Tech Stack list -->
+                        <div class="flex flex-wrap gap-2.5">
+                            {% for tech in project.get_tech_list %}
+                            <span class="px-3.5 py-1.5 text-xs font-bold tracking-wider uppercase text-brand-text/60 bg-brand-text/5 border border-brand-text/10 rounded-full">
+                                {{ tech }}
+                            </span>
+                            {% endfor %}
+                        </div>
+
+                        <div class="pt-4">
+                            <a href="{% url 'project_detail' project.slug %}" class="group inline-flex items-center space-x-3 px-8 py-4 bg-brand-primary text-brand-text font-bold rounded-full hover:shadow-[0_0_40px_rgba(59,130,246,0.3)] transform hover:-translate-y-0.5 transition-all duration-300">
+                                <span>Explore Case Study</span>
+                                <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform duration-300"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-brand-text/50 text-center py-10">Featured digital products are arriving soon.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ========== RECENT PROJECTS ========== -->
+<section class="relative pb-32 bg-brand-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-12 scroll-reveal">
+            <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-brand-accent bg-brand-primary/10 border border-brand-primary/20 rounded-full mb-3">Catalog</span>
+            <h2 class="text-3xl sm:text-4xl font-black text-brand-text">Other Key Projects</h2>
+        </div>
+        
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {% for project in projects %}
-            <a href="{% url 'project_detail' project.slug %}" class="glass-card group rounded-3xl overflow-hidden hover:border-brand-primary/30 hover:shadow-[0_0_30px_rgba(59, 130, 246,0.15)] transition-all duration-500 scroll-reveal border-brand-text/5" style="animation-delay: {{ forloop.counter0 }}00ms" id="project-{{ forloop.counter }}">
+            {% for project in recent_projects %}
+            <a href="{% url 'project_detail' project.slug %}" class="glass-card group rounded-3xl overflow-hidden hover:border-brand-primary/30 hover:shadow-[0_0_30px_rgba(59, 130, 246,0.15)] transition-all duration-500 scroll-reveal border-brand-text/5" style="animation-delay: {{ forloop.counter0 }}00ms">
                 <!-- Image -->
                 <div class="relative h-56 overflow-hidden bg-brand-card">
                     {% if project.image %}
@@ -40,9 +110,9 @@
                     </div>
                 </div>
                 <!-- Info -->
-                <div class="p-6">
-                    <h3 class="text-lg font-bold mb-2 group-hover:text-brand-primary transition-colors duration-300">{{ project.title }}</h3>
-                    <p class="text-brand-text/70 text-sm leading-relaxed mb-4">{{ project.short_description }}</p>
+                <div class="p-6 space-y-4">
+                    <h3 class="text-xl font-bold group-hover:text-brand-primary transition-colors duration-300">{{ project.title }}</h3>
+                    <p class="text-brand-text/70 text-sm leading-relaxed">{{ project.short_description }}</p>
                     <!-- Tech Tags -->
                     <div class="flex flex-wrap gap-2">
                         {% for tech in project.get_tech_list %}
@@ -52,9 +122,66 @@
                 </div>
             </a>
             {% empty %}
-            <div class="col-span-full text-center text-brand-text/50 py-20">
-                <i class="fas fa-folder-open text-5xl mb-4 text-brand-primary/30"></i>
-                <p class="text-lg">Portfolio projects coming soon. Stay tuned!</p>
+            <div class="col-span-full text-center text-brand-text/50 py-10">
+                <i class="fas fa-folder-open text-4xl mb-4 text-brand-primary/30"></i>
+                <p class="text-lg">Additional works coming soon!</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ========== TESTIMONIALS SECTION ========== -->
+<section class="relative py-32 bg-[#020617] border-t border-white/5">
+    <!-- Subtle Glow Effects -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-brand-primary/5 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-12 right-1/4 w-[300px] h-[300px] bg-brand-accent/5 rounded-full blur-[100px]"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-20 scroll-reveal">
+            <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-brand-accent bg-brand-primary/10 border border-brand-primary/20 rounded-full mb-4">Client Feedback</span>
+            <h2 class="text-4xl sm:text-5xl font-black mb-6 text-brand-text">Stories of Partnership</h2>
+            <p class="text-brand-text/70 max-w-2xl mx-auto text-lg leading-relaxed">We build long-term relationships by putting our clients' growth and product quality above all else.</p>
+        </div>
+
+        <!-- Testimonials Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for t in testimonials %}
+            <div class="glass-card bg-[#111827]/70 border border-white/5 rounded-3xl p-8 relative overflow-hidden group hover:border-brand-primary/30 hover:shadow-[0_0_30px_rgba(59,130,246,0.06)] transition-all duration-500 flex flex-col justify-between">
+                <!-- Quotation Icon Backdrop -->
+                <div class="absolute -top-4 -right-4 text-brand-primary/5 text-9xl font-serif select-none pointer-events-none group-hover:text-brand-primary/10 transition-colors duration-500">“</div>
+                
+                <div class="space-y-6">
+                    <!-- Stars representation -->
+                    <div class="flex space-x-1 text-brand-accent text-xs">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    
+                    <p class="text-brand-text/80 text-sm leading-relaxed italic relative z-10">
+                        "{{ t.feedback }}"
+                    </p>
+                </div>
+
+                <div class="flex items-center space-x-4 pt-6 mt-6 border-t border-white/5 relative z-10">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-brand-primary to-brand-accent flex items-center justify-center text-brand-text font-black text-sm shadow shadow-brand-primary/20">
+                        {{ t.client_name|slice:":1" }}
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-brand-text text-sm">{{ t.client_name }}</h4>
+                        <p class="text-[11px] text-brand-text/50 font-bold uppercase tracking-wider">{{ t.client_role }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-full text-center text-brand-text/50 py-10">
+                <p class="text-lg">Outstanding client stories arriving soon!</p>
             </div>
             {% endfor %}
         </div>

@@ -1,96 +1,318 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}About Us — DevSquad{% endblock %}
-{% block meta_description %}Learn about DevSquad — our mission, vision, and the talented team behind our digital solutions.{% endblock %}
+{% block meta_description %}Learn how DevSquad designs and engineers fast, scalable, and beautiful websites and custom web applications.{% endblock %}
 
 {% block content %}
 
-<!-- ========== PAGE HEADER ========== -->
-<section class="relative pt-32 pb-20 overflow-hidden">
+<!-- ========== INTRODUCTION & STATS SPLIT ROW ========== -->
+<section class="relative pt-44 pb-24 overflow-hidden bg-brand-bg">
+    <!-- Glowing background elements -->
     <div class="absolute inset-0">
-        <div class="absolute top-1/4 left-1/3 w-96 h-96 bg-brand-primary/5 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-brand-primary/5 rounded-full blur-[150px]"></div>
+        <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-brand-accent/5 rounded-full blur-[120px]"></div>
     </div>
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-brand-accent bg-brand-primary/10 border border-brand-primary/20 rounded-full mb-4 animate-fade-in-up">About Us</span>
-        <h1 class="text-4xl sm:text-5xl font-black mb-4 animate-fade-in-up animation-delay-200">Who We Are</h1>
-        <p class="text-brand-text/70 max-w-2xl mx-auto text-lg animate-fade-in-up animation-delay-400">{{ site.about_intro }}</p>
-    </div>
-</section>
 
-<!-- ========== MISSION & VISION ========== -->
-<section class="relative pb-24">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="glass-card p-10 rounded-3xl scroll-reveal border-brand-text/5">
-                <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-brand-primary/20 to-brand-accent/20 flex items-center justify-center mb-6">
-                    <i class="fas fa-bullseye text-2xl text-brand-accent"></i>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            <!-- Left Side: Text Details, Stats, and CTA (7 Cols) -->
+            <div class="lg:col-span-7 space-y-8 animate-fade-in-up">
+                <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-brand-accent bg-brand-primary/10 border border-brand-primary/20 rounded-full">Who We Are</span>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-brand-text leading-tight tracking-tight">
+                    We build <span class="bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">modern websites</span> and powerful web applications.
+                </h1>
+                
+                <p class="text-brand-text/80 text-lg sm:text-xl leading-relaxed max-w-2xl">
+                    {{ site.about_intro|default:"From business websites to custom dashboards, we create fast, scalable and user-focused digital solutions that help businesses grow online." }}
+                </p>
+
+                <!-- Core CTA triggers -->
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="{% url 'contact' %}" class="group inline-flex items-center space-x-2.5 px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-accent text-brand-text font-bold rounded-full hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] transform hover:-translate-y-0.5 transition-all duration-300">
+                        <span>Start Project</span>
+                        <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform duration-300"></i>
+                    </a>
+                    <a href="{% url 'portfolio' %}" class="px-8 py-4 bg-white/5 border border-white/10 text-brand-text font-bold rounded-full hover:bg-white/10 hover:border-brand-primary/30 transition-all duration-300">
+                        Our Case Studies
+                    </a>
                 </div>
-                <h2 class="text-2xl font-bold mb-4">Our Mission</h2>
-                <p class="text-brand-text/70 leading-relaxed">{{ site.about_mission }}</p>
-            </div>
-            <div class="glass-card p-10 rounded-3xl scroll-reveal border-brand-text/5" style="animation-delay: 200ms">
-                <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-brand-primary/20 to-brand-accent/20 flex items-center justify-center mb-6">
-                    <i class="fas fa-eye text-2xl text-brand-accent"></i>
+
+                <!-- Stats integration (Grid format under intro) -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-10 border-t border-white/5">
+                    <div class="space-y-1">
+                        <h4 class="text-3xl font-black text-brand-accent">{{ site.stat_projects|default:"50+" }}</h4>
+                        <p class="text-[11px] font-bold text-brand-text/50 uppercase tracking-widest">Completed</p>
+                    </div>
+                    <div class="space-y-1">
+                        <h4 class="text-3xl font-black text-brand-primary">{{ site.stat_experience|default:"10+" }}</h4>
+                        <p class="text-[11px] font-bold text-brand-text/50 uppercase tracking-widest">Experience</p>
+                    </div>
+                    <div class="space-y-1">
+                        <h4 class="text-3xl font-black text-brand-accent">{{ site.stat_clients|default:"99%" }}</h4>
+                        <p class="text-[11px] font-bold text-brand-text/50 uppercase tracking-widest">Satisfaction</p>
+                    </div>
+                    <div class="space-y-1">
+                        <h4 class="text-3xl font-black text-brand-primary">24/7</h4>
+                        <p class="text-[11px] font-bold text-brand-text/50 uppercase tracking-widest">Live Support</p>
+                    </div>
                 </div>
-                <h2 class="text-2xl font-bold mb-4">Our Vision</h2>
-                <p class="text-brand-text/70 leading-relaxed">{{ site.about_vision }}</p>
             </div>
+
+            <!-- Right Side: Workspace Graphics and Floating UI (5 Cols) -->
+            <div class="lg:col-span-5 relative animate-fade-in-up animation-delay-300">
+                <div class="relative rounded-3xl overflow-hidden border border-white/5 shadow-2xl bg-brand-card aspect-[4/5] lg:aspect-square">
+                    <img src="/media/about_workspace.png" alt="DevSquad Team Workspace" class="w-full h-full object-cover">
+                    <!-- Subtle Dark Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-bg/65 via-transparent to-transparent"></div>
+                </div>
+                
+                <!-- Floating Glass Card 1 -->
+                <div class="absolute -top-6 -left-6 bg-[#111827]/85 backdrop-blur-xl border border-white/10 rounded-2xl p-4.5 shadow-2xl flex items-center space-x-3.5 hover:scale-105 transition-all duration-300">
+                    <div class="w-10 h-10 rounded-lg bg-brand-primary/20 flex items-center justify-center">
+                        <i class="fas fa-check text-brand-accent"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-xs text-brand-text">100% Clean Code</h4>
+                        <p class="text-[10px] text-brand-text/55">ESLint & PEP8 Standards</p>
+                    </div>
+                </div>
+
+                <!-- Floating Glass Card 2 -->
+                <div class="absolute -bottom-6 -right-6 bg-[#111827]/85 backdrop-blur-xl border border-white/10 rounded-2xl p-4.5 shadow-2xl flex items-center space-x-3.5 hover:scale-105 transition-all duration-300">
+                    <div class="w-10 h-10 rounded-lg bg-brand-accent/20 flex items-center justify-center">
+                        <i class="fas fa-bolt text-brand-primary"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-xs text-brand-text">High Performance</h4>
+                        <p class="text-[10px] text-brand-text/55">SEO Rank Optimized</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
 
-<!-- ========== STATS ========== -->
-<section class="relative py-24 bg-brand-bg/30" id="stats-section">
+<!-- ========== WHY CHOOSE US (6 Points) ========== -->
+<section class="relative py-28 bg-[#020617] border-t border-white/5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
-            <div class="glass-card p-10 rounded-3xl scroll-reveal border-brand-text/5">
-                <div class="text-4xl sm:text-5xl font-black bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent mb-2" data-count="{{ site.stat_projects }}">{{ site.stat_projects }}</div>
-                <p class="text-brand-text/50 text-sm font-bold tracking-widest uppercase">Projects Completed</p>
+        
+        <div class="text-center mb-20 scroll-reveal">
+            <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-brand-accent bg-brand-primary/10 border border-brand-primary/20 rounded-full mb-4">Value Proposition</span>
+            <h2 class="text-4xl sm:text-5xl font-black text-brand-text mb-6">Why Partner With Us?</h2>
+            <p class="text-brand-text/70 max-w-2xl mx-auto text-lg">We combine high-end design aesthetics with solid engineering to build resilient web products.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Item 1 -->
+            <div class="glass-card bg-[#111827]/60 border border-white/5 rounded-3xl p-8 transition-all duration-500 hover:border-brand-primary/30 hover:-translate-y-1.5 group scroll-reveal">
+                <div class="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center mb-6 text-brand-accent group-hover:bg-brand-primary/20 transition-all duration-300">
+                    <i class="fas fa-bolt text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-brand-text mb-3">Fast Delivery</h3>
+                <p class="text-brand-text/60 text-sm leading-relaxed">No missed milestones. We practice agile methodologies ensuring prompt, incremental sprint deliveries.</p>
             </div>
-            <div class="glass-card p-10 rounded-3xl scroll-reveal border-brand-text/5" style="animation-delay: 200ms">
-                <div class="text-4xl sm:text-5xl font-black bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent mb-2" data-count="{{ site.stat_experience }}">{{ site.stat_experience }}</div>
-                <p class="text-brand-text/50 text-sm font-bold tracking-widest uppercase">Years Experience</p>
+            <!-- Item 2 -->
+            <div class="glass-card bg-[#111827]/60 border border-white/5 rounded-3xl p-8 transition-all duration-500 hover:border-brand-primary/30 hover:-translate-y-1.5 group scroll-reveal">
+                <div class="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center mb-6 text-brand-primary group-hover:bg-brand-primary/20 transition-all duration-300">
+                    <i class="fas fa-code text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-brand-text mb-3">Clean & Scalable Code</h3>
+                <p class="text-brand-text/60 text-sm leading-relaxed">Strict adherence to modern design patterns and modular components, facilitating robust future modifications.</p>
             </div>
-            <div class="glass-card p-10 rounded-3xl scroll-reveal border-brand-text/5" style="animation-delay: 400ms">
-                <div class="text-4xl sm:text-5xl font-black bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent mb-2" data-count="{{ site.stat_clients }}">{{ site.stat_clients }}</div>
-                <p class="text-brand-text/50 text-sm font-bold tracking-widest uppercase">Happy Clients</p>
+            <!-- Item 3 -->
+            <div class="glass-card bg-[#111827]/60 border border-white/5 rounded-3xl p-8 transition-all duration-500 hover:border-brand-primary/30 hover:-translate-y-1.5 group scroll-reveal">
+                <div class="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center mb-6 text-brand-accent group-hover:bg-brand-primary/20 transition-all duration-300">
+                    <i class="fas fa-mobile-alt text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-brand-text mb-3">Mobile Responsive</h3>
+                <p class="text-brand-text/60 text-sm leading-relaxed">Fluid dynamic layouts built to fit every modern resolution flawlessly—from massive displays to compact devices.</p>
+            </div>
+            <!-- Item 4 -->
+            <div class="glass-card bg-[#111827]/60 border border-white/5 rounded-3xl p-8 transition-all duration-500 hover:border-brand-primary/30 hover:-translate-y-1.5 group scroll-reveal">
+                <div class="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center mb-6 text-brand-primary group-hover:bg-brand-primary/20 transition-all duration-300">
+                    <i class="fas fa-search-dollar text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-brand-text mb-3">SEO Friendly</h3>
+                <p class="text-brand-text/60 text-sm leading-relaxed">Structured HTML hierarchy, speedy static loads, and responsive metadata assets to rank high on modern indexes.</p>
+            </div>
+            <!-- Item 5 -->
+            <div class="glass-card bg-[#111827]/60 border border-white/5 rounded-3xl p-8 transition-all duration-500 hover:border-brand-primary/30 hover:-translate-y-1.5 group scroll-reveal">
+                <div class="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center mb-6 text-brand-accent group-hover:bg-brand-primary/20 transition-all duration-300">
+                    <i class="fas fa-paint-brush text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-brand-text mb-3">Modern UI/UX</h3>
+                <p class="text-brand-text/60 text-sm leading-relaxed">Aesthetic interface elements crafted to drive conversion, minimize friction, and wow customers at first glance.</p>
+            </div>
+            <!-- Item 6 -->
+            <div class="glass-card bg-[#111827]/60 border border-white/5 rounded-3xl p-8 transition-all duration-500 hover:border-brand-primary/30 hover:-translate-y-1.5 group scroll-reveal">
+                <div class="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center mb-6 text-brand-primary group-hover:bg-brand-primary/20 transition-all duration-300">
+                    <i class="fas fa-headset text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-brand-text mb-3">Ongoing Support</h3>
+                <p class="text-brand-text/60 text-sm leading-relaxed">Dedicated monitoring post-launch to perform server patches, feature updates, and standard system security audits.</p>
             </div>
         </div>
+
     </div>
 </section>
 
-<!-- ========== TEAM ========== -->
-<section class="relative py-24">
+<!-- ========== PROCESS TIMELINE ========== -->
+<section class="relative py-28 bg-brand-bg border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-20 scroll-reveal">
+            <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-brand-accent bg-brand-primary/10 border border-brand-primary/20 rounded-full mb-4">Workflow</span>
+            <h2 class="text-4xl sm:text-5xl font-black text-brand-text mb-6">Our Engineering Journey</h2>
+            <p class="text-brand-text/70 max-w-2xl mx-auto text-lg">We deliver precision at scale through a structured, highly collaborated process flow.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-8 relative z-10">
+            <!-- Step 1 -->
+            <div class="glass-card bg-[#111827]/40 border border-white/5 rounded-3xl p-8 relative overflow-hidden group hover:border-brand-primary/30 transition-all duration-300 scroll-reveal">
+                <span class="absolute -top-4 -left-4 text-brand-primary/10 text-8xl font-black select-none pointer-events-none group-hover:text-brand-primary/15 transition-colors">1</span>
+                <div class="relative z-10 pt-8 space-y-3">
+                    <h4 class="text-xl font-bold text-brand-text">Discussion</h4>
+                    <p class="text-brand-text/65 text-xs leading-relaxed">Analyzing business targets, target customer persona, and technical expectations.</p>
+                </div>
+            </div>
+            <!-- Step 2 -->
+            <div class="glass-card bg-[#111827]/40 border border-white/5 rounded-3xl p-8 relative overflow-hidden group hover:border-brand-primary/30 transition-all duration-300 scroll-reveal" style="animation-delay: 150ms">
+                <span class="absolute -top-4 -left-4 text-brand-accent/10 text-8xl font-black select-none pointer-events-none group-hover:text-brand-accent/15 transition-colors">2</span>
+                <div class="relative z-10 pt-8 space-y-3">
+                    <h4 class="text-xl font-bold text-brand-text">Planning</h4>
+                    <p class="text-brand-text/65 text-xs leading-relaxed">Mapping architecture routes, cloud stack nodes, timelines, and UI wireframes.</p>
+                </div>
+            </div>
+            <!-- Step 3 -->
+            <div class="glass-card bg-[#111827]/40 border border-white/5 rounded-3xl p-8 relative overflow-hidden group hover:border-brand-primary/30 transition-all duration-300 scroll-reveal" style="animation-delay: 300ms">
+                <span class="absolute -top-4 -left-4 text-brand-primary/10 text-8xl font-black select-none pointer-events-none group-hover:text-brand-primary/15 transition-colors">3</span>
+                <div class="relative z-10 pt-8 space-y-3">
+                    <h4 class="text-xl font-bold text-brand-text">Design</h4>
+                    <p class="text-brand-text/65 text-xs leading-relaxed">High-fidelity UI mockup curation inside Figma with interactive prototypes.</p>
+                </div>
+            </div>
+            <!-- Step 4 -->
+            <div class="glass-card bg-[#111827]/40 border border-white/5 rounded-3xl p-8 relative overflow-hidden group hover:border-brand-primary/30 transition-all duration-300 scroll-reveal" style="animation-delay: 450ms">
+                <span class="absolute -top-4 -left-4 text-brand-accent/10 text-8xl font-black select-none pointer-events-none group-hover:text-brand-accent/15 transition-colors">4</span>
+                <div class="relative z-10 pt-8 space-y-3">
+                    <h4 class="text-xl font-bold text-brand-text">Development</h4>
+                    <p class="text-brand-text/65 text-xs leading-relaxed">Clean deployment patterns utilizing modular Django and component structures.</p>
+                </div>
+            </div>
+            <!-- Step 5 -->
+            <div class="glass-card bg-[#111827]/40 border border-white/5 rounded-3xl p-8 relative overflow-hidden group hover:border-brand-primary/30 transition-all duration-300 scroll-reveal" style="animation-delay: 600ms">
+                <span class="absolute -top-4 -left-4 text-brand-primary/10 text-8xl font-black select-none pointer-events-none group-hover:text-brand-primary/15 transition-colors">5</span>
+                <div class="relative z-10 pt-8 space-y-3">
+                    <h4 class="text-xl font-bold text-brand-text">Launch</h4>
+                    <p class="text-brand-text/65 text-xs leading-relaxed">Rigorous performance testing, production indexing, and active release deployments.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ========== TECH STACK SHOWCASE ========== -->
+<section class="relative py-28 bg-[#020617] border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-16 scroll-reveal">
+            <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-brand-accent bg-brand-primary/10 border border-brand-primary/20 rounded-full mb-4">Core Ecosystem</span>
+            <h2 class="text-4xl sm:text-5xl font-black text-brand-text mb-6">Our Tech Toolbox</h2>
+            <p class="text-brand-text/70 max-w-2xl mx-auto text-lg">We rely on reliable, standard development platforms to orchestrate secure and lightning-fast digital assets.</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 relative z-10">
+            <!-- Django -->
+            <div class="glass-card bg-[#111827]/50 border border-white/5 p-6.5 rounded-2xl text-center group hover:border-brand-primary/30 transition-all duration-300 scroll-reveal">
+                <div class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform">
+                    <i class="fab fa-python text-2xl text-green-500"></i>
+                </div>
+                <h4 class="font-bold text-sm text-brand-text">Django</h4>
+                <p class="text-[10px] text-brand-text/45 mt-1 font-bold tracking-widest uppercase">Backend</p>
+            </div>
+            <!-- WordPress -->
+            <div class="glass-card bg-[#111827]/50 border border-white/5 p-6.5 rounded-2xl text-center group hover:border-brand-primary/30 transition-all duration-300 scroll-reveal" style="animation-delay: 100ms">
+                <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform">
+                    <i class="fab fa-wordpress text-2xl text-blue-500"></i>
+                </div>
+                <h4 class="font-bold text-sm text-brand-text">WordPress</h4>
+                <p class="text-[10px] text-brand-text/45 mt-1 font-bold tracking-widest uppercase">CMS Suite</p>
+            </div>
+            <!-- Tailwind -->
+            <div class="glass-card bg-[#111827]/50 border border-white/5 p-6.5 rounded-2xl text-center group hover:border-brand-primary/30 transition-all duration-300 scroll-reveal" style="animation-delay: 200ms">
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform">
+                    <i class="fab fa-css3-alt text-2xl text-cyan-400"></i>
+                </div>
+                <h4 class="font-bold text-sm text-brand-text">Tailwind</h4>
+                <p class="text-[10px] text-brand-text/45 mt-1 font-bold tracking-widest uppercase">CSS Framework</p>
+            </div>
+            <!-- PostgreSQL -->
+            <div class="glass-card bg-[#111827]/50 border border-white/5 p-6.5 rounded-2xl text-center group hover:border-brand-primary/30 transition-all duration-300 scroll-reveal" style="animation-delay: 300ms">
+                <div class="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform">
+                    <i class="fas fa-database text-2xl text-indigo-400"></i>
+                </div>
+                <h4 class="font-bold text-sm text-brand-text">PostgreSQL</h4>
+                <p class="text-[10px] text-brand-text/45 mt-1 font-bold tracking-widest uppercase">Relational DB</p>
+            </div>
+            <!-- REST API -->
+            <div class="glass-card bg-[#111827]/50 border border-white/5 p-6.5 rounded-2xl text-center group hover:border-brand-primary/30 transition-all duration-300 scroll-reveal" style="animation-delay: 400ms">
+                <div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform">
+                    <i class="fas fa-network-wired text-2xl text-red-400"></i>
+                </div>
+                <h4 class="font-bold text-sm text-brand-text">REST API</h4>
+                <p class="text-[10px] text-brand-text/45 mt-1 font-bold tracking-widest uppercase">Integrations</p>
+            </div>
+            <!-- JavaScript -->
+            <div class="glass-card bg-[#111827]/50 border border-white/5 p-6.5 rounded-2xl text-center group hover:border-brand-primary/30 transition-all duration-300 scroll-reveal" style="animation-delay: 500ms">
+                <div class="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform">
+                    <i class="fab fa-js-square text-2xl text-yellow-500"></i>
+                </div>
+                <h4 class="font-bold text-sm text-brand-text">JavaScript</h4>
+                <p class="text-[10px] text-brand-text/45 mt-1 font-bold tracking-widest uppercase">Client Logic</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ========== TEAM MEMBERS SEED ========== -->
+<section class="relative py-28 bg-brand-bg border-t border-white/5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16 scroll-reveal">
             <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-brand-accent bg-brand-primary/10 border border-brand-primary/20 rounded-full mb-4">Our Team</span>
-            <h2 class="text-4xl sm:text-5xl font-black mb-4">Meet the Experts</h2>
+            <h2 class="text-4xl sm:text-5xl font-black mb-4 text-brand-text">Meet the Experts</h2>
             <p class="text-brand-text/70 max-w-2xl mx-auto">A passionate team of developers, designers, and strategists dedicated to your success.</p>
         </div>
+        
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {% for member in team_members %}
-            <div class="glass-card p-8 rounded-3xl text-center group hover:border-brand-primary/30 transition-all duration-500 scroll-reveal border-brand-text/5">
-                <div class="w-24 h-24 rounded-full bg-gradient-to-br from-brand-primary/20 to-brand-accent/20 flex items-center justify-center mx-auto mb-6 relative overflow-hidden group-hover:scale-105 transition-all duration-500">
+            <div class="glass-card p-8 rounded-3xl text-center group hover:border-brand-primary/30 hover:shadow-[0_0_30px_rgba(59,130,246,0.05)] transition-all duration-500 scroll-reveal border-brand-text/5">
+                <div class="w-24 h-24 rounded-full bg-gradient-to-br from-brand-primary/20 to-brand-accent/20 flex items-center justify-center mx-auto mb-6 relative overflow-hidden group-hover:scale-105 transition-all duration-500 border border-white/10 shadow">
                     {% if member.image %}
                     <img src="{{ member.image.url }}" alt="{{ member.name }}" class="w-full h-full object-cover">
                     {% else %}
-                    <span class="text-3xl font-black text-brand-accent">{{ member.name|first }}</span>
+                    <span class="text-3xl font-black text-brand-accent">{{ member.name|slice:":1" }}</span>
                     {% endif %}
                 </div>
-                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition-colors duration-300">{{ member.name }}</h3>
+                <h3 class="text-xl font-bold text-brand-text mb-1 group-hover:text-brand-primary transition-colors duration-300">{{ member.name }}</h3>
                 <p class="text-brand-text/40 text-xs font-black uppercase tracking-widest mb-4">{{ member.role }}</p>
                 
                 <div class="flex items-center justify-center space-x-3 opacity-40 group-hover:opacity-100 transition-opacity">
                     {% if member.linkedin %}
-                    <a href="{{ member.linkedin }}" class="text-brand-text hover:text-brand-primary transition-colors"><i class="fab fa-linkedin-in text-xs"></i></a>
+                    <a href="{{ member.linkedin }}" target="_blank" class="text-brand-text hover:text-brand-primary transition-colors"><i class="fab fa-linkedin-in text-xs"></i></a>
                     {% endif %}
                     {% if member.twitter %}
-                    <a href="{{ member.twitter }}" class="text-brand-text hover:text-brand-primary transition-colors"><i class="fab fa-twitter text-xs"></i></a>
+                    <a href="{{ member.twitter }}" target="_blank" class="text-brand-text hover:text-brand-primary transition-colors"><i class="fab fa-twitter text-xs"></i></a>
                     {% endif %}
                 </div>
             </div>
             {% empty %}
-            <div class="col-span-full text-center py-20 bg-brand-text/5 rounded-3xl border border-brand-text/5 border-dashed">
+            <div class="col-span-full text-center py-12 bg-white/5 rounded-3xl border border-white/5 border-dashed">
                 <p class="text-brand-text/30 font-bold tracking-widest uppercase text-xs italic">Squad assembling... Check back soon.</p>
             </div>
             {% endfor %}
@@ -98,6 +320,31 @@
     </div>
 </section>
 
-{% include 'includes/cta.html' %}
+<!-- ========== BOTTOM CTA SECTION ========== -->
+<section class="relative py-28 bg-[#020617] border-t border-white/5 overflow-hidden">
+    <div class="absolute inset-0">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-primary/10 rounded-full blur-[150px]"></div>
+    </div>
+    
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-8 scroll-reveal">
+        <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-brand-accent bg-brand-primary/10 border border-brand-primary/20 rounded-full mb-2">Build Together</span>
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-brand-text leading-tight tracking-tight">
+            Ready to build your <span class="bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">next project</span>?
+        </h2>
+        <p class="text-brand-text/70 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto">
+            Get in touch with our team of elite developers and visual designers to transform your concept into high-performance architecture.
+        </p>
+        
+        <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+            <a href="{% url 'contact' %}" class="group inline-flex items-center space-x-2.5 px-10 py-4 bg-gradient-to-r from-brand-primary to-brand-accent text-brand-text font-bold rounded-full hover:shadow-[0_0_40px_rgba(59,130,246,0.5)] transform hover:scale-105 transition-all duration-300">
+                <span>Start Project</span>
+                <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform duration-300"></i>
+            </a>
+            <a href="{% url 'contact' %}" class="px-10 py-4 bg-white/5 border border-white/10 text-brand-text font-bold rounded-full hover:bg-white/10 hover:border-brand-primary/30 transition-all duration-300">
+                Contact Us
+            </a>
+        </div>
+    </div>
+</section>
 
 {% endblock %}
