@@ -7,39 +7,164 @@
 {% block content %}
 
 <!-- ========== HERO SECTION ========== -->
-<section id="hero" class="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20">
-    <!-- Hero Image Background -->
-    <div class="absolute inset-0 z-0 overflow-hidden">
-        <img src="/media/hero_bg.png" alt="Hero Background" class="w-full h-full object-cover opacity-40 filter brightness-75 scale-110 animate-pulse-slow">
-        <div class="absolute inset-0 bg-gradient-to-b from-brand-bg/20 via-brand-bg/80 to-brand-bg"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#000000_100%)] opacity-60"></div>
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-20 bg-brand-bg">
+    <!-- Glowing Accent Orbs / Dark Background Effects -->
+    <div class="absolute inset-0 z-0">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-brand-primary/10 rounded-full blur-[150px] animate-pulse-slow"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-brand-accent/10 rounded-full blur-[150px] animate-pulse-slow"></div>
+        <div class="absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-primary/[0.03] rounded-full blur-[120px]"></div>
     </div>
 
-    <!-- Floating Orbs -->
-    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-primary/5 rounded-full blur-3xl animate-float-slow z-[1]"></div>
-    <div class="absolute bottom-1/4 right-1/4 w-72 h-72 bg-brand-accent/5 rounded-full blur-3xl animate-float-delayed z-[1]"></div>
+    <!-- Custom Styling for Interactive Floating/3D effects -->
+    <style>
+        @keyframes float-hover {
+            0%, 100% { transform: translateY(0px) rotate(-3deg); }
+            50% { transform: translateY(-12px) rotate(-1deg); }
+        }
+        @keyframes float-hover-alt {
+            0%, 100% { transform: translateY(0px) rotate(4deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+        .float-badge-1 {
+            animation: float-hover 6s ease-in-out infinite;
+        }
+        .float-badge-2 {
+            animation: float-hover-alt 7s ease-in-out infinite 1s;
+        }
+        .float-badge-3 {
+            animation: float-hover 8s ease-in-out infinite 2s;
+        }
+    </style>
 
-    <!-- Hero Content -->
-    <div class="relative z-10 text-center max-w-5xl mx-auto px-4 sm:px-6">
-        <div class="animate-fade-in-up">
-            <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-brand-accent bg-brand-primary/10 border border-brand-primary/20 rounded-full mb-8">
-                Next-Gen Digital Solutions
-            </span>
-        </div>
-        <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.1] mb-8 animate-fade-in-up animation-delay-200 tracking-tight">
-            {{ site.hero_headline }}
-        </h1>
-        <p class="text-xl sm:text-2xl text-brand-text/70 max-w-3xl mx-auto mb-12 leading-relaxed animate-fade-in-up animation-delay-400">
-            {{ site.hero_subheading }}
-        </p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-6 animate-fade-in-up animation-delay-600">
-            <a href="{% url 'contact' %}" class="group px-10 py-5 bg-brand-primary text-brand-text font-bold rounded-full hover:shadow-[0_0_50px_rgba(59, 130, 246, 0.4)] transform hover:-translate-y-1 transition-all duration-300 flex items-center space-x-3" id="hero-cta-start">
-                <span>Start Your Transformation</span>
-                <i class="fas fa-arrow-right text-sm group-hover:translate-x-1 transition-transform duration-300"></i>
-            </a>
-            <a href="{% url 'portfolio' %}" class="px-10 py-5 bg-brand-text/5 backdrop-blur-xl border border-brand-text/10 text-brand-text font-bold rounded-full hover:bg-brand-text/10 hover:border-brand-primary/30 transition-all duration-300" id="hero-cta-work">
-                Explore Our Portfolio
-            </a>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            <!-- Left: Hero Text Content -->
+            <div class="lg:col-span-6 space-y-8 text-left">
+                <div class="animate-fade-in-up">
+                    <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-brand-accent bg-brand-primary/10 border border-brand-primary/20 rounded-full">
+                        Next-Gen Digital Solutions
+                    </span>
+                </div>
+                <h1 class="text-5xl sm:text-6xl md:text-7xl font-black leading-[1.1] animate-fade-in-up animation-delay-200 tracking-tight text-brand-text">
+                    {{ site.hero_headline }}
+                </h1>
+                <p class="text-lg sm:text-xl text-brand-text/70 leading-relaxed animate-fade-in-up animation-delay-400">
+                    {{ site.hero_subheading }}
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-start gap-6 animate-fade-in-up animation-delay-600">
+                    <a href="{% url 'contact' %}" class="group px-10 py-5 bg-brand-primary text-brand-text font-bold rounded-full hover:shadow-[0_0_50px_rgba(59,130,246,0.4)] transform hover:-translate-y-1 transition-all duration-300 flex items-center space-x-3" id="hero-cta-start">
+                        <span>Start Your Transformation</span>
+                        <i class="fas fa-arrow-right text-sm group-hover:translate-x-1 transition-transform duration-300"></i>
+                    </a>
+                    <a href="{% url 'portfolio' %}" class="px-10 py-5 bg-brand-text/5 backdrop-blur-xl border border-brand-text/10 text-brand-text font-bold rounded-full hover:bg-brand-text/10 hover:border-brand-primary/30 transition-all duration-300" id="hero-cta-work">
+                        Explore Our Portfolio
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: 3D Interactive Dashboard Mock & Floating UI -->
+            <div class="lg:col-span-6 relative flex items-center justify-center" style="perspective: 1500px;">
+                <!-- Main 3D Tilted Dashboard Card -->
+                <div class="w-full max-w-[500px] aspect-[1.45] bg-[#111827]/80 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.7)] p-6 transform hover:scale-[1.03] transition-all duration-700 ease-out z-10 group/dash flex flex-col justify-between"
+                     style="transform: rotateY(-22deg) rotateX(15deg) skewY(4deg);">
+                    
+                    <!-- Mock Window Controls -->
+                    <div class="flex items-center space-x-2 pb-4 border-b border-white/5">
+                        <span class="w-3.5 h-3.5 rounded-full bg-rose-500/80"></span>
+                        <span class="w-3.5 h-3.5 rounded-full bg-amber-500/80"></span>
+                        <span class="w-3.5 h-3.5 rounded-full bg-emerald-500/80"></span>
+                        <span class="text-[10px] font-mono text-brand-text/30 ml-4">devsquad-metrics.sh</span>
+                    </div>
+
+                    <!-- Dashboard Internal Grid -->
+                    <div class="grid grid-cols-12 gap-5 mt-4 flex-1">
+                        <!-- Mini Sidebar -->
+                        <div class="col-span-3 space-y-4 pr-3 border-r border-white/5">
+                            <div class="h-8 w-full bg-brand-primary/10 rounded-xl flex items-center px-3 border border-brand-primary/20">
+                                <span class="w-2.5 h-2.5 rounded-full bg-brand-primary animate-pulse mr-2"></span>
+                                <span class="text-[10px] font-black tracking-wider text-brand-primary uppercase">Live</span>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="h-3 w-full bg-white/5 rounded-full"></div>
+                                <div class="h-3 w-4/5 bg-white/5 rounded-full"></div>
+                                <div class="h-3 w-5/6 bg-white/5 rounded-full"></div>
+                            </div>
+                        </div>
+
+                        <!-- Mini Main Area -->
+                        <div class="col-span-9 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-[10px] text-brand-text/50 font-bold uppercase tracking-wider block">Monthly Active Reach</span>
+                                    <span class="text-2xl font-black text-brand-text tracking-tight">$142,504</span>
+                                </div>
+                                <span class="text-[10px] font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-full border border-emerald-400/20">+14.2%</span>
+                            </div>
+
+                            <!-- Animated Line Graph (SVG) -->
+                            <div class="relative h-20 w-full bg-white/[0.01] border border-white/5 rounded-2xl p-2 overflow-hidden">
+                                <svg viewBox="0 0 100 30" class="w-full h-full">
+                                    <defs>
+                                        <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.4"/>
+                                            <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <path d="M0 25 C10 20, 20 28, 30 15 C40 5, 50 18, 60 12 C70 8, 80 18, 90 6 C95 3, 100 5, 100 5 L100 30 L0 30 Z" fill="url(#chartGradient)" />
+                                    <path d="M0 25 C10 20, 20 28, 30 15 C40 5, 50 18, 60 12 C70 8, 80 18, 90 6 C95 3, 100 5, 100 5" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" />
+                                </svg>
+                            </div>
+
+                            <!-- Live Progress Grid -->
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="bg-white/[0.02] border border-white/5 p-3 rounded-xl">
+                                    <span class="text-[9px] text-brand-text/40 font-bold uppercase tracking-wider block">Conversion</span>
+                                    <span class="text-sm font-bold text-brand-text">4.82%</span>
+                                </div>
+                                <div class="bg-white/[0.02] border border-white/5 p-3 rounded-xl">
+                                    <span class="text-[9px] text-brand-text/40 font-bold uppercase tracking-wider block">Load Velocity</span>
+                                    <span class="text-sm font-bold text-brand-accent">0.4s</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating Badge 1: Performance Card -->
+                <div class="float-badge-1 absolute -top-8 -left-8 bg-brand-card/90 backdrop-blur-md border border-white/10 p-4 rounded-2xl shadow-2xl z-20 flex items-center space-x-3"
+                     style="transform: rotate(-10deg);">
+                    <div class="w-10 h-10 rounded-xl bg-brand-primary/20 flex items-center justify-center border border-brand-primary/30">
+                        <i class="fas fa-chart-pie text-brand-primary text-lg animate-spin-slow"></i>
+                    </div>
+                    <div>
+                        <span class="text-[9px] text-brand-text/50 font-bold uppercase tracking-wider block">Scale Rate</span>
+                        <span class="text-xs font-black text-brand-text">99.8% Perfect</span>
+                    </div>
+                </div>
+
+                <!-- Floating Badge 2: Tech Engine Sync -->
+                <div class="float-badge-2 absolute -bottom-10 -right-6 bg-brand-card/95 backdrop-blur-md border border-white/10 px-5 py-3.5 rounded-2xl shadow-2xl z-20 flex items-center space-x-3"
+                     style="transform: rotate(5deg);">
+                    <div class="w-2.5 h-2.5 rounded-full bg-brand-accent animate-ping"></div>
+                    <span class="text-xs font-black tracking-widest uppercase text-brand-accent">AI Engine Synced</span>
+                </div>
+
+                <!-- Floating Badge 3: User Counter -->
+                <div class="float-badge-3 absolute top-[35%] -right-12 bg-brand-card/90 backdrop-blur-md border border-white/10 p-3.5 rounded-2xl shadow-2xl z-20 flex items-center space-x-3"
+                     style="transform: rotate(-5deg);">
+                    <div class="flex -space-x-2">
+                        <div class="w-6 h-6 rounded-full bg-slate-700 border border-brand-card flex items-center justify-center text-[8px] font-bold">A</div>
+                        <div class="w-6 h-6 rounded-full bg-slate-600 border border-brand-card flex items-center justify-center text-[8px] font-bold">B</div>
+                        <div class="w-6 h-6 rounded-full bg-slate-500 border border-brand-card flex items-center justify-center text-[8px] font-bold">C</div>
+                    </div>
+                    <div>
+                        <span class="text-[9px] text-brand-text/50 font-bold block leading-none">Collaborative</span>
+                        <span class="text-[11px] font-black text-brand-text">12+ Elite Devs</span>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </div>
 
