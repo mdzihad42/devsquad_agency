@@ -1,1 +1,1 @@
-# templatetags package init
+# Django Template Tags package marker.
