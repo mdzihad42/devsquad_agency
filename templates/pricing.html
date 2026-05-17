@@ -6,17 +6,17 @@
 {% block content %}
 <!-- Hero Section -->
 <section class="pt-32 pb-20 relative overflow-hidden">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-sunset-orange/5 blur-[120px] rounded-full -z-10"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-brand-primary/5 blur-[120px] rounded-full -z-10"></div>
     
     <div class="container mx-auto px-6 text-center">
-        <div class="inline-flex items-center space-x-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full mb-6">
-            <span class="w-2 h-2 bg-sunset-orange rounded-full animate-pulse"></span>
-            <span class="text-xs font-bold uppercase tracking-widest text-white/60">Transparent Pricing</span>
+        <div class="inline-flex items-center space-x-2 px-4 py-2 bg-brand-text/5 border border-brand-text/10 rounded-full mb-6">
+            <span class="w-2 h-2 bg-brand-primary rounded-full animate-pulse"></span>
+            <span class="text-xs font-bold uppercase tracking-widest text-brand-text/60">Transparent Pricing</span>
         </div>
         <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tight">
-            Plans built for <span class="bg-gradient-to-r from-sunset-orange to-sunset-amber bg-clip-text text-transparent">every stage</span>
+            Plans built for <span class="bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">every stage</span>
         </h1>
-        <p class="text-white/60 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+        <p class="text-brand-text/60 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
             Whether you're a startup looking for an MVP or an enterprise scaling complex platforms, we provide clear, value-driven pricing.
         </p>
     </div>
@@ -30,42 +30,42 @@
             <div class="group relative">
                 <!-- Background Glow for Featured -->
                 {% if package.is_featured %}
-                <div class="absolute -inset-1 bg-gradient-to-r from-sunset-orange to-sunset-amber rounded-[2.5rem] blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                <div class="absolute -inset-1 bg-gradient-to-r from-brand-primary to-brand-accent rounded-[2.5rem] blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
                 {% endif %}
                 
-                <div class="relative glass-card rounded-[2.5rem] p-10 border border-white/5 h-full flex flex-col transition-all duration-500 hover:-translate-y-2 hover:bg-white/[0.05]">
+                <div class="relative glass-card rounded-[2.5rem] p-10 border border-brand-text/5 h-full flex flex-col transition-all duration-500 hover:-translate-y-2 hover:bg-brand-text/[0.05]">
                     {% if package.is_featured %}
                     <div class="absolute top-8 right-8">
-                        <span class="bg-sunset-orange text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full">Most Popular</span>
+                        <span class="bg-brand-primary text-brand-text text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full">Most Popular</span>
                     </div>
                     {% endif %}
                     
-                    <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 text-sunset-orange text-2xl">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-text/5 border border-brand-text/10 flex items-center justify-center mb-8 text-brand-primary text-2xl">
                         <i class="{{ package.icon }}"></i>
                     </div>
                     
                     <h3 class="text-2xl font-bold mb-2">{{ package.display_name }}</h3>
-                    <p class="text-white/40 text-sm mb-8 leading-relaxed">{{ package.short_description }}</p>
+                    <p class="text-brand-text/40 text-sm mb-8 leading-relaxed">{{ package.short_description }}</p>
                     
                     <div class="mb-10">
-                        <span class="text-5xl font-black tracking-tight text-white">{{ package.price }}</span>
+                        <span class="text-5xl font-black tracking-tight text-brand-text">{{ package.price }}</span>
                         {% if 'Custom' not in package.price %}
-                        <span class="text-white/30 text-sm ml-2">/ starting at</span>
+                        <span class="text-brand-text/30 text-sm ml-2">/ starting at</span>
                         {% endif %}
                     </div>
                     
                     <div class="space-y-4 mb-12 flex-1">
                         {% for feature in package.features.all %}
                         <div class="flex items-center space-x-3">
-                            <div class="w-5 h-5 rounded-full {% if feature.is_included %}bg-sunset-orange/20 text-sunset-orange{% else %}bg-white/5 text-white/20{% endif %} flex items-center justify-center">
+                            <div class="w-5 h-5 rounded-full {% if feature.is_included %}bg-brand-primary/20 text-brand-primary{% else %}bg-brand-text/5 text-brand-text/20{% endif %} flex items-center justify-center">
                                 <i class="fas {% if feature.is_included %}fa-check{% else %}fa-times{% endif %} text-[10px]"></i>
                             </div>
-                            <span class="text-sm {% if feature.is_included %}text-white/80{% else %}text-white/30 line-through{% endif %}">{{ feature.text }}</span>
+                            <span class="text-sm {% if feature.is_included %}text-brand-text/80{% else %}text-brand-text/30 line-through{% endif %}">{{ feature.text }}</span>
                         </div>
                         {% endfor %}
                     </div>
                     
-                    <a href="{% url 'contact' %}" class="block text-center py-4 rounded-2xl font-bold transition-all {% if package.is_featured %}bg-sunset-orange text-white hover:bg-orange-600 shadow-lg shadow-sunset-orange/20{% else %}bg-white/5 text-white border border-white/10 hover:bg-white/10{% endif %}">
+                    <a href="{% url 'contact' %}" class="block text-center py-4 rounded-2xl font-bold transition-all {% if package.is_featured %}bg-brand-primary text-brand-text hover:bg-orange-600 shadow-lg shadow-brand-primary/20{% else %}bg-brand-text/5 text-brand-text border border-brand-text/10 hover:bg-brand-text/10{% endif %}">
                         Get Started
                     </a>
                 </div>
@@ -74,14 +74,14 @@
         </div>
         
         <!-- FAQ/Trust Banner -->
-        <div class="mt-20 glass-card rounded-[2.5rem] p-12 border border-white/5 text-center">
+        <div class="mt-20 glass-card rounded-[2.5rem] p-12 border border-brand-text/5 text-center">
             <h3 class="text-2xl font-bold mb-4">Need a tailored solution?</h3>
-            <p class="text-white/50 mb-8 max-w-2xl mx-auto">
+            <p class="text-brand-text/50 mb-8 max-w-2xl mx-auto">
                 If none of our standard packages fit your specific requirements, we can create a custom scope of work tailored exactly to your business goals.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="{% url 'contact' %}" class="bg-white text-[#0a0a0a] px-8 py-4 rounded-2xl font-bold hover:bg-sunset-orange hover:text-white transition-all">Schedule a Call</a>
-                <a href="{% url 'portfolio' %}" class="bg-white/5 border border-white/10 text-white px-8 py-4 rounded-2xl font-bold hover:bg-white/10 transition-all">View Our Work</a>
+                <a href="{% url 'contact' %}" class="bg-brand-text text-[#0a0a0a] px-8 py-4 rounded-2xl font-bold hover:bg-brand-primary hover:text-brand-text transition-all">Schedule a Call</a>
+                <a href="{% url 'portfolio' %}" class="bg-brand-text/5 border border-brand-text/10 text-brand-text px-8 py-4 rounded-2xl font-bold hover:bg-brand-text/10 transition-all">View Our Work</a>
             </div>
         </div>
     </div>
@@ -95,17 +95,17 @@
         <div class="max-w-3xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold mb-4">Pricing & Service FAQs</h2>
-                <p class="text-white/50">Common questions about how we work and deliver value.</p>
+                <p class="text-brand-text/50">Common questions about how we work and deliver value.</p>
             </div>
             
             <div class="space-y-4">
                 {% for faq in faqs %}
-                <div class="glass-card rounded-2xl border border-white/5 overflow-hidden transition-all duration-300 hover:border-sunset-orange/30">
+                <div class="glass-card rounded-2xl border border-brand-text/5 overflow-hidden transition-all duration-300 hover:border-brand-primary/30">
                     <button class="w-full px-8 py-6 text-left flex items-center justify-between group" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.faq-icon').classList.toggle('rotate-180')">
-                        <span class="font-bold text-white/80 group-hover:text-sunset-orange transition-colors">{{ faq.question }}</span>
-                        <i class="fas fa-chevron-down text-xs text-white/30 transition-transform duration-300 faq-icon"></i>
+                        <span class="font-bold text-brand-text/80 group-hover:text-brand-primary transition-colors">{{ faq.question }}</span>
+                        <i class="fas fa-chevron-down text-xs text-brand-text/30 transition-transform duration-300 faq-icon"></i>
                     </button>
-                    <div class="hidden px-8 pb-6 text-white/50 text-sm leading-relaxed border-t border-white/5 pt-4">
+                    <div class="hidden px-8 pb-6 text-brand-text/50 text-sm leading-relaxed border-t border-brand-text/5 pt-4">
                         {{ faq.answer }}
                     </div>
                 </div>

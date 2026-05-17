@@ -27,19 +27,26 @@
                     colors: {
                         black: {
                             pure: '#000000',
-                            soft: '#0a0a0a',
-                            surface: '#121212',
+                            soft: '#020617', // mapped to slate-950 background
+                            surface: '#111827', // mapped to slate-900 card
+                        },
+                        brand: {
+                            bg: '#020617', // slate-950
+                            card: '#111827', // gray-900
+                            primary: '#3B82F6', // blue-500
+                            accent: '#06B6D4', // cyan-500
+                            text: '#F8FAFC', // slate-50
                         },
                         sunset: {
-                            orange: '#f97316',
-                            amber: '#fbbf24',
-                            glow: 'rgba(249, 115, 22, 0.2)',
+                            orange: '#3B82F6', // mapped to blue-500 for fallback
+                            amber: '#06B6D4', // mapped to cyan-500 for fallback
+                            glow: 'rgba(59, 130, 246, 0.2)',
                         },
                         accent: {
-                            DEFAULT: '#f97316',
-                            light: '#fbbf24',
-                            dark: '#ea580c',
-                            glow: 'rgba(249, 115, 22, 0.2)',
+                            DEFAULT: '#3B82F6',
+                            light: '#06B6D4',
+                            dark: '#2563EB',
+                            glow: 'rgba(59, 130, 246, 0.2)',
                         }
                     },
                     fontFamily: {
@@ -54,7 +61,7 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 
-<body class="bg-black-pure text-white font-inter antialiased">
+<body class="bg-brand-bg text-brand-text font-inter antialiased">
     <div class="mesh-bg"></div>
 
     <!-- ========== NAVBAR ========== -->
@@ -64,48 +71,48 @@
                 <!-- Logo -->
                 <a href="{% url 'home' %}" class="flex items-center space-x-2 group" id="nav-logo">
                     <div
-                        class="w-10 h-10 rounded-lg bg-gradient-to-br from-sunset-orange to-sunset-amber flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
-                        <span class="text-white font-bold text-lg">D</span>
+                        class="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-primary to-brand-accent flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
+                        <span class="text-brand-text font-bold text-lg">D</span>
                     </div>
                     <span
-                        class="text-xl font-bold bg-gradient-to-r from-sunset-orange to-sunset-amber bg-clip-text text-transparent">DevSquad</span>
+                        class="text-xl font-bold bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">DevSquad</span>
                 </a>
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="{% url 'home' %}"
-                        class="nav-link text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors duration-300"
+                        class="nav-link text-sm font-bold text-brand-text/70 hover:text-brand-primary transition-colors duration-300"
                         id="nav-home">Home</a>
                     <a href="{% url 'services' %}"
-                        class="nav-link text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors duration-300"
+                        class="nav-link text-sm font-bold text-brand-text/70 hover:text-brand-primary transition-colors duration-300"
                         id="nav-services">Services</a>
                     <a href="{% url 'pricing' %}"
-                        class="nav-link text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors duration-300"
+                        class="nav-link text-sm font-bold text-brand-text/70 hover:text-brand-primary transition-colors duration-300"
                         id="nav-pricing">Pricing</a>
                     <a href="{% url 'portfolio' %}"
-                        class="nav-link text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors duration-300"
+                        class="nav-link text-sm font-bold text-brand-text/70 hover:text-brand-primary transition-colors duration-300"
                         id="nav-portfolio">Portfolio</a>
                     <a href="{% url 'blog_list' %}"
-                        class="nav-link text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors duration-300"
+                        class="nav-link text-sm font-bold text-brand-text/70 hover:text-brand-primary transition-colors duration-300"
                         id="nav-blog">Blog</a>
                     <a href="{% url 'about' %}"
-                        class="nav-link text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors duration-300"
+                        class="nav-link text-sm font-bold text-brand-text/70 hover:text-brand-primary transition-colors duration-300"
                         id="nav-about">About</a>
                     <a href="{% url 'team' %}"
-                        class="nav-link text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors duration-300"
+                        class="nav-link text-sm font-bold text-brand-text/70 hover:text-brand-primary transition-colors duration-300"
                         id="nav-team">Team</a>
                     <a href="{% url 'contact' %}"
-                        class="nav-link text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors duration-300"
+                        class="nav-link text-sm font-bold text-brand-text/70 hover:text-brand-primary transition-colors duration-300"
                         id="nav-contact">Contact</a>
                     <a href="{% url 'contact' %}"
-                        class="ml-4 px-6 py-2.5 bg-gradient-to-r from-sunset-orange to-sunset-amber text-white text-sm font-bold rounded-full hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transform hover:scale-105 transition-all duration-300"
+                        class="ml-4 px-6 py-2.5 bg-gradient-to-r from-brand-primary to-brand-accent text-brand-text text-sm font-bold rounded-full hover:shadow-[0_0_30px_rgba(59, 130, 246,0.4)] transform hover:scale-105 transition-all duration-300"
                         id="nav-cta">
                         Hire Us
                     </a>
                 </div>
 
                 <!-- Mobile Hamburger -->
-                <button id="mobile-menu-btn" class="md:hidden text-white/70 hover:text-sunset-orange focus:outline-none"
+                <button id="mobile-menu-btn" class="md:hidden text-brand-text/70 hover:text-brand-primary focus:outline-none"
                     aria-label="Toggle mobile menu">
                     <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -116,23 +123,23 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden hidden bg-galaxy-900/95 backdrop-blur-xl border-t border-white/10">
+        <div id="mobile-menu" class="md:hidden hidden bg-brand-bg/95 backdrop-blur-xl border-t border-brand-text/10">
             <div class="px-4 py-6 space-y-4">
                 <a href="{% url 'home' %}"
-                    class="block text-slate-300 hover:text-white font-medium transition-colors">Home</a>
-                <a href="{% url 'services' %}" class="text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors">Services</a>
-                <a href="{% url 'pricing' %}" class="text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors">Pricing</a>
-                <a href="{% url 'blog_list' %}" class="text-sm font-bold text-white/70 hover:text-sunset-orange transition-colors">Blog</a>
+                    class="block text-slate-300 hover:text-brand-text font-medium transition-colors">Home</a>
+                <a href="{% url 'services' %}" class="text-sm font-bold text-brand-text/70 hover:text-brand-primary transition-colors">Services</a>
+                <a href="{% url 'pricing' %}" class="text-sm font-bold text-brand-text/70 hover:text-brand-primary transition-colors">Pricing</a>
+                <a href="{% url 'blog_list' %}" class="text-sm font-bold text-brand-text/70 hover:text-brand-primary transition-colors">Blog</a>
                 <a href="{% url 'portfolio' %}"
-                    class="block text-white/70 hover:text-sunset-orange font-bold transition-colors">Portfolio</a>
+                    class="block text-brand-text/70 hover:text-brand-primary font-bold transition-colors">Portfolio</a>
                 <a href="{% url 'about' %}"
-                    class="block text-white/70 hover:text-sunset-orange font-bold transition-colors">About</a>
+                    class="block text-brand-text/70 hover:text-brand-primary font-bold transition-colors">About</a>
                 <a href="{% url 'team' %}"
-                    class="block text-white/70 hover:text-sunset-orange font-bold transition-colors">Team</a>
+                    class="block text-brand-text/70 hover:text-brand-primary font-bold transition-colors">Team</a>
                 <a href="{% url 'contact' %}"
-                    class="block text-white/70 hover:text-sunset-orange font-bold transition-colors">Contact</a>
+                    class="block text-brand-text/70 hover:text-brand-primary font-bold transition-colors">Contact</a>
                 <a href="{% url 'contact' %}"
-                    class="inline-block mt-2 px-8 py-3 bg-gradient-to-r from-sunset-orange to-sunset-amber text-white text-sm font-bold rounded-full">Hire Us</a>
+                    class="inline-block mt-2 px-8 py-3 bg-gradient-to-r from-brand-primary to-brand-accent text-brand-text text-sm font-bold rounded-full">Hire Us</a>
             </div>
         </div>
     </nav>
@@ -142,10 +149,10 @@
     <div class="fixed top-24 right-4 z-50 space-y-2" id="message-container">
         {% for message in messages %}
         <div
-            class="message-toast px-6 py-4 rounded-xl backdrop-blur-xl border border-white/10 shadow-2xl flex items-center space-x-3 animate-slide-in
-            {% if message.tags == 'success' %}bg-emerald-500/20 border-emerald-500/30{% elif message.tags == 'error' %}bg-red-500/20 border-red-500/30{% else %}bg-accent/20 border-accent/30{% endif %}">
+            class="message-toast px-6 py-4 rounded-xl backdrop-blur-xl border border-brand-text/10 shadow-2xl flex items-center space-x-3 animate-slide-in
+            {% if message.tags == 'success' %}bg-emerald-500/20 border-emerald-500/30{% elif message.tags == 'error' %}bg-red-500/20 border-red-500/30{% else %}bg-brand-primary/20 border-brand-primary/30{% endif %}">
             <i
-                class="fas {% if message.tags == 'success' %}fa-check-circle text-emerald-400{% elif message.tags == 'error' %}fa-exclamation-circle text-red-400{% else %}fa-info-circle text-accent-light{% endif %}"></i>
+                class="fas {% if message.tags == 'success' %}fa-check-circle text-emerald-400{% elif message.tags == 'error' %}fa-exclamation-circle text-red-400{% else %}fa-info-circle text-brand-accent{% endif %}"></i>
             <span class="text-sm font-medium">{{ message }}</span>
         </div>
         {% endfor %}
@@ -158,28 +165,28 @@
     </main>
 
     <!-- ========== FOOTER ========== -->
-    <footer class="relative bg-galaxy-900 border-t border-white/5 pt-16 pb-8" id="footer">
+    <footer class="relative bg-brand-bg border-t border-brand-text/5 pt-16 pb-8" id="footer">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                 <!-- Brand -->
                 <div class="lg:col-span-1">
                     <a href="{% url 'home' %}" class="flex items-center space-x-2 mb-4">
                         <div
-                            class="w-10 h-10 rounded-lg bg-gradient-to-br from-sunset-orange to-sunset-amber flex items-center justify-center">
-                            <span class="text-white font-bold text-lg">D</span>
+                            class="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-primary to-brand-accent flex items-center justify-center">
+                            <span class="text-brand-text font-bold text-lg">D</span>
                         </div>
                         <span
-                            class="text-xl font-bold bg-gradient-to-r from-sunset-orange to-sunset-amber bg-clip-text text-transparent">DevSquad</span>
+                            class="text-xl font-bold bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">DevSquad</span>
                     </a>
-                    <p class="text-white/40 text-sm leading-relaxed mb-8">Transforming ideas into high-performance digital
+                    <p class="text-brand-text/40 text-sm leading-relaxed mb-8">Transforming ideas into high-performance digital
                         experiences that drive growth and innovation.</p>
                     
                     <div class="space-y-4">
-                        <p class="text-xs font-black uppercase tracking-widest text-sunset-orange">Join the Newsletter</p>
+                        <p class="text-xs font-black uppercase tracking-widest text-brand-primary">Join the Newsletter</p>
                         <form action="{% url 'subscribe' %}" method="POST" class="relative">
                             {% csrf_token %}
-                            <input type="email" name="email" placeholder="your@email.com" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all">
-                            <button type="submit" class="absolute right-2 top-2 bottom-2 bg-sunset-orange text-white px-4 rounded-xl hover:bg-orange-600 transition-all">
+                            <input type="email" name="email" placeholder="your@email.com" class="w-full bg-brand-text/5 border border-brand-text/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-brand-primary/50 transition-all">
+                            <button type="submit" class="absolute right-2 top-2 bottom-2 bg-brand-primary text-brand-text px-4 rounded-xl hover:bg-orange-600 transition-all">
                                 <i class="fas fa-paper-plane"></i>
                             </button>
                         </form>
@@ -188,57 +195,57 @@
 
                 <!-- Quick Links -->
                 <div>
-                    <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-widest">Navigation</h4>
+                    <h4 class="text-brand-text font-bold mb-6 text-sm uppercase tracking-widest">Navigation</h4>
                     <ul class="space-y-3">
                         <li><a href="{% url 'home' %}"
-                                class="text-white/40 hover:text-sunset-orange text-sm transition-colors duration-300 font-bold">Home</a>
+                                class="text-brand-text/40 hover:text-brand-primary text-sm transition-colors duration-300 font-bold">Home</a>
                         </li>
                         <li><a href="{% url 'services' %}"
-                                class="text-white/40 hover:text-sunset-orange text-sm transition-colors duration-300 font-bold">Services</a>
+                                class="text-brand-text/40 hover:text-brand-primary text-sm transition-colors duration-300 font-bold">Services</a>
                         </li>
                         <li><a href="{% url 'pricing' %}"
-                                class="text-white/40 hover:text-sunset-orange text-sm transition-colors duration-300 font-bold">Pricing</a>
+                                class="text-brand-text/40 hover:text-brand-primary text-sm transition-colors duration-300 font-bold">Pricing</a>
                         </li>
                         <li><a href="{% url 'portfolio' %}"
-                                class="text-white/40 hover:text-sunset-orange text-sm transition-colors duration-300 font-bold">Portfolio</a>
+                                class="text-brand-text/40 hover:text-brand-primary text-sm transition-colors duration-300 font-bold">Portfolio</a>
                         </li>
                         <li><a href="{% url 'team' %}"
-                                class="text-white/40 hover:text-sunset-orange text-sm transition-colors duration-300 font-bold">The Team</a>
+                                class="text-brand-text/40 hover:text-brand-primary text-sm transition-colors duration-300 font-bold">The Team</a>
                         </li>
                         <li><a href="{% url 'blog_list' %}"
-                                class="text-white/40 hover:text-sunset-orange text-sm transition-colors duration-300 font-bold">Latest Blog</a>
+                                class="text-brand-text/40 hover:text-brand-primary text-sm transition-colors duration-300 font-bold">Latest Blog</a>
                         </li>
                     </ul>
                 </div>
 
                 <!-- Services -->
                 <div>
-                    <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-widest">Solutions</h4>
+                    <h4 class="text-brand-text font-bold mb-6 text-sm uppercase tracking-widest">Solutions</h4>
                     <ul class="space-y-3">
-                        <li><span class="text-white/40 text-sm font-bold">Web Development</span></li>
-                        <li><span class="text-white/40 text-sm font-bold">Mobile Application</span></li>
-                        <li><span class="text-white/40 text-sm font-bold">UI/UX Craftsmanship</span></li>
-                        <li><span class="text-white/40 text-sm font-bold">Cloud Infrastructure</span></li>
-                        <li><span class="text-white/40 text-sm font-bold">AI Implementation</span></li>
+                        <li><span class="text-brand-text/40 text-sm font-bold">Web Development</span></li>
+                        <li><span class="text-brand-text/40 text-sm font-bold">Mobile Application</span></li>
+                        <li><span class="text-brand-text/40 text-sm font-bold">UI/UX Craftsmanship</span></li>
+                        <li><span class="text-brand-text/40 text-sm font-bold">Cloud Infrastructure</span></li>
+                        <li><span class="text-brand-text/40 text-sm font-bold">AI Implementation</span></li>
                     </ul>
                 </div>
 
                 <!-- Contact -->
                 <div>
-                    <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-widest">Connect</h4>
+                    <h4 class="text-brand-text font-bold mb-6 text-sm uppercase tracking-widest">Connect</h4>
                     <ul class="space-y-4">
                         <li class="flex items-center space-x-3 group">
-                            <div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-sunset-orange/30 transition-all">
-                                <i class="fas fa-envelope text-sunset-orange text-xs"></i>
+                            <div class="w-8 h-8 rounded-lg bg-brand-text/5 border border-brand-text/10 flex items-center justify-center group-hover:border-brand-primary/30 transition-all">
+                                <i class="fas fa-envelope text-brand-primary text-xs"></i>
                             </div>
-                            <span class="text-white/40 text-sm font-bold group-hover:text-white transition-colors">{{ site.contact_email }}</span>
+                            <span class="text-brand-text/40 text-sm font-bold group-hover:text-brand-text transition-colors">{{ site.contact_email }}</span>
                         </li>
                         {% if site.contact_phone %}
                         <li class="flex items-center space-x-3 group">
-                            <div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-sunset-orange/30 transition-all">
-                                <i class="fas fa-phone text-sunset-orange text-xs"></i>
+                            <div class="w-8 h-8 rounded-lg bg-brand-text/5 border border-brand-text/10 flex items-center justify-center group-hover:border-brand-primary/30 transition-all">
+                                <i class="fas fa-phone text-brand-primary text-xs"></i>
                             </div>
-                            <span class="text-white/40 text-sm font-bold group-hover:text-white transition-colors">{{ site.contact_phone }}</span>
+                            <span class="text-brand-text/40 text-sm font-bold group-hover:text-brand-text transition-colors">{{ site.contact_phone }}</span>
                         </li>
                         {% endif %}
                     </ul>
@@ -246,19 +253,19 @@
                     <div class="flex items-center space-x-4 mt-8">
                         {% if site.social_facebook %}
                         <a href="{{ site.social_facebook }}" target="_blank"
-                            class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:bg-sunset-orange hover:border-sunset-orange transition-all duration-300">
+                            class="w-10 h-10 rounded-xl bg-brand-text/5 border border-brand-text/10 flex items-center justify-center text-brand-text/40 hover:text-brand-text hover:bg-brand-primary hover:border-brand-primary transition-all duration-300">
                             <i class="fab fa-facebook-f text-sm"></i>
                         </a>
                         {% endif %}
                         {% if site.social_twitter %}
                         <a href="{{ site.social_twitter }}" target="_blank"
-                            class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:bg-sunset-orange hover:border-sunset-orange transition-all duration-300">
+                            class="w-10 h-10 rounded-xl bg-brand-text/5 border border-brand-text/10 flex items-center justify-center text-brand-text/40 hover:text-brand-text hover:bg-brand-primary hover:border-brand-primary transition-all duration-300">
                             <i class="fab fa-twitter text-sm"></i>
                         </a>
                         {% endif %}
                         {% if site.social_linkedin %}
                         <a href="{{ site.social_linkedin }}" target="_blank"
-                            class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:bg-sunset-orange hover:border-sunset-orange transition-all duration-300">
+                            class="w-10 h-10 rounded-xl bg-brand-text/5 border border-brand-text/10 flex items-center justify-center text-brand-text/40 hover:text-brand-text hover:bg-brand-primary hover:border-brand-primary transition-all duration-300">
                             <i class="fab fa-linkedin-in text-sm"></i>
                         </a>
                         {% endif %}
@@ -267,15 +274,15 @@
             </div>
 
             <!-- Bottom Bar -->
-            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="border-t border-brand-text/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
                 <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-                    <p class="text-white/30 text-sm font-bold">{{ site.footer_text }}</p>
+                    <p class="text-brand-text/30 text-sm font-bold">{{ site.footer_text }}</p>
                     <div class="flex items-center gap-6">
-                        <a href="{% url 'privacy' %}" class="text-white/20 hover:text-sunset-orange text-xs font-bold uppercase tracking-widest transition-colors">Privacy</a>
-                        <a href="{% url 'terms' %}" class="text-white/20 hover:text-sunset-orange text-xs font-bold uppercase tracking-widest transition-colors">Terms</a>
+                        <a href="{% url 'privacy' %}" class="text-brand-text/20 hover:text-brand-primary text-xs font-bold uppercase tracking-widest transition-colors">Privacy</a>
+                        <a href="{% url 'terms' %}" class="text-brand-text/20 hover:text-brand-primary text-xs font-bold uppercase tracking-widest transition-colors">Terms</a>
                     </div>
                 </div>
-                <p class="text-white/30 text-sm font-bold">Crafted with <i class="fas fa-heart text-sunset-orange text-xs"></i> by
+                <p class="text-brand-text/30 text-sm font-bold">Crafted with <i class="fas fa-heart text-brand-primary text-xs"></i> by
                     DevSquad</p>
             </div>
         </div>
@@ -285,12 +292,12 @@
     <a href="https://wa.me/{{ site.whatsapp_number }}?text=Hi%2C%20I%20want%20to%20build%20a%20website" target="_blank"
         class="fixed bottom-6 right-6 z-40 w-14 h-14 bg-emerald-500 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)] transform hover:scale-110 transition-all duration-300"
         id="whatsapp-btn" aria-label="Chat on WhatsApp">
-        <i class="fab fa-whatsapp text-white text-2xl"></i>
+        <i class="fab fa-whatsapp text-brand-text text-2xl"></i>
     </a>
 
     <!-- ========== SCROLL TO TOP ========== -->
     <button id="scroll-top-btn"
-        class="fixed bottom-6 right-24 z-40 w-12 h-12 bg-galaxy-800/80 backdrop-blur-xl border border-white/10 rounded-full flex items-center justify-center text-slate-400 hover:text-accent-light hover:border-accent/30 transform hover:scale-110 transition-all duration-300 opacity-0 pointer-events-none"
+        class="fixed bottom-6 right-24 z-40 w-12 h-12 bg-galaxy-800/80 backdrop-blur-xl border border-brand-text/10 rounded-full flex items-center justify-center text-slate-400 hover:text-brand-accent hover:border-brand-primary/30 transform hover:scale-110 transition-all duration-300 opacity-0 pointer-events-none"
         aria-label="Scroll to top">
         <i class="fas fa-arrow-up"></i>
     </button>

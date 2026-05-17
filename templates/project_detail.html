@@ -6,10 +6,10 @@
 {% block content %}
 <section class="relative pt-32 pb-24">
     <div class="absolute inset-0">
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-primary/5 rounded-full blur-3xl"></div>
     </div>
     <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <a href="{% url 'portfolio' %}" class="inline-flex items-center space-x-2 text-slate-400 hover:text-accent-light transition-colors mb-8" id="back-to-portfolio">
+        <a href="{% url 'portfolio' %}" class="inline-flex items-center space-x-2 text-slate-400 hover:text-brand-accent transition-colors mb-8" id="back-to-portfolio">
             <i class="fas fa-arrow-left text-sm"></i>
             <span class="text-sm font-medium">Back to Portfolio</span>
         </a>
@@ -19,8 +19,8 @@
                 {% if project.image %}
                 <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-full object-cover">
                 {% else %}
-                <div class="w-full h-full bg-gradient-to-br from-accent/20 to-purple-500/20 flex items-center justify-center">
-                    <i class="fas fa-rocket text-6xl text-accent/30"></i>
+                <div class="w-full h-full bg-gradient-to-br from-brand-primary/20 to-purple-500/20 flex items-center justify-center">
+                    <i class="fas fa-rocket text-6xl text-brand-primary/30"></i>
                 </div>
                 {% endif %}
             </div>
@@ -33,25 +33,25 @@
             </div>
             <div class="space-y-6">
                 <div class="glass-card p-6 rounded-2xl">
-                    <h3 class="text-xs font-semibold tracking-widest uppercase text-accent-light mb-3">Key Result</h3>
+                    <h3 class="text-xs font-semibold tracking-widest uppercase text-brand-accent mb-3">Key Result</h3>
                     <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-purple-500 flex items-center justify-center">
-                            <i class="fas fa-chart-line text-white text-sm"></i>
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-brand-primary to-purple-500 flex items-center justify-center">
+                            <i class="fas fa-chart-line text-brand-text text-sm"></i>
                         </div>
-                        <span class="text-lg font-bold text-white">{{ project.result_highlight }}</span>
+                        <span class="text-lg font-bold text-brand-text">{{ project.result_highlight }}</span>
                     </div>
                 </div>
                 <div class="glass-card p-6 rounded-2xl">
-                    <h3 class="text-xs font-semibold tracking-widest uppercase text-accent-light mb-4">Tech Stack</h3>
+                    <h3 class="text-xs font-semibold tracking-widest uppercase text-brand-accent mb-4">Tech Stack</h3>
                     <div class="flex flex-wrap gap-2">
                         {% for tech in project.get_tech_list %}
-                        <span class="px-3 py-1.5 text-xs font-medium text-slate-300 bg-white/5 border border-white/10 rounded-full">{{ tech }}</span>
+                        <span class="px-3 py-1.5 text-xs font-medium text-slate-300 bg-brand-text/5 border border-brand-text/10 rounded-full">{{ tech }}</span>
                         {% endfor %}
                     </div>
                 </div>
                 <div class="glass-card p-6 rounded-2xl text-center">
                     <h3 class="text-sm font-semibold mb-3">Want similar results?</h3>
-                    <a href="{% url 'contact' %}" class="w-full inline-flex items-center justify-center space-x-2 px-6 py-3 bg-gradient-to-r from-accent to-purple-500 text-white text-sm font-semibold rounded-full hover:shadow-[0_0_30px_rgba(99,102,241,0.4)] transform hover:scale-105 transition-all duration-300" id="project-detail-cta">
+                    <a href="{% url 'contact' %}" class="w-full inline-flex items-center justify-center space-x-2 px-6 py-3 bg-gradient-to-r from-brand-primary to-purple-500 text-brand-text text-sm font-semibold rounded-full hover:shadow-[0_0_30px_rgba(99,102,241,0.4)] transform hover:scale-105 transition-all duration-300" id="project-detail-cta">
                         <span>Start a Project</span>
                         <i class="fas fa-arrow-right text-xs"></i>
                     </a>

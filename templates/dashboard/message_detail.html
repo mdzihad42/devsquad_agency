@@ -8,32 +8,32 @@
 
 <div class="max-w-4xl">
     <div class="mb-8">
-        <a href="{% url 'dashboard_messages' %}" class="inline-flex items-center space-x-2 text-white/50 hover:text-sunset-orange font-bold text-xs uppercase tracking-widest transition-colors">
+        <a href="{% url 'dashboard_messages' %}" class="inline-flex items-center space-x-2 text-brand-text/50 hover:text-brand-primary font-bold text-xs uppercase tracking-widest transition-colors">
             <i class="fas fa-arrow-left"></i>
             <span>Back to Inbox</span>
         </a>
     </div>
 
-    <div class="glass-card rounded-[40px] border-white/5 overflow-hidden">
+    <div class="glass-card rounded-[40px] border-brand-text/5 overflow-hidden">
         <!-- Header -->
-        <div class="p-10 border-b border-white/5 bg-white/[0.01]">
+        <div class="p-10 border-b border-brand-text/5 bg-brand-text/[0.01]">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div class="flex items-center space-x-6">
-                    <div class="w-16 h-16 rounded-3xl bg-sunset-orange/10 flex items-center justify-center text-2xl font-black text-sunset-orange border border-sunset-orange/20">
+                    <div class="w-16 h-16 rounded-3xl bg-brand-primary/10 flex items-center justify-center text-2xl font-black text-brand-primary border border-brand-primary/20">
                         {{ message.name|first|upper }}
                     </div>
                     <div>
                         <h2 class="text-2xl font-black">{{ message.name }}</h2>
-                        <p class="text-white/50 font-medium mb-1">{{ message.email }}</p>
+                        <p class="text-brand-text/50 font-medium mb-1">{{ message.email }}</p>
                         {% if message.subject %}
-                        <p class="text-sunset-orange text-xs font-black uppercase tracking-widest">{{ message.subject }}</p>
+                        <p class="text-brand-primary text-xs font-black uppercase tracking-widest">{{ message.subject }}</p>
                         {% endif %}
                     </div>
                 </div>
                 <div class="text-right">
-                    <p class="text-[10px] font-black uppercase tracking-[0.2em] text-white/30 mb-1">Received On</p>
-                    <p class="text-sm font-bold text-white">{{ message.created_at|date:"F d, Y" }}</p>
-                    <p class="text-xs text-white/40 mt-1">{{ message.created_at|time:"H:i" }}</p>
+                    <p class="text-[10px] font-black uppercase tracking-[0.2em] text-brand-text/30 mb-1">Received On</p>
+                    <p class="text-sm font-bold text-brand-text">{{ message.created_at|date:"F d, Y" }}</p>
+                    <p class="text-xs text-brand-text/40 mt-1">{{ message.created_at|time:"H:i" }}</p>
                 </div>
             </div>
         </div>
@@ -41,19 +41,19 @@
         <!-- Body -->
         <div class="p-10">
             <div class="mb-10">
-                <p class="text-[10px] font-black uppercase tracking-[0.2em] text-white/30 mb-6">Message Content</p>
-                <div class="bg-black-pure/50 p-8 rounded-3xl border border-white/5 text-white/80 leading-relaxed text-lg whitespace-pre-wrap">
+                <p class="text-[10px] font-black uppercase tracking-[0.2em] text-brand-text/30 mb-6">Message Content</p>
+                <div class="bg-brand-bg/50 p-8 rounded-3xl border border-brand-text/5 text-brand-text/80 leading-relaxed text-lg whitespace-pre-wrap">
                     {{ message.message }}
                 </div>
             </div>
 
             <div class="flex flex-wrap items-center gap-4">
-                <a href="mailto:{{ message.email }}" class="px-8 py-4 bg-sunset-orange text-white font-bold rounded-2xl hover:shadow-[0_0_40px_rgba(249,115,22,0.4)] transition-all flex items-center space-x-3">
+                <a href="mailto:{{ message.email }}" class="px-8 py-4 bg-brand-primary text-brand-text font-bold rounded-2xl hover:shadow-[0_0_40px_rgba(59, 130, 246,0.4)] transition-all flex items-center space-x-3">
                     <i class="fas fa-reply"></i>
                     <span>Reply via Email</span>
                 </a>
-                <button class="px-8 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-2xl hover:bg-white/10 transition-all flex items-center space-x-3">
-                    <i class="fas fa-trash-alt text-white/50"></i>
+                <button class="px-8 py-4 bg-brand-text/5 border border-brand-text/10 text-brand-text font-bold rounded-2xl hover:bg-brand-text/10 transition-all flex items-center space-x-3">
+                    <i class="fas fa-trash-alt text-brand-text/50"></i>
                     <span>Delete Record</span>
                 </button>
             </div>

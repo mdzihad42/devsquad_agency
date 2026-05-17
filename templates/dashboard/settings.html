@@ -11,68 +11,68 @@
         {% csrf_token %}
         
         <!-- Hero Section -->
-        <div class="glass-card p-10 rounded-[40px] border-white/5">
+        <div class="glass-card p-10 rounded-[40px] border-brand-text/5">
             <div class="flex items-center space-x-4 mb-10">
-                <div class="w-12 h-12 rounded-2xl bg-sunset-orange/10 flex items-center justify-center">
-                    <i class="fas fa-home text-sunset-orange text-xl"></i>
+                <div class="w-12 h-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center">
+                    <i class="fas fa-home text-brand-primary text-xl"></i>
                 </div>
                 <h3 class="text-xl font-bold">Hero Section</h3>
             </div>
             
             <div class="space-y-6">
                 <div>
-                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-white/30 mb-3">Hero Headline</label>
-                    <input type="text" name="hero_headline" value="{{ config.hero_headline }}" class="w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all">
+                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-brand-text/30 mb-3">Hero Headline</label>
+                    <input type="text" name="hero_headline" value="{{ config.hero_headline }}" class="w-full bg-brand-bg border border-brand-text/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-brand-primary/50 transition-all">
                 </div>
                 <div>
-                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-white/30 mb-3">Hero Sub-heading</label>
-                    <textarea name="hero_subheading" rows="3" class="w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all">{{ config.hero_subheading }}</textarea>
+                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-brand-text/30 mb-3">Hero Sub-heading</label>
+                    <textarea name="hero_subheading" rows="3" class="w-full bg-brand-bg border border-brand-text/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-brand-primary/50 transition-all">{{ config.hero_subheading }}</textarea>
                 </div>
             </div>
         </div>
 
         <!-- Contact & Social -->
-        <div class="glass-card p-10 rounded-[40px] border-white/5">
+        <div class="glass-card p-10 rounded-[40px] border-brand-text/5">
             <div class="flex items-center space-x-4 mb-10">
-                <div class="w-12 h-12 rounded-2xl bg-sunset-amber/10 flex items-center justify-center">
-                    <i class="fas fa-address-book text-sunset-amber text-xl"></i>
+                <div class="w-12 h-12 rounded-2xl bg-brand-accent/10 flex items-center justify-center">
+                    <i class="fas fa-address-book text-brand-accent text-xl"></i>
                 </div>
                 <h3 class="text-xl font-bold">Contact & Social</h3>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <div>
-                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-white/30 mb-3">Agency Email</label>
-                    <input type="email" name="contact_email" value="{{ config.contact_email }}" class="w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all">
+                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-brand-text/30 mb-3">Agency Email</label>
+                    <input type="email" name="contact_email" value="{{ config.contact_email }}" class="w-full bg-brand-bg border border-brand-text/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-brand-primary/50 transition-all">
                 </div>
                 <div>
-                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-white/30 mb-3">WhatsApp Number</label>
-                    <input type="text" name="whatsapp_number" value="{{ config.whatsapp_number }}" class="w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all">
+                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-brand-text/30 mb-3">WhatsApp Number</label>
+                    <input type="text" name="whatsapp_number" value="{{ config.whatsapp_number }}" class="w-full bg-brand-bg border border-brand-text/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-brand-primary/50 transition-all">
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-white/30 mb-3"><i class="fab fa-facebook mr-2 text-blue-500"></i> Facebook URL</label>
-                    <input type="text" name="social_facebook" value="{{ config.social_facebook }}" class="w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all">
+                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-brand-text/30 mb-3"><i class="fab fa-facebook mr-2 text-blue-500"></i> Facebook URL</label>
+                    <input type="text" name="social_facebook" value="{{ config.social_facebook }}" class="w-full bg-brand-bg border border-brand-text/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-brand-primary/50 transition-all">
                 </div>
                 <div>
-                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-white/30 mb-3"><i class="fab fa-twitter mr-2 text-sky-400"></i> Twitter URL</label>
-                    <input type="text" name="social_twitter" value="{{ config.social_twitter }}" class="w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all">
+                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-brand-text/30 mb-3"><i class="fab fa-twitter mr-2 text-sky-400"></i> Twitter URL</label>
+                    <input type="text" name="social_twitter" value="{{ config.social_twitter }}" class="w-full bg-brand-bg border border-brand-text/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-brand-primary/50 transition-all">
                 </div>
                 <div>
-                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-white/30 mb-3"><i class="fab fa-linkedin mr-2 text-blue-600"></i> LinkedIn URL</label>
-                    <input type="text" name="social_linkedin" value="{{ config.social_linkedin }}" class="w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all">
+                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-brand-text/30 mb-3"><i class="fab fa-linkedin mr-2 text-blue-600"></i> LinkedIn URL</label>
+                    <input type="text" name="social_linkedin" value="{{ config.social_linkedin }}" class="w-full bg-brand-bg border border-brand-text/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-brand-primary/50 transition-all">
                 </div>
                 <div>
-                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-white/30 mb-3"><i class="fab fa-github mr-2 text-white"></i> GitHub URL</label>
-                    <input type="text" name="social_github" value="{{ config.social_github }}" class="w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all">
+                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-brand-text/30 mb-3"><i class="fab fa-github mr-2 text-brand-text"></i> GitHub URL</label>
+                    <input type="text" name="social_github" value="{{ config.social_github }}" class="w-full bg-brand-bg border border-brand-text/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-brand-primary/50 transition-all">
                 </div>
             </div>
         </div>
 
         <!-- Site Stats -->
-        <div class="glass-card p-10 rounded-[40px] border-white/5">
+        <div class="glass-card p-10 rounded-[40px] border-brand-text/5">
             <div class="flex items-center space-x-4 mb-10">
                 <div class="w-12 h-12 rounded-2xl bg-green-500/10 flex items-center justify-center">
                     <i class="fas fa-chart-line text-green-500 text-xl"></i>
@@ -82,23 +82,23 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-white/30 mb-3">Total Projects</label>
-                    <input type="number" name="stat_projects" value="{{ config.stat_projects }}" class="w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all">
+                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-brand-text/30 mb-3">Total Projects</label>
+                    <input type="number" name="stat_projects" value="{{ config.stat_projects }}" class="w-full bg-brand-bg border border-brand-text/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-brand-primary/50 transition-all">
                 </div>
                 <div>
-                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-white/30 mb-3">Years Experience</label>
-                    <input type="number" name="stat_experience" value="{{ config.stat_experience }}" class="w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all">
+                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-brand-text/30 mb-3">Years Experience</label>
+                    <input type="number" name="stat_experience" value="{{ config.stat_experience }}" class="w-full bg-brand-bg border border-brand-text/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-brand-primary/50 transition-all">
                 </div>
                 <div>
-                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-white/30 mb-3">Success Rate (%)</label>
-                    <input type="number" name="stat_clients" value="{{ config.stat_clients }}" class="w-full bg-black-pure border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-sunset-orange/50 transition-all">
+                    <label class="block text-xs font-black uppercase tracking-[0.2em] text-brand-text/30 mb-3">Success Rate (%)</label>
+                    <input type="number" name="stat_clients" value="{{ config.stat_clients }}" class="w-full bg-brand-bg border border-brand-text/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-brand-primary/50 transition-all">
                 </div>
             </div>
         </div>
 
         <div class="flex items-center justify-end space-x-4 pb-20">
-            <button type="reset" class="px-10 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-2xl hover:bg-white/10 transition-all">Discard Changes</button>
-            <button type="submit" class="px-12 py-4 bg-sunset-orange text-white font-bold rounded-2xl hover:shadow-[0_0_50px_rgba(249,115,22,0.4)] transform hover:-translate-y-1 transition-all duration-300">Save Configuration</button>
+            <button type="reset" class="px-10 py-4 bg-brand-text/5 border border-brand-text/10 text-brand-text font-bold rounded-2xl hover:bg-brand-text/10 transition-all">Discard Changes</button>
+            <button type="submit" class="px-12 py-4 bg-brand-primary text-brand-text font-bold rounded-2xl hover:shadow-[0_0_50px_rgba(59, 130, 246,0.4)] transform hover:-translate-y-1 transition-all duration-300">Save Configuration</button>
         </div>
     </form>
 </div>

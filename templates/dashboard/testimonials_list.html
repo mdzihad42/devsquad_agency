@@ -3,33 +3,33 @@
 {% block header_title %}Client Feedback{% endblock %}
 {% block header_subtitle %}Manage social proof and client success stories.{% endblock %}
 {% block dashboard_content %}
-<div class="glass-card rounded-[40px] border-white/5 overflow-hidden">
-    <div class="p-8 border-b border-white/5 flex items-center justify-between">
+<div class="glass-card rounded-[40px] border-brand-text/5 overflow-hidden">
+    <div class="p-8 border-b border-brand-text/5 flex items-center justify-between">
         <h3 class="text-xl font-bold">Testimonials</h3>
-        <a href="{% url 'content_add' 'testimonial' %}" class="px-6 py-3 bg-sunset-orange text-white text-xs font-bold uppercase tracking-widest rounded-xl">Add Testimonial</a>
+        <a href="{% url 'content_add' 'testimonial' %}" class="px-6 py-3 bg-brand-primary text-brand-text text-xs font-bold uppercase tracking-widest rounded-xl">Add Testimonial</a>
     </div>
     <div class="overflow-x-auto">
         <table class="w-full text-left">
             <thead>
-                <tr class="text-[10px] font-black uppercase tracking-[0.2em] text-white/30 border-b border-white/5">
+                <tr class="text-[10px] font-black uppercase tracking-[0.2em] text-brand-text/30 border-b border-brand-text/5">
                     <th class="px-8 py-6">Client</th>
                     <th class="px-8 py-6">Quote Excerpt</th>
                     <th class="px-8 py-6 text-right">Action</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-white/5">
+            <tbody class="divide-y divide-brand-text/5">
                 {% for t in testimonials %}
-                <tr class="group hover:bg-white/[0.02]">
+                <tr class="group hover:bg-brand-text/[0.02]">
                     <td class="px-8 py-6">
                         <p class="text-sm font-bold">{{ t.client_name }}</p>
-                        <p class="text-xs text-white/40">{{ t.client_role }}</p>
+                        <p class="text-xs text-brand-text/40">{{ t.client_role }}</p>
                     </td>
-                    <td class="px-8 py-6 text-sm text-white/60 italic">"{{ t.quote|truncatechars:50 }}"</td>
+                    <td class="px-8 py-6 text-sm text-brand-text/60 italic">"{{ t.quote|truncatechars:50 }}"</td>
                     <td class="px-8 py-6 text-right flex items-center justify-end space-x-2">
-                        <a href="{% url 'content_edit' 'testimonial' t.pk %}" class="text-white/50 hover:text-sunset-orange"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'content_edit' 'testimonial' t.pk %}" class="text-brand-text/50 hover:text-brand-primary"><i class="fas fa-edit"></i></a>
                         <form action="{% url 'content_delete' 'testimonial' t.pk %}" method="POST" onsubmit="return confirm('Are you sure?');" class="inline">
                             {% csrf_token %}
-                            <button type="submit" class="text-white/30 hover:text-red-500"><i class="fas fa-trash-alt"></i></button>
+                            <button type="submit" class="text-brand-text/30 hover:text-red-500"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </td>
                 </tr>

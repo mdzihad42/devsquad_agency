@@ -8,12 +8,12 @@
 <!-- ========== PAGE HEADER ========== -->
 <section class="relative pt-32 pb-20 overflow-hidden">
     <div class="absolute inset-0">
-        <div class="absolute top-1/4 right-1/3 w-96 h-96 bg-sunset-orange/5 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/4 right-1/3 w-96 h-96 bg-brand-primary/5 rounded-full blur-3xl"></div>
     </div>
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-sunset-amber bg-sunset-orange/10 border border-sunset-orange/20 rounded-full mb-4 animate-fade-in-up">Our Journal</span>
+        <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-brand-accent bg-brand-primary/10 border border-brand-primary/20 rounded-full mb-4 animate-fade-in-up">Our Journal</span>
         <h1 class="text-4xl sm:text-5xl font-black mb-4 animate-fade-in-up animation-delay-200">Insights & Knowledge</h1>
-        <p class="text-white/70 max-w-2xl mx-auto text-lg animate-fade-in-up animation-delay-400">Deep dives into technology, strategy, and the future of digital products.</p>
+        <p class="text-brand-text/70 max-w-2xl mx-auto text-lg animate-fade-in-up animation-delay-400">Deep dives into technology, strategy, and the future of digital products.</p>
     </div>
 </section>
 
@@ -23,12 +23,12 @@
         <!-- Categories Filter -->
         <div class="flex flex-wrap items-center justify-center gap-4 mb-16 scroll-reveal">
             <a href="{% url 'blog_list' %}" 
-               class="px-6 py-2 rounded-full text-sm font-bold border transition-all duration-300 {% if not active_category %}bg-sunset-orange text-white border-sunset-orange{% else %}bg-white/5 text-white/70 border-white/10 hover:border-sunset-orange/30 hover:text-white{% endif %}">
+               class="px-6 py-2 rounded-full text-sm font-bold border transition-all duration-300 {% if not active_category %}bg-brand-primary text-brand-text border-brand-primary{% else %}bg-brand-text/5 text-brand-text/70 border-brand-text/10 hover:border-brand-primary/30 hover:text-brand-text{% endif %}">
                 All Topics
             </a>
             {% for category in categories %}
             <a href="?category={{ category.slug }}" 
-               class="px-6 py-2 rounded-full text-sm font-bold border transition-all duration-300 {% if active_category == category %}bg-sunset-orange text-white border-sunset-orange{% else %}bg-white/5 text-white/70 border-white/10 hover:border-sunset-orange/30 hover:text-white{% endif %}">
+               class="px-6 py-2 rounded-full text-sm font-bold border transition-all duration-300 {% if active_category == category %}bg-brand-primary text-brand-text border-brand-primary{% else %}bg-brand-text/5 text-brand-text/70 border-brand-text/10 hover:border-brand-primary/30 hover:text-brand-text{% endif %}">
                 {{ category.name }}
             </a>
             {% endfor %}
@@ -36,49 +36,49 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {% for post in posts %}
-            <article class="glass-card group rounded-3xl overflow-hidden hover:border-sunset-orange/30 transition-all duration-500 scroll-reveal" style="animation-delay: {{ forloop.counter0 }}00ms">
+            <article class="glass-card group rounded-3xl overflow-hidden hover:border-brand-primary/30 transition-all duration-500 scroll-reveal" style="animation-delay: {{ forloop.counter0 }}00ms">
                 <a href="{% url 'blog_detail' post.slug %}" class="block">
                     <!-- Thumbnail -->
-                    <div class="relative h-64 overflow-hidden bg-black-surface">
+                    <div class="relative h-64 overflow-hidden bg-brand-card">
                         {% if post.external_thumbnail %}
                         <img src="{{ post.external_thumbnail }}" alt="{{ post.title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black-pure via-sunset-orange/10 to-transparent opacity-60"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-bg via-brand-primary/10 to-transparent opacity-60"></div>
                         {% elif post.thumbnail %}
                         <img src="{{ post.thumbnail.url }}" alt="{{ post.title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black-pure via-sunset-orange/10 to-transparent opacity-60"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-bg via-brand-primary/10 to-transparent opacity-60"></div>
                         {% else %}
-                        <div class="w-full h-full bg-gradient-to-br from-sunset-orange/20 to-sunset-amber/10 flex items-center justify-center">
-                            <i class="{{ post.icon }} text-5xl text-sunset-orange/30"></i>
+                        <div class="w-full h-full bg-gradient-to-br from-brand-primary/20 to-brand-accent/10 flex items-center justify-center">
+                            <i class="{{ post.icon }} text-5xl text-brand-primary/30"></i>
                         </div>
                         {% endif %}
-                        <div class="absolute top-6 left-6 px-4 py-1.5 bg-black-pure/60 backdrop-blur-md border border-white/10 rounded-full flex items-center space-x-2">
-                            <i class="{{ post.icon }} text-[10px] text-sunset-orange"></i>
-                            <span class="text-xs font-bold text-sunset-amber uppercase tracking-widest">{{ post.category.name }}</span>
+                        <div class="absolute top-6 left-6 px-4 py-1.5 bg-brand-bg/60 backdrop-blur-md border border-brand-text/10 rounded-full flex items-center space-x-2">
+                            <i class="{{ post.icon }} text-[10px] text-brand-primary"></i>
+                            <span class="text-xs font-bold text-brand-accent uppercase tracking-widest">{{ post.category.name }}</span>
                         </div>
                     </div>
                     <!-- Content -->
                     <div class="p-10">
-                        <div class="flex items-center text-xs text-white/40 mb-6 space-x-6">
-                            <span class="flex items-center"><i class="far fa-calendar-alt mr-2 text-sunset-orange"></i>{{ post.created_at|date:"M d, Y" }}</span>
-                            <span class="flex items-center"><i class="far fa-clock mr-2 text-sunset-orange"></i>8 min read</span>
+                        <div class="flex items-center text-xs text-brand-text/40 mb-6 space-x-6">
+                            <span class="flex items-center"><i class="far fa-calendar-alt mr-2 text-brand-primary"></i>{{ post.created_at|date:"M d, Y" }}</span>
+                            <span class="flex items-center"><i class="far fa-clock mr-2 text-brand-primary"></i>8 min read</span>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4 group-hover:text-sunset-orange transition-colors duration-300 leading-tight">{{ post.title }}</h3>
-                        <p class="text-white/50 leading-relaxed mb-8 line-clamp-3">{{ post.excerpt }}</p>
+                        <h3 class="text-2xl font-bold mb-4 group-hover:text-brand-primary transition-colors duration-300 leading-tight">{{ post.title }}</h3>
+                        <p class="text-brand-text/50 leading-relaxed mb-8 line-clamp-3">{{ post.excerpt }}</p>
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 rounded-full bg-sunset-orange/20 flex items-center justify-center">
-                                    <i class="fas fa-user text-xs text-sunset-orange"></i>
+                                <div class="w-8 h-8 rounded-full bg-brand-primary/20 flex items-center justify-center">
+                                    <i class="fas fa-user text-xs text-brand-primary"></i>
                                 </div>
-                                <span class="text-sm font-bold text-white/70">{{ post.author }}</span>
+                                <span class="text-sm font-bold text-brand-text/70">{{ post.author }}</span>
                             </div>
-                            <span class="text-xs font-black text-sunset-orange uppercase tracking-[0.2em] group-hover:translate-x-1 transition-transform">Read More →</span>
+                            <span class="text-xs font-black text-brand-primary uppercase tracking-[0.2em] group-hover:translate-x-1 transition-transform">Read More →</span>
                         </div>
                     </div>
                 </a>
             </article>
             {% empty %}
-            <div class="col-span-full text-center text-white/50 py-32">
-                <i class="fas fa-feather-alt text-6xl mb-6 text-sunset-orange/20"></i>
+            <div class="col-span-full text-center text-brand-text/50 py-32">
+                <i class="fas fa-feather-alt text-6xl mb-6 text-brand-primary/20"></i>
                 <p class="text-xl">We are currently drafting new insights. Stay tuned!</p>
             </div>
             {% endfor %}

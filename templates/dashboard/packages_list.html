@@ -7,60 +7,60 @@
 {% block dashboard_content %}
 <div class="mb-8 flex justify-between items-center">
     <div class="flex items-center space-x-4">
-        <div class="w-12 h-12 rounded-2xl bg-sunset-orange/10 border border-sunset-orange/20 flex items-center justify-center">
-            <i class="fas fa-tags text-sunset-orange"></i>
+        <div class="w-12 h-12 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 flex items-center justify-center">
+            <i class="fas fa-tags text-brand-primary"></i>
         </div>
         <div>
             <h2 class="text-xl font-bold">Service Tiers</h2>
-            <p class="text-white/40 text-xs">Define what you offer and at what price.</p>
+            <p class="text-brand-text/40 text-xs">Define what you offer and at what price.</p>
         </div>
     </div>
-    <a href="{% url 'content_add' 'package' %}" class="bg-sunset-orange hover:bg-orange-600 text-white px-6 py-3 rounded-2xl font-bold text-sm transition-all flex items-center space-x-2">
+    <a href="{% url 'content_add' 'package' %}" class="bg-brand-primary hover:bg-orange-600 text-brand-text px-6 py-3 rounded-2xl font-bold text-sm transition-all flex items-center space-x-2">
         <i class="fas fa-plus text-xs"></i>
         <span>Add Package</span>
     </a>
 </div>
 
 <div class="grid grid-cols-1 gap-6">
-    <div class="glass-card rounded-[2.5rem] overflow-hidden border border-white/5">
+    <div class="glass-card rounded-[2.5rem] overflow-hidden border border-brand-text/5">
         <table class="w-full text-left border-collapse">
             <thead>
-                <tr class="border-b border-white/5 bg-white/[0.02]">
-                    <th class="px-8 py-6 text-[10px] font-black uppercase tracking-widest text-white/30">Package Name</th>
-                    <th class="px-8 py-6 text-[10px] font-black uppercase tracking-widest text-white/30">Price</th>
-                    <th class="px-8 py-6 text-[10px] font-black uppercase tracking-widest text-white/30">Status</th>
-                    <th class="px-8 py-6 text-[10px] font-black uppercase tracking-widest text-white/30 text-right">Actions</th>
+                <tr class="border-b border-brand-text/5 bg-brand-text/[0.02]">
+                    <th class="px-8 py-6 text-[10px] font-black uppercase tracking-widest text-brand-text/30">Package Name</th>
+                    <th class="px-8 py-6 text-[10px] font-black uppercase tracking-widest text-brand-text/30">Price</th>
+                    <th class="px-8 py-6 text-[10px] font-black uppercase tracking-widest text-brand-text/30">Status</th>
+                    <th class="px-8 py-6 text-[10px] font-black uppercase tracking-widest text-brand-text/30 text-right">Actions</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-white/5">
+            <tbody class="divide-y divide-brand-text/5">
                 {% for p in packages %}
-                <tr class="group hover:bg-white/[0.02] transition-all">
+                <tr class="group hover:bg-brand-text/[0.02] transition-all">
                     <td class="px-8 py-6">
                         <div class="flex items-center space-x-4">
-                            <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-sunset-orange group-hover:scale-110 transition-all">
+                            <div class="w-10 h-10 rounded-xl bg-brand-text/5 border border-brand-text/10 flex items-center justify-center text-brand-primary group-hover:scale-110 transition-all">
                                 <i class="{{ p.icon }}"></i>
                             </div>
                             <div>
                                 <p class="font-bold text-sm">{{ p.display_name }}</p>
-                                <p class="text-[10px] text-white/30 uppercase font-black tracking-tighter">{{ p.get_name_display }} Tier</p>
+                                <p class="text-[10px] text-brand-text/30 uppercase font-black tracking-tighter">{{ p.get_name_display }} Tier</p>
                             </div>
                         </div>
                     </td>
-                    <td class="px-8 py-6 font-bold text-sunset-orange text-lg">{{ p.price }}</td>
+                    <td class="px-8 py-6 font-bold text-brand-primary text-lg">{{ p.price }}</td>
                     <td class="px-8 py-6">
                         {% if p.is_featured %}
-                        <span class="px-3 py-1 bg-sunset-orange/10 border border-sunset-orange/20 text-sunset-orange text-[10px] font-black uppercase tracking-widest rounded-full">Featured</span>
+                        <span class="px-3 py-1 bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-[10px] font-black uppercase tracking-widest rounded-full">Featured</span>
                         {% else %}
-                        <span class="px-3 py-1 bg-white/5 border border-white/10 text-white/30 text-[10px] font-black uppercase tracking-widest rounded-full">Standard</span>
+                        <span class="px-3 py-1 bg-brand-text/5 border border-brand-text/10 text-brand-text/30 text-[10px] font-black uppercase tracking-widest rounded-full">Standard</span>
                         {% endif %}
                     </td>
                     <td class="px-8 py-6 text-right flex items-center justify-end space-x-2">
-                        <a href="{% url 'content_edit' 'package' p.pk %}" class="inline-flex w-10 h-10 rounded-xl bg-white/5 border border-white/10 items-center justify-center text-white/50 hover:bg-sunset-orange hover:text-white transition-all">
+                        <a href="{% url 'content_edit' 'package' p.pk %}" class="inline-flex w-10 h-10 rounded-xl bg-brand-text/5 border border-brand-text/10 items-center justify-center text-brand-text/50 hover:bg-brand-primary hover:text-brand-text transition-all">
                             <i class="fas fa-edit text-xs"></i>
                         </a>
                         <form action="{% url 'content_delete' 'package' p.pk %}" method="POST" onsubmit="return confirm('Are you sure?');" class="inline">
                             {% csrf_token %}
-                            <button type="submit" class="inline-flex w-10 h-10 rounded-xl bg-white/5 border border-white/10 items-center justify-center text-white/30 hover:bg-red-500/20 hover:text-red-500 transition-all">
+                            <button type="submit" class="inline-flex w-10 h-10 rounded-xl bg-brand-text/5 border border-brand-text/10 items-center justify-center text-brand-text/30 hover:bg-red-500/20 hover:text-red-500 transition-all">
                                 <i class="fas fa-trash-alt text-xs"></i>
                             </button>
                         </form>
@@ -69,12 +69,12 @@
                 {% empty %}
                 <tr>
                     <td colspan="4" class="px-8 py-20 text-center">
-                        <div class="w-20 h-20 rounded-full bg-white/5 flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-tags text-3xl text-white/10"></i>
+                        <div class="w-20 h-20 rounded-full bg-brand-text/5 flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-tags text-3xl text-brand-text/10"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-2">No packages yet</h3>
-                        <p class="text-white/40 text-sm mb-8">Ready to define your agency's pricing tiers?</p>
-                        <a href="{% url 'content_add' 'package' %}" class="inline-flex bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-2xl font-bold text-sm transition-all">
+                        <p class="text-brand-text/40 text-sm mb-8">Ready to define your agency's pricing tiers?</p>
+                        <a href="{% url 'content_add' 'package' %}" class="inline-flex bg-brand-text/10 hover:bg-brand-text/20 text-brand-text px-8 py-3 rounded-2xl font-bold text-sm transition-all">
                             Create First Package
                         </a>
                     </td>
