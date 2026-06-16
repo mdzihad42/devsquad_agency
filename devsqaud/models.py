@@ -97,26 +97,26 @@ class ContactMessage(models.Model):
 class SiteConfig(models.Model):
     """Singleton site-wide configuration."""
     # Hero
-    hero_headline = models.CharField(max_length=300, default="We Build Scalable Digital Products")
-    hero_subheading = models.TextField(default="Transforming ideas into high-performance digital experiences that drive growth.")
+    hero_headline = models.CharField(max_length=300, default="We Build Modern Websites & Web Applications That Grow Your Business")
+    hero_subheading = models.TextField(default="At Mzify, we create fast, secure and scalable websites and custom web applications tailored to your needs.")
     # About
-    about_intro = models.TextField(default="We are a team of passionate developers and designers.")
-    about_mission = models.TextField(default="To deliver world-class digital solutions.")
-    about_vision = models.TextField(default="To be the most trusted digital partner globally.")
+    about_intro = models.TextField(default="We are a team of passionate developers and designers building digital solutions.")
+    about_mission = models.TextField(default="To deliver world-class digital solutions that drive business success.")
+    about_vision = models.TextField(default="To be the most trusted digital partner for businesses worldwide.")
     # Stats
-    stat_projects = models.CharField(max_length=50, default="50+")
-    stat_experience = models.CharField(max_length=50, default="3+")
-    stat_clients = models.CharField(max_length=50, default="40+")
+    stat_projects = models.CharField(max_length=50, default="100+")
+    stat_experience = models.CharField(max_length=50, default="5+")
+    stat_clients = models.CharField(max_length=50, default="80+")
     # Contact
-    contact_email = models.EmailField(default="hello@devsquad.com")
-    contact_phone = models.CharField(max_length=20, blank=True, default="+880 1234 567890")
+    contact_email = models.EmailField(default="info@mzify.org")
+    contact_phone = models.CharField(max_length=20, blank=True, default="01608308665")
     whatsapp_number = models.CharField(
         max_length=20,
-        default="8801234567890",
+        default="8801608308665",
         help_text="WhatsApp number without + sign"
     )
     # Footer
-    footer_text = models.CharField(max_length=300, default="© 2026 DevSquad. All rights reserved.")
+    footer_text = models.CharField(max_length=300, default="© 2026 Mzify. All rights reserved.")
     # Social
     social_facebook = models.URLField(blank=True)
     social_twitter = models.URLField(blank=True)

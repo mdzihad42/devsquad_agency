@@ -2,83 +2,107 @@
 {% load static %}
 
 {% block title %}DevSquad — We Build Scalable Digital Products{% endblock %}
-{% block meta_description %}DevSquad is a premium software agency. We build scalable web apps, mobile apps, and digital products that drive business growth.{% endblock %}
+{% block meta_description %}DevSquad is a premium software agency. We build scalable web apps, mobile apps, and digital
+products that drive business growth.{% endblock %}
 
 {% block content %}
 
 <!-- ========== HERO SECTION ========== -->
-<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <!-- Video Background (Optimized Loading) -->
-    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0 opacity-0 transition-opacity duration-1000 filter contrast-[1.05] brightness-[1.02]" id="hero-video" poster="{% static 'images/hero-poster.jpg' %}">
-        <source data-src="{% static 'videos/herov.mp4' %}" type="video/quicktime">
-        <source data-src="{% static 'videos/herov.mp4' %}" type="video/mp4">
-    </video>
+<section id="hero" class="relative min-h-[90vh] flex items-center overflow-hidden bg-white pt-32 pb-20 sm:pt-40">
 
-    <!-- Balanced Dark Overlay (Increased for better text focus) -->
-    <div class="absolute inset-0 bg-galaxy-950/55 z-[1]"></div>
-    
-    <!-- Subtle Vignette -->
-    <div class="absolute inset-0 bg-gradient-to-b from-galaxy-950/40 via-transparent to-galaxy-950/70 z-[2]"></div>
 
-    <!-- Starfield overlay -->
-    <div class="star-field z-[3]" style="opacity: 0.25;">
-        <div class="stars-layer stars-small"></div>
-        <div class="stars-layer stars-medium"></div>
-        <div class="stars-layer stars-large"></div>
-    </div>
+    <div class="container-custom relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Hero Content -->
+            <div class="animate-fade-in-up">
+                <span
+                    class="inline-block px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-mzify-orange bg-mzify-orange/10 border border-mzify-orange/20 rounded-full mb-6">
+                    Django Web Agency
+                </span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-tight mb-8">
+                    We Build <span class="text-gradient-orange">Modern Websites</span> & Applications
+                </h1>
+                <p class="text-xl text-slate-700 mb-10 leading-relaxed max-w-xl font-medium">
+                    {{ site.hero_subheading }}
+                </p>
 
-    <!-- Accent Overlays -->
-    <div class="absolute inset-0 bg-gradient-to-r from-accent/5 via-transparent to-purple-500/5 z-[4]"></div>
+                <!-- Features List -->
+                <ul class="space-y-4 mb-10">
+                    <li class="flex items-center space-x-3">
+                        <div
+                            class="flex-shrink-0 w-6 h-6 rounded-full bg-mzify-orange/20 flex items-center justify-center">
+                            <i class="fas fa-check text-mzify-orange text-xs"></i>
+                        </div>
+                        <span class="text-slate-700 font-medium">Modern & Responsive Design</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <div
+                            class="flex-shrink-0 w-6 h-6 rounded-full bg-mzify-orange/20 flex items-center justify-center">
+                            <i class="fas fa-check text-mzify-orange text-xs"></i>
+                        </div>
+                        <span class="text-slate-700 font-medium">Secure & Scalable Solutions</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <div
+                            class="flex-shrink-0 w-6 h-6 rounded-full bg-mzify-orange/20 flex items-center justify-center">
+                            <i class="fas fa-check text-mzify-orange text-xs"></i>
+                        </div>
+                        <span class="text-slate-700 font-medium">Fast Delivery & 24/7 Support</span>
+                    </li>
+                </ul>
 
-    <!-- Floating Orbs -->
-    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-float-slow z-[4]"></div>
-    <div class="absolute bottom-1/4 right-1/4 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-float-delayed z-[4]"></div>
+                <div class="flex flex-col md:flex-row gap-5">
+                    <a href="{% url 'contact' %}"
+                        class="px-8 py-4 bg-mzify-orange text-white font-black rounded-xl shadow-lg shadow-mzify-orange/20 hover:shadow-mzify-orange/40 transform hover:-translate-y-1 transition-all duration-300 text-center">
+                        Get Started
+                    </a>
+                    <a href="{% url 'services' %}"
+                        class="px-8 py-4 bg-white border border-slate-200 text-slate-800 font-black rounded-xl hover:bg-slate-50 transition-all duration-300 text-center">
+                        Our Services
+                    </a>
+                </div>
+            </div>
 
-    <!-- Hero Content -->
-    <div class="relative z-20 text-center max-w-4xl mx-auto px-4 sm:px-6">
-        <div class="animate-fade-in-up">
-            <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-widest uppercase text-accent-light bg-accent/10 border border-accent/20 rounded-full mb-6">
-                Premium Digital Agency
-            </span>
-        </div>
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight mb-6 animate-fade-in-up animation-delay-200">
-            {{ site.hero_headline }}
-        </h1>
-        <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up animation-delay-400">
-            {{ site.hero_subheading }}
-        </p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up animation-delay-600">
-            <a href="{% url 'contact' %}" class="group px-8 py-4 bg-gradient-to-r from-accent to-purple-500 text-white font-semibold rounded-full hover:shadow-[0_0_40px_rgba(99,102,241,0.5)] transform hover:scale-105 transition-all duration-300 flex items-center space-x-2" id="hero-cta-start">
-                <span>Start a Project</span>
-                <i class="fas fa-arrow-right text-sm group-hover:translate-x-1 transition-transform duration-300"></i>
-            </a>
-            <a href="{% url 'portfolio' %}" class="px-8 py-4 bg-white/5 backdrop-blur-xl border border-white/10 text-white font-semibold rounded-full hover:bg-white/10 hover:border-accent/30 transition-all duration-300" id="hero-cta-work">
-                View Our Work
-            </a>
-        </div>
-    </div>
-
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-        <div class="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2">
-            <div class="w-1 h-2 bg-white/40 rounded-full animate-scroll-indicator"></div>
+            <!-- Hero Image Mockup (Conceptual) -->
+            <div class="hidden lg:block relative animate-fade-in-up animation-delay-400">
+                <div class="relative z-10 transform hover:scale-105 transition-transform duration-700">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"
+                        alt="Work Showcase" class="rounded-2xl shadow-2xl">
+                    <!-- Overlay Elements -->
+                    <div
+                        class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-xl border border-slate-100 flex items-center space-x-4 animate-bounce-slow">
+                        <div class="w-12 h-12 rounded-lg bg-mzify-orange/20 flex items-center justify-center">
+                            <i class="fas fa-bolt text-mzify-orange text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Performance</p>
+                            <p class="text-lg font-black text-mzify-dark">99.9%</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Decorative Circle -->
+                <div class="absolute -top-12 -right-12 w-64 h-64 border-4 border-mzify-orange/10 rounded-full z-0">
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
 <!-- ========== TRUST BAR ========== -->
-<section class="relative py-16 border-y border-white/5 bg-galaxy-900/30" id="trust-bar">
+<section class="relative py-16 border-y border-slate-100 bg-slate-50" id="trust-bar">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-8">
-            <p class="text-slate-500 text-sm font-medium tracking-widest uppercase">Trusted by innovative companies worldwide</p>
+            <p class="text-slate-500 text-xs font-black tracking-widest uppercase">Trusted by innovative companies
+                worldwide</p>
         </div>
-        <div class="flex flex-wrap items-center justify-center gap-8 md:gap-16 opacity-40">
+        <div
+            class="flex flex-wrap items-center justify-center gap-8 md:gap-16 opacity-30 grayscale pointer-events-none">
             <!-- Placeholder logos styled as text -->
-            <div class="text-2xl font-bold text-slate-400 tracking-wider">TechFlow</div>
-            <div class="text-2xl font-bold text-slate-400 tracking-wider">NovaBit</div>
-            <div class="text-2xl font-bold text-slate-400 tracking-wider">CloudSpark</div>
-            <div class="text-2xl font-bold text-slate-400 tracking-wider">DataPulse</div>
-            <div class="text-2xl font-bold text-slate-400 tracking-wider">PixelForge</div>
+            <div class="text-2xl font-black text-mzify-dark tracking-wider">TechFlow</div>
+            <div class="text-2xl font-black text-mzify-dark tracking-wider">NovaBit</div>
+            <div class="text-2xl font-black text-mzify-dark tracking-wider">CloudSpark</div>
+            <div class="text-2xl font-black text-mzify-dark tracking-wider">DataPulse</div>
+            <div class="text-2xl font-black text-mzify-dark tracking-wider">PixelForge</div>
         </div>
     </div>
 </section>
@@ -88,35 +112,30 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Section Header -->
         <div class="text-center mb-16 scroll-reveal">
-            <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-widest uppercase text-accent-light bg-accent/10 border border-accent/20 rounded-full mb-4">What We Do</span>
-            <h2 class="text-3xl sm:text-4xl font-bold mb-4">Our Core Services</h2>
-            <p class="text-slate-400 max-w-2xl mx-auto">We offer end-to-end digital solutions to help your business thrive in the modern world.</p>
+            <span
+                class="inline-block px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-mzify-orange bg-mzify-orange/10 border border-mzify-orange/20 rounded-full mb-4">What
+                We Do</span>
+            <h2 class="text-4xl sm:text-5xl font-black text-slate-900 mb-6">Our Core Services</h2>
+            <p class="text-lg text-slate-700 max-w-2xl mx-auto font-medium">We offer end-to-end digital solutions to
+                help your business
+                thrive in the modern world.</p>
         </div>
 
         <!-- Service Cards -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {% for service in services %}
-            <div class="glass-card group rounded-2xl overflow-hidden hover:border-accent/30 hover:shadow-[0_0_30px_rgba(99,102,241,0.15)] transition-all duration-500 scroll-reveal" style="animation-delay: {{ forloop.counter0 }}00ms">
-                <!-- Service Image -->
-                {% if service.image %}
-                <div class="relative h-44 overflow-hidden bg-galaxy-800">
-                    <img src="{{ service.image.url }}" alt="{{ service.title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-galaxy-950/80 via-transparent to-transparent"></div>
-                    <div class="absolute bottom-3 left-4">
-                        <div class="w-10 h-10 rounded-lg bg-accent/20 backdrop-blur-xl border border-accent/30 flex items-center justify-center">
-                            <i class="{{ service.icon }} text-lg text-accent-light"></i>
-                        </div>
-                    </div>
+            <div class="group p-8 rounded-2xl bg-white border border-slate-100 hover:border-mzify-orange/30 hover:shadow-[0_15px_40px_rgba(244,104,1,0.1)] transition-all duration-500 scroll-reveal"
+                style="animation-delay: {{ forloop.counter0 }}00ms">
+                <div
+                    class="w-16 h-16 rounded-xl bg-mzify-orange/10 flex items-center justify-center mb-6 group-hover:bg-mzify-orange group-hover:rotate-6 transition-all duration-300">
+                    <i
+                        class="{{ service.icon }} text-2xl text-mzify-orange group-hover:text-white transition-colors"></i>
                 </div>
-                <div class="p-6">
-                {% else %}
-                <div class="p-8">
-                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-accent/20 to-purple-500/20 flex items-center justify-center mb-6 group-hover:from-accent/30 group-hover:to-purple-500/30 transition-all duration-300">
-                        <i class="{{ service.icon }} text-2xl text-accent-light"></i>
-                    </div>
-                {% endif %}
-                    <h3 class="text-lg font-bold mb-3 group-hover:text-accent-light transition-colors duration-300">{{ service.title }}</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">{{ service.short_description }}</p>
+                <h3
+                    class="text-xl sm:text-2xl font-black text-slate-900 mb-4 group-hover:text-mzify-orange transition-colors tracking-tight">
+                    {{ service.title }}</h3>
+                <p class="text-slate-700 text-sm leading-relaxed mb-6 font-medium">{{ service.short_description }}</p>
+                <div class="h-1 w-12 bg-mzify-orange/20 rounded-full group-hover:w-20 transition-all duration-300">
                 </div>
             </div>
             {% empty %}
@@ -128,7 +147,9 @@
 
         <!-- View All Button -->
         <div class="text-center mt-12 scroll-reveal">
-            <a href="{% url 'services' %}" class="inline-flex items-center space-x-2 px-8 py-3 bg-white/5 backdrop-blur-xl border border-white/10 text-white font-medium rounded-full hover:bg-white/10 hover:border-accent/30 transition-all duration-300" id="view-all-services">
+            <a href="{% url 'services' %}"
+                class="inline-flex items-center space-x-2 px-8 py-3 bg-white border border-slate-200 text-slate-700 font-bold rounded-lg hover:border-mzify-orange hover:text-mzify-orange transition-all duration-300"
+                id="view-all-services">
                 <span>View All Services</span>
                 <i class="fas fa-arrow-right text-sm"></i>
             </a>
@@ -137,38 +158,51 @@
 </section>
 
 <!-- ========== FEATURED PROJECTS ========== -->
-<section class="relative py-24 bg-galaxy-900/30" id="projects-section">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section class="section-py relative bg-slate-50" id="projects-section">
+    <div class="container-custom">
         <!-- Section Header -->
         <div class="text-center mb-16 scroll-reveal">
-            <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-widest uppercase text-accent-light bg-accent/10 border border-accent/20 rounded-full mb-4">Our Work</span>
-            <h2 class="text-3xl sm:text-4xl font-bold mb-4">Featured Projects</h2>
-            <p class="text-slate-400 max-w-2xl mx-auto">Take a look at some of our most impactful work and the results we delivered.</p>
+            <span
+                class="inline-block px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-mzify-orange bg-mzify-orange/10 border border-mzify-orange/20 rounded-full mb-4">Our
+                Work</span>
+            <h2 class="text-4xl sm:text-5xl font-black text-slate-900 mb-6">Featured Projects</h2>
+            <p class="text-lg text-slate-700 max-w-2xl mx-auto font-medium">Take a look at some of our most impactful
+                work and the results
+                we delivered.</p>
         </div>
 
         <!-- Project Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {% for project in projects %}
-            <a href="{% url 'project_detail' project.slug %}" class="glass-card group rounded-2xl overflow-hidden hover:border-accent/30 hover:shadow-[0_0_30px_rgba(99,102,241,0.15)] transition-all duration-500 scroll-reveal" style="animation-delay: {{ forloop.counter0 }}00ms">
+            <a href="{% url 'project_detail' project.slug %}"
+                class="glass-card group rounded-2xl overflow-hidden hover:border-accent/30 hover:shadow-[0_0_30px_rgba(99,102,241,0.15)] transition-all duration-500 scroll-reveal"
+                style="animation-delay: {{ forloop.counter0 }}00ms">
                 <!-- Project Image -->
                 <div class="relative h-56 overflow-hidden bg-galaxy-800">
                     {% if project.image %}
-                    <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     {% else %}
-                    <div class="w-full h-full bg-gradient-to-br from-accent/20 to-purple-500/20 flex items-center justify-center">
+                    <div
+                        class="w-full h-full bg-gradient-to-br from-accent/20 to-purple-500/20 flex items-center justify-center">
                         <i class="fas fa-rocket text-4xl text-accent/40"></i>
                     </div>
                     {% endif %}
-                    <div class="absolute inset-0 bg-gradient-to-t from-galaxy-950 via-transparent to-transparent opacity-60"></div>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-galaxy-950 via-transparent to-transparent opacity-60">
+                    </div>
                     <!-- Result Badge -->
-                    <div class="absolute bottom-4 left-4 px-3 py-1.5 bg-accent/20 backdrop-blur-xl border border-accent/30 rounded-full">
+                    <div
+                        class="absolute bottom-4 left-4 px-3 py-1.5 bg-accent/20 backdrop-blur-xl border border-accent/30 rounded-full">
                         <span class="text-xs font-semibold text-accent-light">{{ project.result_highlight }}</span>
                     </div>
                 </div>
                 <!-- Project Info -->
                 <div class="p-6">
-                    <h3 class="text-lg font-bold mb-2 group-hover:text-accent-light transition-colors duration-300">{{ project.title }}</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">{{ project.short_description }}</p>
+                    <h3
+                        class="text-xl font-black mb-2 text-slate-900 group-hover:text-mzify-orange transition-colors duration-300">
+                        {{ project.title }}</h3>
+                    <p class="text-slate-700 text-sm leading-relaxed font-medium">{{ project.short_description }}</p>
                 </div>
             </a>
             {% empty %}
@@ -180,7 +214,9 @@
 
         <!-- View Portfolio Button -->
         <div class="text-center mt-12 scroll-reveal">
-            <a href="{% url 'portfolio' %}" class="inline-flex items-center space-x-2 px-8 py-3 bg-white/5 backdrop-blur-xl border border-white/10 text-white font-medium rounded-full hover:bg-white/10 hover:border-accent/30 transition-all duration-300" id="view-portfolio">
+            <a href="{% url 'portfolio' %}"
+                class="inline-flex items-center space-x-2 px-8 py-3 bg-white border border-slate-200 text-slate-700 font-bold rounded-lg hover:border-mzify-orange hover:text-mzify-orange transition-all duration-300"
+                id="view-portfolio">
                 <span>View Full Portfolio</span>
                 <i class="fas fa-arrow-right text-sm"></i>
             </a>
@@ -189,33 +225,37 @@
 </section>
 
 <!-- ========== PROCESS SECTION ========== -->
-<section class="relative py-24" id="process-section">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section class="section-py relative bg-white" id="services-section">
+    <div class="container-custom">
         <!-- Section Header -->
         <div class="text-center mb-16 scroll-reveal">
-            <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-widest uppercase text-accent-light bg-accent/10 border border-accent/20 rounded-full mb-4">How We Work</span>
-            <h2 class="text-3xl sm:text-4xl font-bold mb-4">Our Process</h2>
-            <p class="text-slate-400 max-w-2xl mx-auto">A proven 4-step process that delivers results every time.</p>
+            <span
+                class="inline-block px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-mzify-orange bg-mzify-orange/10 border border-mzify-orange/20 rounded-full mb-4">How
+                We Work</span>
+            <h2 class="text-4xl sm:text-5xl font-black text-slate-900 mb-6">Our Process</h2>
+            <p class="text-lg text-slate-700 max-w-2xl mx-auto font-medium">A proven 4-step process that delivers
+                results every time.</p>
         </div>
 
         <!-- Timeline -->
         <div class="relative">
             <!-- Center Line (desktop) -->
-            <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-accent/50 via-purple-500/50 to-accent/50"></div>
+            <div
+                class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-accent/50 via-purple-500/50 to-accent/50">
+            </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
                 <!-- Step 1: Research -->
                 <div class="lg:text-right scroll-reveal">
-                    <div class="glass-card p-8 rounded-2xl relative">
-                        <div class="hidden lg:flex absolute -right-12 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-accent to-purple-500 items-center justify-center z-10 shadow-[0_0_20px_rgba(99,102,241,0.4)]">
-                            <span class="text-xs font-bold text-white">1</span>
+                    <div class="glass-card p-8 rounded-2xl relative border-l-4 border-l-mzify-orange">
+                        <div
+                            class="hidden lg:flex absolute -right-12 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-mzify-orange items-center justify-center z-10 shadow-lg shadow-mzify-orange/30">
+                            <i class="fas fa-search text-white text-xs"></i>
                         </div>
-                        <div class="flex items-center gap-3 mb-4 lg:justify-end">
-                            <span class="lg:hidden w-8 h-8 rounded-full bg-gradient-to-br from-accent to-purple-500 flex items-center justify-center text-xs font-bold text-white">1</span>
-                            <i class="fas fa-search text-xl text-accent-light"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Research & Discovery</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">We dive deep into your business, audience, and goals to craft a data-driven strategy that sets the foundation for success.</p>
+                        <h3 class="text-2xl font-black text-slate-900 mb-3">Research & Discovery</h3>
+                        <p class="text-slate-700 text-sm leading-relaxed font-medium">We dive deep into your business,
+                            audience, and
+                            goals to craft a data-driven strategy that sets the foundation for success.</p>
                     </div>
                 </div>
                 <div class="hidden lg:block"></div>
@@ -224,30 +264,36 @@
                 <div class="hidden lg:block"></div>
                 <div class="scroll-reveal">
                     <div class="glass-card p-8 rounded-2xl relative">
-                        <div class="hidden lg:flex absolute -left-12 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-accent to-purple-500 items-center justify-center z-10 shadow-[0_0_20px_rgba(99,102,241,0.4)]">
+                        <div
+                            class="hidden lg:flex absolute -left-12 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-accent to-purple-500 items-center justify-center z-10 shadow-[0_0_20px_rgba(99,102,241,0.4)]">
                             <span class="text-xs font-bold text-white">2</span>
                         </div>
                         <div class="flex items-center gap-3 mb-4">
-                            <span class="lg:hidden w-8 h-8 rounded-full bg-gradient-to-br from-accent to-purple-500 flex items-center justify-center text-xs font-bold text-white">2</span>
+                            <span
+                                class="lg:hidden w-8 h-8 rounded-full bg-gradient-to-br from-accent to-purple-500 flex items-center justify-center text-xs font-bold text-white">2</span>
                             <i class="fas fa-palette text-xl text-accent-light"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-2">UI/UX Design</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">We design intuitive, beautiful interfaces that delight users and align with your brand identity for maximum impact.</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">We design intuitive, beautiful interfaces that
+                            delight users and align with your brand identity for maximum impact.</p>
                     </div>
                 </div>
 
                 <!-- Step 3: Development -->
                 <div class="lg:text-right scroll-reveal">
                     <div class="glass-card p-8 rounded-2xl relative">
-                        <div class="hidden lg:flex absolute -right-12 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-accent to-purple-500 items-center justify-center z-10 shadow-[0_0_20px_rgba(99,102,241,0.4)]">
+                        <div
+                            class="hidden lg:flex absolute -right-12 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-accent to-purple-500 items-center justify-center z-10 shadow-[0_0_20px_rgba(99,102,241,0.4)]">
                             <span class="text-xs font-bold text-white">3</span>
                         </div>
                         <div class="flex items-center gap-3 mb-4 lg:justify-end">
-                            <span class="lg:hidden w-8 h-8 rounded-full bg-gradient-to-br from-accent to-purple-500 flex items-center justify-center text-xs font-bold text-white">3</span>
+                            <span
+                                class="lg:hidden w-8 h-8 rounded-full bg-gradient-to-br from-accent to-purple-500 flex items-center justify-center text-xs font-bold text-white">3</span>
                             <i class="fas fa-code text-xl text-accent-light"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Development</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">Our engineers build robust, scalable solutions using cutting-edge technologies with clean, maintainable code.</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">Our engineers build robust, scalable solutions
+                            using cutting-edge technologies with clean, maintainable code.</p>
                     </div>
                 </div>
                 <div class="hidden lg:block"></div>
@@ -256,15 +302,18 @@
                 <div class="hidden lg:block"></div>
                 <div class="scroll-reveal">
                     <div class="glass-card p-8 rounded-2xl relative">
-                        <div class="hidden lg:flex absolute -left-12 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-accent to-purple-500 items-center justify-center z-10 shadow-[0_0_20px_rgba(99,102,241,0.4)]">
+                        <div
+                            class="hidden lg:flex absolute -left-12 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-accent to-purple-500 items-center justify-center z-10 shadow-[0_0_20px_rgba(99,102,241,0.4)]">
                             <span class="text-xs font-bold text-white">4</span>
                         </div>
                         <div class="flex items-center gap-3 mb-4">
-                            <span class="lg:hidden w-8 h-8 rounded-full bg-gradient-to-br from-accent to-purple-500 flex items-center justify-center text-xs font-bold text-white">4</span>
+                            <span
+                                class="lg:hidden w-8 h-8 rounded-full bg-gradient-to-br from-accent to-purple-500 flex items-center justify-center text-xs font-bold text-white">4</span>
                             <i class="fas fa-rocket text-xl text-accent-light"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Launch & Scale</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">We deploy, monitor, and optimize your product for peak performance, ensuring it grows alongside your business.</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">We deploy, monitor, and optimize your product
+                            for peak performance, ensuring it grows alongside your business.</p>
                     </div>
                 </div>
             </div>
@@ -273,29 +322,35 @@
 </section>
 
 <!-- ========== TESTIMONIALS ========== -->
-<section class="relative py-24 bg-galaxy-900/30" id="testimonials-section">
+<section class="relative py-24 bg-slate-50" id="testimonials-section">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Section Header -->
         <div class="text-center mb-16 scroll-reveal">
-            <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-widest uppercase text-accent-light bg-accent/10 border border-accent/20 rounded-full mb-4">Testimonials</span>
-            <h2 class="text-3xl sm:text-4xl font-bold mb-4">What Our Clients Say</h2>
-            <p class="text-slate-400 max-w-2xl mx-auto">Don't just take our word for it — hear from the businesses we've helped transform.</p>
+            <span
+                class="inline-block px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-mzify-orange bg-mzify-orange/10 border border-mzify-orange/20 rounded-full mb-4">Testimonials</span>
+            <h2 class="text-4xl sm:text-5xl font-black text-slate-900 mb-6">What Our Clients Say</h2>
+            <p class="text-lg text-slate-700 max-w-2xl mx-auto font-medium">Don't just take our word for it — hear from
+                the businesses we've
+                helped transform.</p>
         </div>
 
         <!-- Testimonial Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {% for testimonial in testimonials %}
-            <div class="glass-card p-8 rounded-2xl relative scroll-reveal" style="animation-delay: {{ forloop.counter0 }}00ms">
+            <div class="glass-card p-8 rounded-2xl relative scroll-reveal"
+                style="animation-delay: {{ forloop.counter0 }}00ms">
                 <!-- Quote Icon -->
                 <div class="absolute -top-4 left-8">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-purple-500 flex items-center justify-center shadow-[0_0_20px_rgba(99,102,241,0.3)]">
+                    <div
+                        class="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-purple-500 flex items-center justify-center shadow-[0_0_20px_rgba(99,102,241,0.3)]">
                         <i class="fas fa-quote-left text-white text-sm"></i>
                     </div>
                 </div>
                 <div class="mt-4">
                     <p class="text-slate-300 text-sm leading-relaxed mb-6 italic">"{{ testimonial.feedback }}"</p>
                     <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent/30 to-purple-500/30 flex items-center justify-center">
+                        <div
+                            class="w-10 h-10 rounded-full bg-gradient-to-br from-accent/30 to-purple-500/30 flex items-center justify-center">
                             <span class="text-sm font-bold text-accent-light">{{ testimonial.client_name|first }}</span>
                         </div>
                         <div>
@@ -315,17 +370,19 @@
 </section>
 
 <!-- ========== FINAL CTA ========== -->
-<section class="relative py-32 overflow-hidden" id="cta-section">
-    <!-- Background Effects -->
-    <div class="absolute inset-0">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-3xl"></div>
-        <div class="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-3xl"></div>
-    </div>
+<section class="section-py relative overflow-hidden bg-white" id="cta-section">
+
 
     <div class="relative z-10 text-center max-w-3xl mx-auto px-4 sm:px-6 scroll-reveal">
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">Let's Build Your Next <span class="bg-gradient-to-r from-accent-light to-purple-400 bg-clip-text text-transparent">Project</span></h2>
-        <p class="text-slate-400 text-lg mb-10 leading-relaxed">Ready to transform your idea into a powerful digital product? Let's make it happen together.</p>
-        <a href="{% url 'contact' %}" class="group inline-flex items-center space-x-2 px-10 py-4 bg-gradient-to-r from-accent to-purple-500 text-white font-semibold rounded-full hover:shadow-[0_0_50px_rgba(99,102,241,0.5)] transform hover:scale-105 transition-all duration-300 text-lg" id="final-cta">
+        <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-slate-900 mb-8 leading-tight">Let's Build Your Next
+            <span class="text-gradient-orange">Project</span>
+        </h2>
+        <p class="text-xl text-slate-800 mb-12 leading-relaxed font-bold max-w-2xl mx-auto">Ready to transform your idea
+            into a powerful digital
+            product? Let's make it happen together.</p>
+        <a href="{% url 'contact' %}"
+            class="group inline-flex items-center space-x-2 px-10 py-4 bg-mzify-orange text-white font-bold rounded-lg shadow-xl hover:shadow-mzify-orange/40 transform hover:-translate-y-1 transition-all duration-300 text-lg"
+            id="final-cta">
             <span>Start a Project</span>
             <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
         </a>
