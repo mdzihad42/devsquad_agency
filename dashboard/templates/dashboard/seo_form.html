@@ -1,0 +1,61 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block header_title %}Edit SEO Data{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto">
+    <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
+        <h4 class="text-xl font-black text-mzify-dark mb-6">
+            {% if is_add %}Create New SEO Configuration{% else %}Edit Meta Configuration for: <span
+                class="text-mzify-orange">{{ seo.page_url }}</span>{% endif %}
+        </h4>
+
+        <form method="POST" class="space-y-6">
+            {% csrf_token %}
+
+            {% if is_add %}
+            <div>
+                <label class="block text-sm font-bold text-mzify-dark mb-2">Page URL Path</label>
+                <input type="text" name="page_url" required placeholder="e.g. /contact/"
+                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mzify-orange focus:ring-2 focus:ring-mzify-orange/10 outline-none transition-all">
+                <p class="mt-1 text-xs text-slate-400">Example: / , /services/ , /portfolio/</p>
+            </div>
+            {% endif %}
+
+            <div>
+                <label class="block text-sm font-bold text-mzify-dark mb-2">Browser Title Tag</label>
+                <input type="text" name="title_tag" value="{% if not is_add %}{{ seo.title_tag }}{% endif %}" required
+                    placeholder="Page Title"
+                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mzify-orange focus:ring-2 focus:ring-mzify-orange/10 outline-none transition-all">
+                <p class="mt-1 text-xs text-slate-400">Optimal length: 50-60 characters.</p>
+            </div>
+
+            <div>
+                <label class="block text-sm font-bold text-mzify-dark mb-2">Meta Description</label>
+                <textarea name="meta_description" rows="4" required
+                    placeholder="Enter description for search results..."
+                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mzify-orange focus:ring-2 focus:ring-mzify-orange/10 outline-none transition-all">{% if not is_add %}{{ seo.meta_description }}{% endif %}</textarea>
+                <p class="mt-1 text-xs text-slate-400">Optimal length: 150-160 characters.</p>
+            </div>
+
+            <div>
+                <label class="block text-sm font-bold text-mzify-dark mb-2">Keywords (Comma separated)</label>
+                <input type="text" name="keywords" value="{% if not is_add %}{{ seo.keywords }}{% endif %}"
+                    placeholder="keyword1, keyword2..."
+                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mzify-orange focus:ring-2 focus:ring-mzify-orange/10 outline-none transition-all">
+            </div>
+
+            <div class="pt-4 flex space-x-4">
+                <button type="submit"
+                    class="flex-1 py-4 bg-mzify-orange text-white font-black rounded-xl shadow-lg shadow-mzify-orange/20 hover:shadow-mzify-orange/40 transition-all">
+                    Update SEO Settings
+                </button>
+                <a href="{% url 'dashboard_seo' %}"
+                    class="px-8 py-4 bg-slate-100 text-slate-600 font-bold rounded-xl hover:bg-slate-200 transition-all text-center">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

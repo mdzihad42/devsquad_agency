@@ -1,0 +1,65 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block header_title %}Financial Accounts{% endblock %}
+
+{% block content %}
+<div class="mb-8 flex justify-between items-center">
+    <h3 class="text-2xl font-black text-mzify-dark">Agency ledger</h3>
+    <a href="{% url 'dashboard_finance_add' %}"
+        class="px-6 py-3 bg-mzify-orange text-white rounded-xl font-bold hover:bg-mzify-orange/90 transition-all shadow-lg shadow-mzify-orange/20">
+        <i class="fas fa-plus mr-2"></i> Add Transaction
+    </a>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <div class="bg-white p-6 rounded-2xl border-l-4 border-emerald-500 shadow-sm">
+        <p class="text-slate-500 text-sm font-semibold mb-1">Total Income</p>
+        <h4 class="text-2xl font-black text-emerald-500">${{ income }}</h4>
+    </div>
+    <div class="bg-white p-6 rounded-2xl border-l-4 border-red-500 shadow-sm">
+        <p class="text-slate-500 text-sm font-semibold mb-1">Total Expense</p>
+        <h4 class="text-2xl font-black text-red-500">${{ expense }}</h4>
+    </div>
+    <div class="bg-white p-6 rounded-2xl border-l-4 border-mzify-orange shadow-sm">
+        <p class="text-slate-500 text-sm font-semibold mb-1">Net Profit</p>
+        <h4 class="text-2xl font-black text-mzify-dark">${{ profit }}</h4>
+    </div>
+</div>
+
+<div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+    <table class="w-full text-left">
+        <thead class="bg-slate-50 border-b border-slate-100">
+            <tr>
+                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Date</th>
+                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Title</th>
+                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Category</th>
+                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Amount</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+            {% for trans in transactions %}
+            <tr class="hover:bg-slate-50/50 transition-colors">
+                <td class="px-6 py-4 text-sm text-slate-500">{{ trans.date }}</td>
+                <td class="px-6 py-4">
+                    <p class="text-sm font-bold text-mzify-dark">{{ trans.title }}</p>
+                    <p class="text-xs text-slate-400 capitalize">{{ trans.transaction_type|lower }}</p>
+                </td>
+                <td class="px-6 py-4">
+                    <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold">{{ trans.category
+                        }}</span>
+                </td>
+                <td
+                    class="px-6 py-4 text-right font-black {% if trans.transaction_type == 'INCOME' %}text-emerald-500{% else %}text-red-500{% endif %}">
+                    {% if trans.transaction_type == 'INCOME' %}+{% else %}-{% endif %}${{ trans.amount }}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="px-6 py-12 text-center text-slate-400 italic">No transactions found. Start by
+                    adding one!</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block header_title %}Portfolio Management{% endblock %}
+
+{% block content %}
+<div class="mb-8 flex justify-between items-center">
+    <div>
+        <h3 class="text-2xl font-black text-mzify-dark">Project Showcase</h3>
+        <p class="text-slate-500">Manage your agency's work and case studies.</p>
+    </div>
+    <a href="/admin/devsqaud/project/add/"
+        class="px-6 py-3 bg-mzify-orange text-white rounded-xl font-bold hover:bg-mzify-orange/90 transition-all shadow-lg shadow-mzify-orange/20">
+        <i class="fas fa-plus mr-2"></i> New Project
+    </a>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {% for project in projects %}
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
+        <div class="aspect-video bg-slate-100 relative group">
+            {% if project.image %}
+            <img src="{{ project.image.url }}" class="w-full h-full object-cover">
+            {% else %}
+            <div class="w-full h-full flex items-center justify-center text-slate-300">
+                <i class="fas fa-image text-4xl"></i>
+            </div>
+            {% endif %}
+            <div
+                class="absolute inset-0 bg-mzify-dark/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-3">
+                <a href="/admin/devsqaud/project/{{ project.id }}/change/"
+                    class="w-10 h-10 rounded-full bg-white text-mzify-dark flex items-center justify-center hover:bg-mzify-orange hover:text-white transition-all">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{% url 'project_detail' project.slug %}" target="_blank"
+                    class="w-10 h-10 rounded-full bg-white text-mzify-dark flex items-center justify-center hover:bg-mzify-orange hover:text-white transition-all">
+                    <i class="fas fa-eye"></i>
+                </a>
+            </div>
+        </div>
+        <div class="p-6 flex-1">
+            <h4 class="font-bold text-mzify-dark mb-2 line-clamp-1">{{ project.title }}</h4>
+            <p class="text-xs text-slate-500 line-clamp-2 mb-4">{{ project.short_description }}</p>
+            <div class="flex flex-wrap gap-2 mt-auto">
+                {% for tech in project.get_tech_list %}
+                <span
+                    class="px-2 py-1 bg-slate-50 text-[10px] font-bold text-slate-400 rounded uppercase tracking-wider">{{
+                    tech }}</span>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-span-full py-20 text-center">
+        <div
+            class="w-20 h-20 rounded-full bg-slate-50 flex items-center justify-center mx-auto mb-4 text-slate-300 transform rotate-12">
+            <i class="fas fa-folder-open text-4xl"></i>
+        </div>
+        <h4 class="text-lg font-bold text-slate-400">Your portfolio is empty</h4>
+        <p class="text-sm text-slate-300 mb-6">Start showcasing your masterpieces to the world.</p>
+        <a href="/admin/devsqaud/project/add/" class="text-mzify-orange font-bold hover:underline">Create your first
+            project</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

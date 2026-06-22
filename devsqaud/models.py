@@ -97,12 +97,12 @@ class ContactMessage(models.Model):
 class SiteConfig(models.Model):
     """Singleton site-wide configuration."""
     # Hero
-    hero_headline = models.CharField(max_length=300, default="We Build Modern Websites & Web Applications That Grow Your Business")
-    hero_subheading = models.TextField(default="At Mzify, we create fast, secure and scalable websites and custom web applications tailored to your needs.")
+    hero_headline = models.CharField(max_length=300, default="Scale Your Business With Premium Web Solutions & Digital Innovation")
+    hero_subheading = models.TextField(default="We build high-performance, SEO-optimized websites and custom software tailored to help your agency or brand grow faster in the digital landscape.")
     # About
-    about_intro = models.TextField(default="We are a team of passionate developers and designers building digital solutions.")
-    about_mission = models.TextField(default="To deliver world-class digital solutions that drive business success.")
-    about_vision = models.TextField(default="To be the most trusted digital partner for businesses worldwide.")
+    about_intro = models.TextField(default="Mzify is a team of expert developers and designers dedicated to building scalable digital products that solve real-world problems.")
+    about_mission = models.TextField(default="Our mission is to empower businesses with cutting-edge technology that ensures long-term growth and digital success.")
+    about_vision = models.TextField(default="To become the most reliable and innovative digital agency in Bangladesh and globally.")
     # Stats
     stat_projects = models.CharField(max_length=50, default="100+")
     stat_experience = models.CharField(max_length=50, default="5+")

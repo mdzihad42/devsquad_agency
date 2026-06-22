@@ -1,0 +1,51 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block header_title %}Lead Messages{% endblock %}
+
+{% block content %}
+<div class="mb-8">
+    <h3 class="text-2xl font-black text-mzify-dark">Customer Inquiries</h3>
+    <p class="text-slate-500">Manage and respond to messages from your website.</p>
+</div>
+
+<div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+    <table class="w-full text-left">
+        <thead class="bg-slate-50 border-b border-slate-100">
+            <tr>
+                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Status</th>
+                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Sender</th>
+                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Subject/Message</th>
+                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Date</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+            {% for lead in leads %}
+            <tr class="hover:bg-slate-50/50 transition-colors cursor-pointer"
+                onclick="window.location='{% url 'dashboard_message_detail' lead.pk %}'">
+                <td class="px-6 py-4">
+                    {% if not lead.is_read %}
+                    <span class="w-3 h-3 bg-mzify-orange rounded-full inline-block" title="New Message"></span>
+                    {% else %}
+                    <i class="fas fa-check text-slate-300"></i>
+                    {% endif %}
+                </td>
+                <td class="px-6 py-4">
+                    <p class="text-sm font-bold text-mzify-dark">{{ lead.name }}</p>
+                    <p class="text-xs text-slate-400">{{ lead.email }}</p>
+                </td>
+                <td class="px-6 py-4 max-w-xs">
+                    <p class="text-sm text-slate-600 truncate">{{ lead.message }}</p>
+                </td>
+                <td class="px-6 py-4 text-right text-xs text-slate-400 whitespace-nowrap">
+                    {{ lead.created_at|date:"M d, Y" }}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="px-6 py-12 text-center text-slate-400 italic">No messages yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

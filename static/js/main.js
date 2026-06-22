@@ -1,5 +1,5 @@
 /* ====================================
-   DevSquad — Main JavaScript
+   mzify — Main JavaScript
    ==================================== */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -45,16 +45,34 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // ---- Mobile Menu Toggle (Robust Version) ----
+    // ---- Mobile Menu Toggle (Sophisticated Glassy Version) ----
     if (mobileMenuBtn && mobileMenu) {
+        const links = mobileMenu.querySelectorAll('a, .pt-8');
+
         const openMenu = () => {
-            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+            mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
             document.body.style.overflow = 'hidden';
+
+            // Staggered entry
+            links.forEach((link, index) => {
+                setTimeout(() => {
+                    link.classList.remove('translate-y-8', 'opacity-0');
+                    link.classList.add('translate-y-0', 'opacity-100');
+                }, 100 + (index * 80));
+            });
         };
 
         const closeMenu = () => {
-            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+            mobileMenu.classList.add('opacity-0', 'pointer-events-none');
             document.body.style.overflow = '';
+
+            // Reset for next time
+            links.forEach((link) => {
+                link.classList.add('translate-y-8', 'opacity-0');
+                link.classList.remove('translate-y-0', 'opacity-100');
+            });
         };
 
         mobileMenuBtn.addEventListener('click', openMenu);

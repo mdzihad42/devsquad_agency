@@ -71,7 +71,7 @@ def update_data():
         Service.objects.create(**s)
     print(f"- {len(services_data)} Services created.")
 
-    # 3. Clean up old projects and testimonials if they mention DevSquad
+    # 3. Clean up old projects and testimonials if they mention mzify
     Testimonial.objects.all().delete()
     Project.objects.all().delete()
     print("- Old projects and testimonials cleared for a fresh start.")

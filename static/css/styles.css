@@ -1,5 +1,5 @@
 /* ====================================
-   DevSquad Galaxy Theme — Custom Styles
+   mzify Galaxy Theme — Custom Styles
    ==================================== */
 
 /* ---- CSS Variables (Mzify Premium Theme) ---- */
@@ -135,6 +135,21 @@ html {
         radial-gradient(2px 2px at 650px 400px, rgba(139, 92, 246, 0.7), transparent);
     background-size: 850px 600px;
     animation: drift 150s linear infinite, twinkle 4s ease-in-out infinite alternate;
+}
+
+.mobile-nav-link {
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.mobile-nav-link:hover {
+    letter-spacing: 0.1em;
+}
+
+/* Fallback for backdrop-filter */
+@supports not (backdrop-filter: blur(20px)) {
+    #mobile-menu {
+        background-color: rgba(75, 32, 11, 0.98) !important;
+    }
 }
 
 @keyframes drift {
