@@ -33,7 +33,8 @@ applications, and API integration.{% endblock %}
                         class="{{ service.icon }} text-2xl text-mzify-orange group-hover:text-white transition-colors"></i>
                 </div>
                 <!-- Title -->
-                <h3 class="text-2xl font-black text-slate-900 mb-4 group-hover:text-mzify-orange transition-colors">{{ service.title }}</h3>
+                <h3 class="text-2xl font-black text-slate-900 mb-4 group-hover:text-mzify-orange transition-colors">{{
+                    service.title }}</h3>
 
                 <!-- Full Description -->
                 <p class="text-slate-700 text-sm leading-relaxed mb-6 font-medium">{{ service.full_description }}</p>
@@ -61,6 +62,158 @@ applications, and API integration.{% endblock %}
                 <p class="text-lg">Services are coming soon. Check back later!</p>
             </div>
             {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ========== PRICING SECTION ========== -->
+<section class="section-py bg-white relative overflow-hidden" id="pricing">
+    <div class="container-custom relative z-10">
+        <div class="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
+            <h2 class="text-4xl md:text-5xl font-black text-mzify-dark mb-6">Service <span
+                    class="text-mzify-orange">Packages</span></h2>
+            <p class="text-slate-600 font-medium font-bold">Choose a plan that fits your business goals. Premium
+                quality, guaranteed results.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+            <!-- Package 1: Starter -->
+            <div
+                class="p-8 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group">
+                <h3 class="font-black text-slate-800 mb-2">Starter Landing</h3>
+                <div class="mb-6">
+                    <span class="text-3xl font-black text-mzify-dark">৳8K</span>
+                    <span class="text-slate-400 text-xs font-bold uppercase">/ One-time</span>
+                </div>
+                <ul class="space-y-4 mb-8 text-sm text-slate-600 font-medium h-48 overflow-y-auto custom-scrollbar">
+                    <li class="flex items-center space-x-2"><i class="fas fa-check text-emerald-500 text-sm"></i>
+                        <span>1 Modern UI Page</span>
+                    </li>
+                    <li class="flex items-center space-x-2"><i class="fas fa-check text-emerald-500 text-sm"></i>
+                        <span>Responsive Design</span>
+                    </li>
+                    <li class="flex items-center space-x-2"><i class="fas fa-check text-emerald-500 text-sm"></i>
+                        <span>Basic SEO Setup</span>
+                    </li>
+                    <li class="flex items-center space-x-2"><i class="fas fa-check text-emerald-500 text-sm"></i>
+                        <span>Contact Form</span>
+                    </li>
+                </ul>
+                <a href="{% url 'contact' %}"
+                    class="block w-full py-3 text-center rounded-xl bg-slate-100 text-slate-800 font-bold group-hover:bg-mzify-orange group-hover:text-white transition-all text-sm">Select
+                    Plan</a>
+            </div>
+
+            <!-- Package 2: Business -->
+            <div
+                class="p-8 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group">
+                <h3 class="font-black text-slate-800 mb-2">Corporate Pro</h3>
+                <div class="mb-6">
+                    <span class="text-3xl font-black text-mzify-dark">৳20K</span>
+                    <span class="text-slate-400 text-xs font-bold uppercase">/ One-time</span>
+                </div>
+                <ul class="space-y-4 mb-8 text-sm text-slate-600 font-medium h-48 overflow-y-auto custom-scrollbar">
+                    <li class="flex items-center space-x-2"><i class="fas fa-check text-emerald-500 text-sm"></i>
+                        <span>Up to 5 Pages</span>
+                    </li>
+                    <li class="flex items-center space-x-2"><i class="fas fa-check text-emerald-500 text-sm"></i>
+                        <span>Dynamic Content</span>
+                    </li>
+                    <li class="flex items-center space-x-2"><i class="fas fa-check text-emerald-500 text-sm"></i>
+                        <span>Advanced SEO</span>
+                    </li>
+                    <li class="flex items-center space-x-2"><i class="fas fa-check text-emerald-500 text-sm"></i>
+                        <span>Social Media Integration</span>
+                    </li>
+                </ul>
+                <a href="{% url 'contact' %}"
+                    class="block w-full py-3 text-center rounded-xl bg-slate-100 text-slate-800 font-bold group-hover:bg-mzify-orange group-hover:text-white transition-all text-sm">Select
+                    Plan</a>
+            </div>
+
+            <!-- Package 3: Premium (Featured) -->
+            <div
+                class="p-8 rounded-2xl bg-mzify-dark border border-mzify-orange/30 shadow-2xl shadow-mzify-orange/20 hover:shadow-mzify-orange/40 transition-all duration-500 hover:-translate-y-4 relative overflow-hidden group">
+                <div
+                    class="absolute top-4 right-[-30px] rotate-411 bg-mzify-orange text-white text-[10px] font-black py-1 px-10 uppercase tracking-widest leading-none">
+                    Popular</div>
+                <h3 class="font-black text-white ml-0 mb-2">E-commerce Plus</h3>
+                <div class="mb-6">
+                    <span class="text-3xl font-black text-white">৳40K</span>
+                    <span class="text-slate-400 text-xs font-bold uppercase">/ One-time</span>
+                </div>
+                <ul class="space-y-4 mb-8 text-sm text-slate-300 font-medium h-48 overflow-y-auto custom-scrollbar">
+                    <li class="flex items-center space-x-2"><i class="fas fa-check text-mzify-orange text-sm"></i>
+                        <span>Full E-commerce System</span>
+                    </li>
+                    <li class="flex items-center space-x-2"><i class="fas fa-check text-mzify-orange text-sm"></i>
+                        <span>Payment Gateway</span>
+                    </li>
+                    <li class="flex items-center space-x-2"><i class="fas fa-check text-mzify-orange text-sm"></i>
+                        <span>Inventory Management</span>
+                    </li>
+                    <li class="flex items-center space-x-2"><i class="fas fa-check text-mzify-orange text-sm"></i>
+                        <span>Customer Accounts</span>
+                    </li>
+                </ul>
+                <a href="{% url 'contact' %}"
+                    class="block w-full py-3 text-center rounded-xl bg-mzify-orange text-white font-bold transform hover:scale-105 transition-all text-sm shadow-lg shadow-mzify-orange/40">Select
+                    Plan</a>
+            </div>
+
+            <!-- Package 4: Software -->
+            <div
+                class="p-8 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group">
+                <h3 class="font-black text-slate-800 mb-2">Enterprise App</h3>
+                <div class="mb-6">
+                    <span class="text-3xl font-black text-mzify-dark">৳70K</span>
+                    <span class="text-slate-400 text-xs font-bold uppercase">/ Starting</span>
+                </div>
+                <ul class="space-y-4 mb-8 text-sm text-slate-600 font-medium h-48 overflow-y-auto custom-scrollbar">
+                    <li class="flex items-center space-x-2"><i class="fas fa-check text-emerald-500 text-sm"></i>
+                        <span>Custom Software</span>
+                    </li>
+                    <li class="flex items-center space-x-2"><i class="fas fa-check text-emerald-500 text-sm"></i>
+                        <span>Complex Workflows</span>
+                    </li>
+                    <li class="flex items-center space-x-2"><i class="fas fa-check text-emerald-500 text-sm"></i>
+                        <span>High-End Security</span>
+                    </li>
+                    <li class="flex items-center space-x-2"><i class="fas fa-check text-emerald-500 text-sm"></i>
+                        <span>API Integrations</span>
+                    </li>
+                </ul>
+                <a href="{% url 'contact' %}"
+                    class="block w-full py-3 text-center rounded-xl bg-slate-100 text-slate-800 font-bold group-hover:bg-mzify-orange group-hover:text-white transition-all text-sm">Select
+                    Plan</a>
+            </div>
+
+            <!-- Package 5: Marketing -->
+            <div
+                class="p-8 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group">
+                <h3 class="font-black text-slate-800 mb-2">Growth Partner</h3>
+                <div class="mb-6">
+                    <span class="text-3xl font-black text-mzify-dark">৳12K</span>
+                    <span class="text-slate-400 text-xs font-bold uppercase">/ Monthly</span>
+                </div>
+                <ul class="space-y-4 mb-8 text-sm text-slate-600 font-medium h-48 overflow-y-auto custom-scrollbar">
+                    <li class="flex items-center space-x-2"><i class="fas fa-check text-emerald-500 text-sm"></i>
+                        <span>SEO & Search Console</span>
+                    </li>
+                    <li class="flex items-center space-x-2"><i class="fas fa-check text-emerald-500 text-sm"></i>
+                        <span>FB & Insta Marketing</span>
+                    </li>
+                    <li class="flex items-center space-x-2"><i class="fas fa-check text-emerald-500 text-sm"></i>
+                        <span>Ad Management</span>
+                    </li>
+                    <li class="flex items-center space-x-2"><i class="fas fa-check text-emerald-500 text-sm"></i>
+                        <span>Monthly Reports</span>
+                    </li>
+                </ul>
+                <a href="{% url 'contact' %}"
+                    class="block w-full py-3 text-center rounded-xl bg-slate-100 text-slate-800 font-bold group-hover:bg-mzify-orange group-hover:text-white transition-all text-sm">Select
+                    Plan</a>
+            </div>
         </div>
     </div>
 </section>
